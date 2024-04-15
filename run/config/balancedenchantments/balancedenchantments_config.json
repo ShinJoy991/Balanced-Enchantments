@@ -1,0 +1,40 @@
+{
+  "__comment": [
+    "This is config section for Balanced Enchantments mod",
+    "Pretty easy, change it to match your desire",
+    "Use integer numbers and true/false to prevent errors"
+  ],
+  "blockmasksoul": {
+    "enable": "true",
+    "maxlevel": "2",
+    "onlyhoe": "true",
+    "tickduration": "20",
+    "chance": "20"
+  },
+  "volley": {
+    "enable": "true",
+    "maxlevel": "3",
+    "anglebetween": "10",
+    "matchinfinity": "false"
+  },
+  "magmawalker": {
+    "enable": "true",
+    "maxlevel": "3",
+    "radiusperlvl": "1",
+    "minduration": "20",
+    "maxduration": "120"
+  },
+  "supercharged": {
+    "enable": "true",
+    "maxlevel": "4",
+    "dmgaddperlvl": "4",
+    "weaknesslvl": "1",
+    "weaknessduration": "60",
+    "cooldown": "100"
+  },
+  "curseofdurability": {
+    "enable": "true",
+    "minrandom": "-10",
+    "maxrandom": "10"
+  }
+}

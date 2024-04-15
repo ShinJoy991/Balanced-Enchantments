@@ -1,0 +1,33 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+license="MIT License"
+
+[[mods]]
+modId="balancedenchantments"
+version="1.0-5"
+displayName="Balanced Enchantments
+"
+authors="ShinJoy991"
+logoFile="logo.png"
+description='''Awesome enchantments, fully customizable, that's what you can find in this mod.
+
+Any issues just pm me on curseforge or github
+
+https://github.com/ShinJoy991/Create_Custom_Commands/issues
+
+https://www.curseforge.com/minecraft/mc-mods/create-custom-command
+
+'''
+
+[[dependencies."balancedenchantments"]]
+   modId="forge"
+   mandatory=true
+   versionRange="[36,)"
+   ordering="NONE"
+   side="BOTH"
+[[dependencies."balancedenchantments"]]
+   modId="minecraft"
+   mandatory=true
+   versionRange="[1.16.5,1.17)"
+   ordering="NONE"
+   side="BOTH"

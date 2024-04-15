@@ -1,0 +1,131 @@
+buildscript {
+    repositories {
+
+        maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
+    }
+}
+
+plugins {
+    id 'eclipse'
+    id 'idea'
+   // id "com.github.johnrengelman.shadow" version "8.1.0"
+    id 'net.minecraftforge.gradle' version '[6.0.16,)'
+}
+//shadowJar {
+//    configurations = [project.configurations.shadow]
+//    relocate("com.llamalad7.mixinextras", "com.github.shinjoy991.balancedenchantments.mixinextras")
+//    mergeServiceFiles()
+//}
+//configurations {
+//    implementation.extendsFrom shadow
+//}
+apply plugin: 'org.spongepowered.mixin'
+
+group = mod_group_id
+version = mod_version
+
+base {
+    archivesName = mod_id
+}
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(8)
+}
+
+minecraft {
+    mappings channel: mapping_channel, version: mapping_version
+    copyIdeResources = true
+    runs {
+
+        configureEach {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+//            property("mixin.env.remapRefMap", "true")
+//            property("mixin.env.refMapRemappingFile", "${buildDir}/createSrgToMcp/output.srg")
+            mods {
+                "${mod_id}" {
+                    source sourceSets.main
+                }
+            }
+        }
+        client {}
+        server {
+            args '--nogui'
+        }
+        data {
+            workingDirectory project.file('run-data')
+            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+        }
+    }
+}
+
+mixin {
+    add sourceSets.main, "balancedenchantments.refmap.json"
+    config "${mod_id}.mixins.json"
+}
+
+
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+repositories {
+    maven {
+        url "https://cursemaven.com/"
+    }
+}
+
+dependencies {
+    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+    runtimeOnly fg.deobf("curse.maven:createcustomcommands-962961:5214614")
+    runtimeOnly fg.deobf("curse.maven:enchantmentdescriptions-250419:4757009")
+    runtimeOnly fg.deobf("curse.maven:enchantmentdescriptions_lib-228525:4351252")
+    runtimeOnly fg.deobf("curse.maven:dmg_indicator-245733:3144151")
+ //   runtimeOnly fg.deobf("curse.maven:in_control-257356:3909053")
+    annotationProcessor 'org.spongepowered:mixin:0.8.4:processor'
+//    shadow(annotationProcessor("io.github.llamalad7:mixinextras-common:0.3.5"))
+//    implementation(annotationProcessor("io.github.llamalad7:mixinextras-common:0.3.5"))
+//    implementation(jarJar("io.github.llamalad7:mixinextras-forge:0.3.5")) {
+//        jarJar.ranged(it, "[0.3.5,)")
+//    }
+}
+
+tasks.named('processResources', ProcessResources).configure {
+    var replaceProperties = [minecraft_version   : minecraft_version, minecraft_version_range: minecraft_version_range,
+                             forge_version       : forge_version, forge_version_range: forge_version_range,
+                             loader_version_range: loader_version_range,
+                             mod_id              : mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
+                             mod_authors         : mod_authors, mod_description: mod_description,]
+
+    inputs.properties replaceProperties
+
+    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
+        expand replaceProperties + [project: project]
+    }
+}
+
+tasks.named('jar', Jar).configure {
+    manifest {
+        attributes(["Specification-Title"     : mod_id,
+                    "Specification-Vendor"    : mod_authors,
+                    "Specification-Version"   : "1",
+                    "Implementation-Title"    : project.name,
+                    "Implementation-Version"  : project.jar.archiveVersion,
+                    "Implementation-Vendor"   : mod_authors,
+                    "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")])
+    }
+
+    finalizedBy 'reobfJar'
+}
+//jar.finalizedBy('reobfJar')
+//reobf {
+//    shadowJar {}
+//}
+//shadowJar.finalizedBy('reobfShadowJar')
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+

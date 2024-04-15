@@ -1,0 +1,28 @@
+{
+  "mappings": {
+    "com/github/shinjoy991/balancedenchantments/mixin/EntityTypeMixin": {
+      "Lnet/minecraft/entity/EntityType;isBlockDangerous(Lnet/minecraft/block/BlockState;)Z": "Lnet/minecraft/entity/EntityType;func_233597_a_(Lnet/minecraft/block/BlockState;)Z",
+      "isBlockDangerous": "Lnet/minecraft/entity/EntityType;func_233597_a_(Lnet/minecraft/block/BlockState;)Z"
+    },
+    "com/github/shinjoy991/balancedenchantments/mixin/LivingEntityMixin": {
+      "tryAddSoulSpeed": "Lnet/minecraft/entity/LivingEntity;func_233642_cO_()V"
+    },
+    "com/github/shinjoy991/balancedenchantments/mixin/WalkNodeProcessorMixin": {
+      "isBurningBlock": "Lnet/minecraft/pathfinding/WalkNodeProcessor;func_237233_a_(Lnet/minecraft/block/BlockState;)Z"
+    }
+  },
+  "data": {
+    "searge": {
+      "com/github/shinjoy991/balancedenchantments/mixin/EntityTypeMixin": {
+        "Lnet/minecraft/entity/EntityType;isBlockDangerous(Lnet/minecraft/block/BlockState;)Z": "Lnet/minecraft/entity/EntityType;func_233597_a_(Lnet/minecraft/block/BlockState;)Z",
+        "isBlockDangerous": "Lnet/minecraft/entity/EntityType;func_233597_a_(Lnet/minecraft/block/BlockState;)Z"
+      },
+      "com/github/shinjoy991/balancedenchantments/mixin/LivingEntityMixin": {
+        "tryAddSoulSpeed": "Lnet/minecraft/entity/LivingEntity;func_233642_cO_()V"
+      },
+      "com/github/shinjoy991/balancedenchantments/mixin/WalkNodeProcessorMixin": {
+        "isBurningBlock": "Lnet/minecraft/pathfinding/WalkNodeProcessor;func_237233_a_(Lnet/minecraft/block/BlockState;)Z"
+      }
+    }
+  }
+}
