@@ -1,1 +1,1 @@
-It has not yet been published on CurseForge
+https://www.curseforge.com/minecraft/mc-mods/balanced-enchantments
