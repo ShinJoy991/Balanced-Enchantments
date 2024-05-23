@@ -1,10 +1,10 @@
 modLoader="javafml"
 loaderVersion="[36,)"
-license="MIT License"
+license="LGPL-3.0"
 
 [[mods]]
 modId="balancedenchantments"
-version="1.0-5"
+version="1.16.5v1.0"
 displayName="Balanced Enchantments
 "
 authors="ShinJoy991"
@@ -13,9 +13,9 @@ description='''Awesome enchantments, fully customizable, that's what you can fin
 
 Any issues just pm me on curseforge or github
 
-https://github.com/ShinJoy991/Create_Custom_Commands/issues
+https://github.com/ShinJoy991/Balanced-Enchantments
 
-https://www.curseforge.com/minecraft/mc-mods/create-custom-command
+https://www.curseforge.com/minecraft/mc-mods/balanced-enchantments
 
 '''
 

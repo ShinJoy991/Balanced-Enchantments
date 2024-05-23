@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/BalancedEnchantments.main.iml" filepath="$PROJECT_DIR$/.idea/modules/BalancedEnchantments.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/BalancedEnchantments.test.iml" filepath="$PROJECT_DIR$/.idea/modules/BalancedEnchantments.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BalancedEnchantments_v1.0.BalancedEnchantments.test.iml" filepath="$PROJECT_DIR$/.idea/modules/BalancedEnchantments_v1.0.BalancedEnchantments.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/shinjoy991.BalancedEnchantments.test.iml" filepath="$PROJECT_DIR$/.idea/modules/shinjoy991.BalancedEnchantments.test.iml" />
     </modules>
   </component>
