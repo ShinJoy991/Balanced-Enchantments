@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "com.github.shinjoy991.balanced_enchantments.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "minVersion": "0.8.4",
+  "refmap": "balanced_enchantments.refmap.json",
+  "mixins": [
+    "ItemStackMixin",
+    "LivingEntityMixin",
+    "WalkNodeProcessorMixin"
+  ]
+}

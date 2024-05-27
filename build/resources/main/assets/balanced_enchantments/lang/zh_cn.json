@@ -1,0 +1,19 @@
+{
+  "enchantment.balanced_enchantments.volley": "齐射",
+  "enchantment.balanced_enchantments.volley.desc" : "使弓发射一波箭弧  [弓]",
+  "enchantment.balanced_enchantments.block_mask_soul": "灵魂召唤",
+  "enchantment.balanced_enchantments.block_mask_soul.desc": "召唤灵魂困住你的敌人  [锄头]",
+  "block.balanced_enchantments.crusted_magma_block": "结壳岩浆块",
+  "block.balanced_enchantments.crusted_magma_block_0": "结壳岩浆",
+  "block.balanced_enchantments.crusted_magma_block_1": "结壳岩浆",
+  "block.balanced_enchantments.crusted_magma_block_2": "结壳岩浆",
+  "block.balanced_enchantments.crusted_magma_block_3": "结壳岩浆",
+  "enchantment.balanced_enchantments.magma_walker": "岩浆行者",
+  "enchantment.balanced_enchantments.magma_walker.desc": "当你慢慢踩上熔岩时它就会凝固  [靴子]",
+  "itemGroup.enchantment_tab": "Balanced Enchantments",
+  "item.balanced_enchantments.mod_icon": "BE Mod Icon",
+  "enchantment.balanced_enchantments.super_charged": "超级充能",
+  "enchantment.balanced_enchantments.super_charged.desc": "增加伤害但攻击后变得较弱  [工具，剑]",
+  "enchantment.balanced_enchantments.curse_of_durability": "耐久性诅咒",
+  "enchantment.balanced_enchantments.curse_of_durability.desc": "以不可控制的方式破坏或修复物品"
+}
