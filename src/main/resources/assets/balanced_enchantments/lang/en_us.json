@@ -1,0 +1,19 @@
+{
+  "enchantment.balanced_enchantments.volley": "Volley",
+  "enchantment.balanced_enchantments.volley.desc" : "Makes the bow shoot a volley of arrows in an arc  [Bow]",
+  "enchantment.balanced_enchantments.block_mask_soul": "Soul Summon",
+  "enchantment.balanced_enchantments.block_mask_soul.desc": "Summon souls to hold your enemy  [Hoe]",
+  "block.balanced_enchantments.crusted_magma_block": "Crusted Magma Block",
+  "block.balanced_enchantments.crusted_magma_block_0": "Crusted Magma",
+  "block.balanced_enchantments.crusted_magma_block_1": "Crusted Magma",
+  "block.balanced_enchantments.crusted_magma_block_2": "Crusted Magma",
+  "block.balanced_enchantments.crusted_magma_block_3": "Crusted Magma",
+  "enchantment.balanced_enchantments.magma_walker": "Magma Walker",
+  "enchantment.balanced_enchantments.magma_walker.desc": "Solidifies lava if you slowly step on it  [Boots]",
+  "itemGroup.enchantment_tab": "Balanced Enchantments",
+  "item.balanced_enchantments.mod_icon": "BE Mod Icon",
+  "enchantment.balanced_enchantments.super_charged": "SuperCharged",
+  "enchantment.balanced_enchantments.super_charged.desc": "Increase damage but weaker after attack  [Tools, Sword]",
+  "enchantment.balanced_enchantments.curse_of_durability": "Curse of Durability",
+  "enchantment.balanced_enchantments.curse_of_durability.desc": "Break or fix an item in an uncontrollable way"
+}
