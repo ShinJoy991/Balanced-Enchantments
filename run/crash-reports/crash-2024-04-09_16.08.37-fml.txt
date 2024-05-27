@@ -85,7 +85,7 @@ Details:
 		org.spongepowered.asm.mixin.transformer.throwables.MixinTransformerError: An unexpected critical error was encountered
 	Mod Version: NONE
 	Mod Issue URL: https://github.com/ToroCraft/ToroHealth/issues
-	Exception message: org.spongepowered.asm.mixin.injection.throwables.InjectionError: LVT in net/minecraft/client/renderer/WorldRenderer::tickRain(Lnet/minecraft/client/renderer/ActiveRenderInfo;)V has incompatible changes at opcode 286 in callback balancedenchantments.mixins.json:WorldRendererMixin->@Inject::onWorldRenderer(Lnet/minecraft/client/renderer/ActiveRenderInfo;Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfo;Lcom/llamalad7/mixinextras/sugar/ref/LocalRef;Lnet/minecraft/block/BlockState;)V.
+	Exception message: org.spongepowered.asm.mixin.injection.throwables.InjectionError: LVT in net/minecraft/client/renderer/WorldRenderer::tickRain(Lnet/minecraft/client/renderer/ActiveRenderInfo;)V has incompatible changes at opcode 286 in callback balanced_enchantments.mixins.json:WorldRendererMixin->@Inject::onWorldRenderer(Lnet/minecraft/client/renderer/ActiveRenderInfo;Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfo;Lcom/llamalad7/mixinextras/sugar/ref/LocalRef;Lnet/minecraft/block/BlockState;)V.
  Expected: [Lcom/llamalad7/mixinextras/sugar/ref/LocalRef;, Lnet/minecraft/block/BlockState;]
     Found: [Lnet/minecraftforge/client/IWeatherParticleRenderHandler;, F]
 Available: [Lnet/minecraftforge/client/IWeatherParticleRenderHandler;, F, Ljava/util/Random;, Lnet/minecraft/world/IWorldReader;, Lnet/minecraft/util/math/BlockPos;, Lnet/minecraft/util/math/BlockPos;, I, I, I, I, Lnet/minecraft/util/math/BlockPos;, Lnet/minecraft/world/biome/Biome;, D, D, Lnet/minecraft/block/BlockState;, Lnet/minecraft/fluid/FluidState;, Lnet/minecraft/util/math/shapes/VoxelShape;, D, D, D, Lnet/minecraft/particles/IParticleData;]
@@ -177,7 +177,7 @@ Details:
 		enchantmentdescriptions-250419-4757009_mapped_offi|EnchantmentDescriptions       |enchdesc                      |7.1.23              |CREATE_REG|Manifest: NOSIGNATURE
 		createcustomcommands-962961-5214614_mapped_officia|Create Custom Commands
        |createcustomcommands          |3.0                 |CREATE_REG|Manifest: NOSIGNATURE
-		main                                              |Balanced Enchantments         |balancedenchantments          |1.0-DEV-3           |CREATE_REG|Manifest: NOSIGNATURE
+		main                                              |Balanced Enchantments         |balanced_enchantments          |1.0-DEV-3           |CREATE_REG|Manifest: NOSIGNATURE
 		dmg_indicator-245733-3144151_mapped_official_1.16.|ToroHealth                    |torohealth                    |NONE                |ERROR     |Manifest: NOSIGNATURE
 		forge-1.16.5-36.2.39_mapped_official_1.16.5-recomp|Forge                         |forge                         |36.2.39             |CREATE_REG|Manifest: NOSIGNATURE
 		fixenchantmentcaps-1.1.jar                        |Fix Enchantment Caps          |fixenchantmentcaps            |1.1                 |CREATE_REG|Manifest: NOSIGNATURE

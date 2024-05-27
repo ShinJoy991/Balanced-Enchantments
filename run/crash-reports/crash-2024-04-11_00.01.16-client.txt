@@ -4,7 +4,7 @@
 Time: 4/11/24 12:01 AM
 Description: Initializing game
 
-org.spongepowered.asm.mixin.transformer.throwables.IllegalClassLoadError: com.github.shinjoy991.balancedenchantments.mixin.BlockStateCarrier is in a defined mixin package com.github.shinjoy991.balancedenchantments.mixin.* owned by balancedenchantments.mixins.json and cannot be referenced directly
+org.spongepowered.asm.mixin.transformer.throwables.IllegalClassLoadError: com.github.shinjoy991.balanced_enchantments.mixin.BlockStateCarrier is in a defined mixin package com.github.shinjoy991.balanced_enchantments.mixin.* owned by balanced_enchantments.mixins.json and cannot be referenced directly
 	at org.spongepowered.asm.mixin.transformer.MixinProcessor.applyMixins(MixinProcessor.java:334) ~[mixin-0.8.4.jar:0.8.4+Jenkins-b308.git-2accda5000f7602229606b39437565542cc6fba4] {}
 	at org.spongepowered.asm.mixin.transformer.MixinTransformer.transformClass(MixinTransformer.java:250) ~[mixin-0.8.4.jar:0.8.4+Jenkins-b308.git-2accda5000f7602229606b39437565542cc6fba4] {}
 	at org.spongepowered.asm.service.modlauncher.MixinTransformationHandler.processClass(MixinTransformationHandler.java:131) ~[mixin-0.8.4.jar:0.8.4+Jenkins-b308.git-2accda5000f7602229606b39437565542cc6fba4] {}
@@ -110,7 +110,7 @@ Details:
 		enchantmentdescriptions-250419-4757009_mapped_offi|EnchantmentDescriptions       |enchdesc                      |7.1.23              |CREATE_REG|Manifest: NOSIGNATURE
 		createcustomcommands-962961-5214614_mapped_officia|Create Custom Commands
        |createcustomcommands          |3.0                 |CREATE_REG|Manifest: NOSIGNATURE
-		main                                              |Balanced Enchantments         |balancedenchantments          |1.0-DEV-3           |CREATE_REG|Manifest: NOSIGNATURE
+		main                                              |Balanced Enchantments         |balanced_enchantments          |1.0-DEV-3           |CREATE_REG|Manifest: NOSIGNATURE
 		dmg_indicator-245733-3144151_mapped_official_1.16.|ToroHealth                    |torohealth                    |NONE                |ERROR     |Manifest: NOSIGNATURE
 		forge-1.16.5-36.2.39_mapped_official_1.16.5-recomp|Forge                         |forge                         |36.2.39             |CREATE_REG|Manifest: NOSIGNATURE
 		fixenchantmentcaps-1.1.jar                        |Fix Enchantment Caps          |fixenchantmentcaps            |1.1                 |CREATE_REG|Manifest: NOSIGNATURE

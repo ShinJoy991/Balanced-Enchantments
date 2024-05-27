@@ -1,3 +1,3 @@
 Manifest-Version: 1.0
-MixinConfigs: balancedenchantments.mixins.json
+MixinConfigs: balanced_enchantments.mixins.json
 

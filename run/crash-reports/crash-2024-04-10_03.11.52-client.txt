@@ -5,7 +5,7 @@ Time: 4/10/24 3:11 AM
 Description: Rendering screen
 
 java.lang.ClassCastException: java.lang.Integer cannot be cast to java.lang.Float
-	at com.github.shinjoy991.balancedenchantments.enchantments.SuperCharged.getDamageBonus(SuperCharged.java:74) ~[main/:?] {re:classloading}
+	at com.github.shinjoy991.balanced_enchantments.enchantments.SuperCharged.getDamageBonus(SuperCharged.java:74) ~[main/:?] {re:classloading}
 	at net.minecraft.enchantment.EnchantmentHelper.lambda$getDamageBonus$3(EnchantmentHelper.java:129) ~[forge-1.16.5-36.2.39_mapped_official_1.16.5-recomp.jar:?] {re:mixin,re:classloading}
 	at net.minecraft.enchantment.EnchantmentHelper.lambda$runIterationOnItem$1(EnchantmentHelper.java:104) ~[forge-1.16.5-36.2.39_mapped_official_1.16.5-recomp.jar:?] {re:mixin,re:classloading}
 	at java.util.Optional.ifPresent(Optional.java:159) ~[?:1.8.0_402] {}
@@ -40,7 +40,7 @@ A detailed walkthrough of the error, its code path and all known details is as f
 -- Head --
 Thread: Render thread
 Stacktrace:
-	at com.github.shinjoy991.balancedenchantments.enchantments.SuperCharged.getDamageBonus(SuperCharged.java:74) ~[?:?] {re:classloading}
+	at com.github.shinjoy991.balanced_enchantments.enchantments.SuperCharged.getDamageBonus(SuperCharged.java:74) ~[?:?] {re:classloading}
 	at net.minecraft.enchantment.EnchantmentHelper.lambda$getDamageBonus$3(EnchantmentHelper.java:129) ~[forge:?] {re:mixin,re:classloading}
 	at net.minecraft.enchantment.EnchantmentHelper.lambda$runIterationOnItem$1(EnchantmentHelper.java:104) ~[forge:?] {re:mixin,re:classloading}
 	at java.util.Optional.ifPresent(Optional.java:159) ~[?:1.8.0_402] {}
@@ -119,7 +119,7 @@ Details:
 		enchantmentdescriptions-250419-4757009_mapped_offi|EnchantmentDescriptions       |enchdesc                      |7.1.23              |DONE      |Manifest: NOSIGNATURE
 		createcustomcommands-962961-5214614_mapped_officia|Create Custom Commands
        |createcustomcommands          |3.0                 |DONE      |Manifest: NOSIGNATURE
-		main                                              |Balanced Enchantments         |balancedenchantments          |1.0-DEV-3           |DONE      |Manifest: NOSIGNATURE
+		main                                              |Balanced Enchantments         |balanced_enchantments          |1.0-DEV-3           |DONE      |Manifest: NOSIGNATURE
 		dmg_indicator-245733-3144151_mapped_official_1.16.|ToroHealth                    |torohealth                    |NONE                |DONE      |Manifest: NOSIGNATURE
 		forge-1.16.5-36.2.39_mapped_official_1.16.5-recomp|Forge                         |forge                         |36.2.39             |DONE      |Manifest: NOSIGNATURE
 		fixenchantmentcaps-1.1.jar                        |Fix Enchantment Caps          |fixenchantmentcaps            |1.1                 |DONE      |Manifest: NOSIGNATURE

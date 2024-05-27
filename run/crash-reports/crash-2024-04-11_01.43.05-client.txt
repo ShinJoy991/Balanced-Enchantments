@@ -29,12 +29,12 @@ org.spongepowered.asm.mixin.transformer.throwables.MixinTransformerError: An une
 	at cpw.mods.modlauncher.Launcher.run(Launcher.java:82) [modlauncher-8.1.3.jar:?] {}
 	at cpw.mods.modlauncher.Launcher.main(Launcher.java:66) [modlauncher-8.1.3.jar:?] {}
 	at net.minecraftforge.userdev.LaunchTesting.main(LaunchTesting.java:94) [forge-1.16.5-36.2.39_mapped_official_1.16.5-recomp.jar:?] {}
-Caused by: org.spongepowered.asm.mixin.throwables.MixinApplyError: Mixin [balancedenchantments.mixins.json:WorldRendererMixin] from phase [DEFAULT] in config [balancedenchantments.mixins.json] FAILED during APPLY
+Caused by: org.spongepowered.asm.mixin.throwables.MixinApplyError: Mixin [balanced_enchantments.mixins.json:WorldRendererMixin] from phase [DEFAULT] in config [balanced_enchantments.mixins.json] FAILED during APPLY
 	at org.spongepowered.asm.mixin.transformer.MixinProcessor.handleMixinError(MixinProcessor.java:636) ~[mixin-0.8.4.jar:0.8.4+Jenkins-b308.git-2accda5000f7602229606b39437565542cc6fba4] {}
 	at org.spongepowered.asm.mixin.transformer.MixinProcessor.handleMixinApplyError(MixinProcessor.java:588) ~[mixin-0.8.4.jar:0.8.4+Jenkins-b308.git-2accda5000f7602229606b39437565542cc6fba4] {}
 	at org.spongepowered.asm.mixin.transformer.MixinProcessor.applyMixins(MixinProcessor.java:379) ~[mixin-0.8.4.jar:0.8.4+Jenkins-b308.git-2accda5000f7602229606b39437565542cc6fba4] {}
 	... 23 more
-Caused by: org.spongepowered.asm.mixin.transformer.throwables.InvalidMixinException: Mixin balancedenchantments.mixins.json:WorldRendererMixin contains non-private static field bs:Lnet/minecraft/block/BlockState;
+Caused by: org.spongepowered.asm.mixin.transformer.throwables.InvalidMixinException: Mixin balanced_enchantments.mixins.json:WorldRendererMixin contains non-private static field bs:Lnet/minecraft/block/BlockState;
 	at org.spongepowered.asm.mixin.transformer.MixinPreProcessorStandard.validateField(MixinPreProcessorStandard.java:699) ~[mixin-0.8.4.jar:0.8.4+Jenkins-b308.git-2accda5000f7602229606b39437565542cc6fba4] {}
 	at org.spongepowered.asm.mixin.transformer.MixinPreProcessorStandard.attachFields(MixinPreProcessorStandard.java:608) ~[mixin-0.8.4.jar:0.8.4+Jenkins-b308.git-2accda5000f7602229606b39437565542cc6fba4] {}
 	at org.spongepowered.asm.mixin.transformer.MixinPreProcessorStandard.attach(MixinPreProcessorStandard.java:305) ~[mixin-0.8.4.jar:0.8.4+Jenkins-b308.git-2accda5000f7602229606b39437565542cc6fba4] {}
@@ -116,7 +116,7 @@ Details:
 		enchantmentdescriptions-250419-4757009_mapped_offi|EnchantmentDescriptions       |enchdesc                      |7.1.23              |CREATE_REG|Manifest: NOSIGNATURE
 		createcustomcommands-962961-5214614_mapped_officia|Create Custom Commands
        |createcustomcommands          |3.0                 |CREATE_REG|Manifest: NOSIGNATURE
-		main                                              |Balanced Enchantments         |balancedenchantments          |1.0-DEV-3           |CREATE_REG|Manifest: NOSIGNATURE
+		main                                              |Balanced Enchantments         |balanced_enchantments          |1.0-DEV-3           |CREATE_REG|Manifest: NOSIGNATURE
 		dmg_indicator-245733-3144151_mapped_official_1.16.|ToroHealth                    |torohealth                    |NONE                |ERROR     |Manifest: NOSIGNATURE
 		forge-1.16.5-36.2.39_mapped_official_1.16.5-recomp|Forge                         |forge                         |36.2.39             |CREATE_REG|Manifest: NOSIGNATURE
 		fixenchantmentcaps-1.1.jar                        |Fix Enchantment Caps          |fixenchantmentcaps            |1.1                 |CREATE_REG|Manifest: NOSIGNATURE

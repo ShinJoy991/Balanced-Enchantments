@@ -1065,7 +1065,7 @@ instanceKlass net/minecraftforge/registries/ForgeRegistryEntry
 instanceKlass net/minecraftforge/registries/IForgeRegistryEntry
 instanceKlass net/minecraftforge/common/extensions/IForgeBlock
 instanceKlass net/minecraft/util/IItemProvider
-instanceKlass com/github/shinjoy991/balancedenchantments/register/RegisterBlock
+instanceKlass com/github/shinjoy991/balanced_enchantments/register/RegisterBlock
 instanceKlass net/minecraftforge/registries/DeferredRegister
 instanceKlass net/minecraftforge/registries/DeferredRegister$EventDispatcher
 instanceKlass net/minecraftforge/fml/ModContainer
@@ -1085,10 +1085,10 @@ instanceKlass org/apache/logging/log4j/core/async/InternalAsyncUtil
 instanceKlass net/minecraftforge/eventbus/EventBusErrorMessage
 instanceKlass com/google/common/base/MoreObjects$ToStringHelper$ValueHolder
 instanceKlass com/google/common/base/MoreObjects$ToStringHelper
-instanceKlass com/github/shinjoy991/balancedenchantments/register/RegisterBlock$$Lambda$3317
-instanceKlass com/github/shinjoy991/balancedenchantments/register/RegisterBlock$$Lambda$3316
-instanceKlass com/github/shinjoy991/balancedenchantments/register/RegisterBlock$$Lambda$3315
-instanceKlass com/github/shinjoy991/balancedenchantments/register/RegisterBlock$$Lambda$3314
+instanceKlass com/github/shinjoy991/balanced_enchantments/register/RegisterBlock$$Lambda$3317
+instanceKlass com/github/shinjoy991/balanced_enchantments/register/RegisterBlock$$Lambda$3316
+instanceKlass com/github/shinjoy991/balanced_enchantments/register/RegisterBlock$$Lambda$3315
+instanceKlass com/github/shinjoy991/balanced_enchantments/register/RegisterBlock$$Lambda$3314
 instanceKlass net/minecraftforge/registries/GameData$$Lambda$3313
 instanceKlass net/minecraftforge/registries/GameData$$Lambda$3312
 instanceKlass net/minecraftforge/registries/GameData$$Lambda$3311
@@ -1194,7 +1194,7 @@ instanceKlass net/minecraftforge/eventbus/ASMEventHandler_10_VolleyBowEvents_onV
 instanceKlass net/minecraftforge/eventbus/ASMEventHandler_9_VolleyBowEvents_onArrowVolleyShoot_EntityJoinWorldEvent
 instanceKlass net/minecraftforge/eventbus/ASMEventHandler_8_ForgeConfig_onLoad_Loading
 instanceKlass net/minecraft/advancements/criterion/EnchantmentPredicate
-instanceKlass com/github/shinjoy991/balancedenchantments/events/VolleyBowEvents
+instanceKlass com/github/shinjoy991/balanced_enchantments/events/VolleyBowEvents
 instanceKlass net/minecraftforge/common/ForgeConfigSpec$Builder$$Lambda$3258
 instanceKlass net/minecraftforge/common/ForgeConfigSpec$Range
 instanceKlass net/minecraft/advancements/criterion/MinMaxBounds
@@ -1213,7 +1213,7 @@ instanceKlass net/darkhax/bookshelf/loot/condition/CheckDimensionId
 instanceKlass net/torocraft/torohealth/ClientEventHandler$$Lambda$3251
 instanceKlass net/minecraft/client/renderer/WorldRenderer
 instanceKlass net/minecraftforge/eventbus/ASMEventHandler_7_CommandRegister_onCommandsRegister_RegisterCommandsEvent
-instanceKlass com/github/shinjoy991/balancedenchantments/command/CommandRegister
+instanceKlass com/github/shinjoy991/balanced_enchantments/command/CommandRegister
 instanceKlass net/darkhax/bookshelf/loot/condition/CheckBiomeTag$Serializer
 instanceKlass net/darkhax/bookshelf/loot/condition/CheckBiomeTag
 instanceKlass net/darkhax/bookshelf/loot/condition/CheckEnchantability$Serializer
@@ -1229,9 +1229,9 @@ instanceKlass net/darkhax/bookshelf/loot/condition/CheckEnergy
 instanceKlass net/minecraftforge/common/ForgeMod$$Lambda$3248
 instanceKlass net/darkhax/bookshelf/loot/condition/CheckHarvestLevel$Serializer
 instanceKlass net/darkhax/bookshelf/loot/condition/CheckHarvestLevel
-instanceKlass net/minecraftforge/eventbus/ASMEventHandler_6_BalancedEnchantments_onServerStarting_FMLServerStartingEvent
+instanceKlass net/minecraftforge/eventbus/ASMEventHandler_6_balanced_enchantments_onServerStarting_FMLServerStartingEvent
 instanceKlass net/minecraft/client/renderer/entity/IEntityRenderer
-instanceKlass net/minecraftforge/eventbus/ASMEventHandler_4_BalancedEnchantments_tick_ServerTickEvent
+instanceKlass net/minecraftforge/eventbus/ASMEventHandler_4_balanced_enchantments_tick_ServerTickEvent
 instanceKlass net/darkhax/bookshelf/loot/condition/CheckItem$Serializer
 instanceKlass net/minecraftforge/common/ForgeMod$$Lambda$3247
 instanceKlass net/darkhax/bookshelf/loot/condition/CheckItem
@@ -1266,7 +1266,7 @@ instanceKlass net/darkhax/bookshelf/loot/condition/EntityIsMob$Serializer
 instanceKlass net/torocraft/torohealth/util/RayTrace$$Lambda$3236
 instanceKlass net/darkhax/bookshelf/loot/condition/EntityIsMob
 instanceKlass net/torocraft/torohealth/util/RayTrace
-instanceKlass com/github/shinjoy991/balancedenchantments/register/RegisterBlock$$Lambda$3235
+instanceKlass com/github/shinjoy991/balanced_enchantments/register/RegisterBlock$$Lambda$3235
 instanceKlass net/darkhax/bookshelf/loot/modifier/ModifierRecipe$$Lambda$3234
 instanceKlass net/darkhax/bookshelf/loot/modifier/ModifierRecipe$$Lambda$3233
 instanceKlass net/darkhax/bookshelf/loot/modifier/ModifierRecipe$$Lambda$3232
@@ -1275,7 +1275,7 @@ instanceKlass net/darkhax/bookshelf/loot/modifier/ModifierRecipe$$Lambda$3230
 instanceKlass net/darkhax/bookshelf/loot/modifier/ModifierRecipe$$Lambda$3229
 instanceKlass net/darkhax/bookshelf/loot/modifier/ModifierRecipe$$Lambda$3228
 instanceKlass net/torocraft/torohealth/display/BarDisplay
-instanceKlass com/github/shinjoy991/balancedenchantments/register/RegisterBlock
+instanceKlass com/github/shinjoy991/balanced_enchantments/register/RegisterBlock
 instanceKlass java/util/stream/Collectors$$Lambda$3227
 instanceKlass java/util/stream/Collectors$$Lambda$3226
 instanceKlass net/minecraftforge/fml/AutomaticEventSubscriber$$Lambda$3225
@@ -1285,10 +1285,10 @@ instanceKlass net/darkhax/enchdesc/EnchantmentDescriptionsClient$$Lambda$3222
 instanceKlass net/minecraftforge/eventbus/ASMEventHandler_1_EventDispatcher_handleEvent_Register
 instanceKlass net/torocraft/torohealth/display/EntityDisplay
 instanceKlass net/minecraftforge/registries/DeferredRegister$EventDispatcher
-instanceKlass com/github/shinjoy991/balancedenchantments/config/ReadConfig$$Lambda$3221
-instanceKlass com/github/shinjoy991/balancedenchantments/config/ReadConfig$$Lambda$3220
-instanceKlass com/github/shinjoy991/balancedenchantments/register/RegisterEnch$$Lambda$3219
-instanceKlass com/github/shinjoy991/balancedenchantments/register/RegisterEnch$$Lambda$3218
+instanceKlass com/github/shinjoy991/balanced_enchantments/config/ReadConfig$$Lambda$3221
+instanceKlass com/github/shinjoy991/balanced_enchantments/config/ReadConfig$$Lambda$3220
+instanceKlass com/github/shinjoy991/balanced_enchantments/register/RegisterEnch$$Lambda$3219
+instanceKlass com/github/shinjoy991/balanced_enchantments/register/RegisterEnch$$Lambda$3218
 instanceKlass net/minecraftforge/fml/unsafe/UnsafeHacks$$Lambda$3217
 instanceKlass net/minecraftforge/fml/unsafe/UnsafeHacks$$Lambda$3216
 instanceKlass net/minecraftforge/common/ForgeMod$$Lambda$3215
@@ -1319,7 +1319,7 @@ instanceKlass net/minecraftforge/eventbus/ASMEventHandler
 instanceKlass net/minecraftforge/common/ForgeMod$$Lambda$3203
 instanceKlass net/darkhax/bookshelf/internal/command/ArgumentTypeHandOutput$Serialzier
 instanceKlass net/minecraftforge/fml/FMLWorldPersistenceHook
-instanceKlass com/github/shinjoy991/balancedenchantments/register/RegisterEnch$$Lambda$3202
+instanceKlass com/github/shinjoy991/balanced_enchantments/register/RegisterEnch$$Lambda$3202
 instanceKlass net/minecraftforge/fml/WorldPersistenceHooks
 instanceKlass net/minecraftforge/common/ForgeMod$$Lambda$3201
 instanceKlass net/minecraftforge/common/ForgeHooks$$Lambda$3200
@@ -1337,7 +1337,7 @@ instanceKlass net/minecraftforge/eventbus/EventBus$$Lambda$3193
 instanceKlass com/mojang/brigadier/CommandDispatcher
 instanceKlass net/minecraftforge/common/ForgeHooks$$Lambda$3192
 instanceKlass net/minecraftforge/common/ForgeHooks$$Lambda$3191
-instanceKlass com/github/shinjoy991/balancedenchantments/register/RegisterEnch
+instanceKlass com/github/shinjoy991/balanced_enchantments/register/RegisterEnch
 instanceKlass com/google/gson/internal/ConstructorConstructor$12
 instanceKlass net/minecraftforge/common/ForgeConfigSpec$Builder$$Lambda$3190
 instanceKlass net/darkhax/bookshelf/Bookshelf$$Lambda$3189
@@ -1348,11 +1348,11 @@ instanceKlass net/minecraftforge/common/UsernameCache
 instanceKlass com/google/gson/JsonParser
 instanceKlass net/minecraftforge/common/ForgeInternalHandler
 instanceKlass net/shinjoy991/createcustomcommands/CreateCustomCommands$$Lambda$3187
-instanceKlass com/github/shinjoy991/balancedenchantments/config/ReadConfig
+instanceKlass com/github/shinjoy991/balanced_enchantments/config/ReadConfig
 instanceKlass net/shinjoy991/createcustomcommands/CreateCustomCommands$$Lambda$3186
-instanceKlass com/github/shinjoy991/balancedenchantments/config/CreateJson
-instanceKlass com/github/shinjoy991/balancedenchantments/BalancedEnchantments$$Lambda$3185
-instanceKlass com/github/shinjoy991/balancedenchantments/BalancedEnchantments$$Lambda$3184
+instanceKlass com/github/shinjoy991/balanced_enchantments/config/CreateJson
+instanceKlass com/github/shinjoy991/balanced_enchantments/balanced_enchantments$$Lambda$3185
+instanceKlass com/github/shinjoy991/balanced_enchantments/balanced_enchantments$$Lambda$3184
 instanceKlass java/lang/invoke/SerializedLambda
 instanceKlass net/minecraftforge/eventbus/ListenerList$ListenerListInst$$Lambda$3183
 instanceKlass net/minecraftforge/eventbus/EventBus$$Lambda$3182
@@ -1382,7 +1382,7 @@ instanceKlass net/darkhax/bookshelf/registry/ForgeRegistryRegistryHelper
 instanceKlass net/darkhax/bookshelf/registry/IngredientRegistry
 instanceKlass net/minecraftforge/common/ForgeConfigSpec$Builder$$Lambda$3172
 instanceKlass net/darkhax/bookshelf/registry/RecipeTypeRegistry
-instanceKlass com/github/shinjoy991/balancedenchantments/BalancedEnchantments$$Lambda$3171
+instanceKlass com/github/shinjoy991/balanced_enchantments/balanced_enchantments$$Lambda$3171
 instanceKlass net/shinjoy991/createcustomcommands/CreateCustomCommands$$Lambda$3170
 instanceKlass io/github/shinjoy991/fixenchantmentcaps/FixEnchantmentCaps$$Lambda$3169
 instanceKlass net/darkhax/bookshelf/registry/TradeRegistry
@@ -1392,7 +1392,7 @@ instanceKlass net/minecraftforge/versions/mcp/MCPVersion
 instanceKlass net/minecraftforge/common/ForgeConfigSpec$Builder
 instanceKlass net/darkhax/enchdesc/Configuration
 instanceKlass net/torocraft/torohealth/ToroHealth$$Lambda$3168
-instanceKlass com/github/shinjoy991/balancedenchantments/BalancedEnchantments$$Lambda$3167
+instanceKlass com/github/shinjoy991/balanced_enchantments/balanced_enchantments$$Lambda$3167
 instanceKlass net/darkhax/bookshelf/registry/CommandRegistry
 instanceKlass net/shinjoy991/createcustomcommands/CreateCustomCommands$$Lambda$3166
 instanceKlass net/darkhax/bookshelf/registry/RegistryHelper
@@ -1454,7 +1454,7 @@ instanceKlass net/torocraft/torohealth/config/Config$Hud
 instanceKlass net/torocraft/torohealth/config/Config
 instanceKlass net/torocraft/torohealth/config/loader/IConfig
 instanceKlass net/torocraft/torohealth/ToroHealth
-instanceKlass com/github/shinjoy991/balancedenchantments/BalancedEnchantments
+instanceKlass com/github/shinjoy991/balanced_enchantments/balanced_enchantments
 instanceKlass net/shinjoy991/createcustomcommands/CreateCustomCommands
 instanceKlass net/darkhax/enchdesc/EnchantmentDescriptions
 instanceKlass net/darkhax/bookshelf/crafting/block/IBlockIngredientSerializer

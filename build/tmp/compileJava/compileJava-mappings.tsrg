@@ -1,4 +1,2 @@
-com/github/shinjoy991/balancedenchantments/mixin/LivingEntityMixin getUseItem ()Lnet/minecraft/item/ItemStack; func_184607_cu
-com/github/shinjoy991/balancedenchantments/mixin/LivingEntityMixin getArmorSlots ()Ljava/lang/Iterable; func_184193_aE
-com/github/shinjoy991/balancedenchantments/mixin/LivingEntityMixin getLastArmorItem (Lnet/minecraft/inventory/EquipmentSlotType;)Lnet/minecraft/item/ItemStack; func_241346_d_
-com/github/shinjoy991/balancedenchantments/mixin/LivingEntityMixin getItemBySlot (Lnet/minecraft/inventory/EquipmentSlotType;)Lnet/minecraft/item/ItemStack; func_184582_a
+com/github/shinjoy991/balanced_enchantments/mixin/ItemStackMixin copy ()Lnet/minecraft/item/ItemStack; func_77946_l
+com/github/shinjoy991/balanced_enchantments/mixin/LivingEntityMixin getItemBySlot (Lnet/minecraft/inventory/EquipmentSlotType;)Lnet/minecraft/item/ItemStack; func_184582_a

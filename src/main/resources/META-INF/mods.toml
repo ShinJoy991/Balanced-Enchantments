@@ -8,7 +8,7 @@ modId="${mod_id}"
 version="${mod_version}"
 displayName="${mod_name}\n"
 authors="${mod_authors}"
-logoFile="logo.png"
+logoFile="balanced_enchantments.png"
 description='''${mod_description}
 
 Any issues just pm me on curseforge or github

@@ -5,12 +5,12 @@ Time: 4/11/24 10:01 AM
 Description: Unexpected error
 
 java.lang.NullPointerException: Unexpected error
-	at net.minecraft.client.world.ClientWorld.localvar$zze000$onaddParticle(ClientWorld.java:1011) ~[forge-1.16.5-36.2.39_mapped_official_1.16.5-recomp.jar:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:balancedenchantments.mixins.json:ClientWorldMixin,pl:mixin:A,pl:runtimedistcleaner:A}
-	at net.minecraft.client.world.ClientWorld.addParticle(ClientWorld.java) ~[forge-1.16.5-36.2.39_mapped_official_1.16.5-recomp.jar:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:balancedenchantments.mixins.json:ClientWorldMixin,pl:mixin:A,pl:runtimedistcleaner:A}
+	at net.minecraft.client.world.ClientWorld.localvar$zze000$onaddParticle(ClientWorld.java:1011) ~[forge-1.16.5-36.2.39_mapped_official_1.16.5-recomp.jar:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:balanced_enchantments.mixins.json:ClientWorldMixin,pl:mixin:A,pl:runtimedistcleaner:A}
+	at net.minecraft.client.world.ClientWorld.addParticle(ClientWorld.java) ~[forge-1.16.5-36.2.39_mapped_official_1.16.5-recomp.jar:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:balanced_enchantments.mixins.json:ClientWorldMixin,pl:mixin:A,pl:runtimedistcleaner:A}
 	at net.minecraft.fluid.LavaFluid.animateTick(LavaFluid.java:48) ~[forge-1.16.5-36.2.39_mapped_official_1.16.5-recomp.jar:?] {re:classloading}
 	at net.minecraft.fluid.FluidState.animateTick(FluidState.java:75) ~[forge-1.16.5-36.2.39_mapped_official_1.16.5-recomp.jar:?] {re:classloading,re:mixin}
-	at net.minecraft.client.world.ClientWorld.doAnimateTick(ClientWorld.java:385) ~[forge-1.16.5-36.2.39_mapped_official_1.16.5-recomp.jar:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:balancedenchantments.mixins.json:ClientWorldMixin,pl:mixin:A,pl:runtimedistcleaner:A}
-	at net.minecraft.client.world.ClientWorld.animateTick(ClientWorld.java:370) ~[forge-1.16.5-36.2.39_mapped_official_1.16.5-recomp.jar:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:balancedenchantments.mixins.json:ClientWorldMixin,pl:mixin:A,pl:runtimedistcleaner:A}
+	at net.minecraft.client.world.ClientWorld.doAnimateTick(ClientWorld.java:385) ~[forge-1.16.5-36.2.39_mapped_official_1.16.5-recomp.jar:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:balanced_enchantments.mixins.json:ClientWorldMixin,pl:mixin:A,pl:runtimedistcleaner:A}
+	at net.minecraft.client.world.ClientWorld.animateTick(ClientWorld.java:370) ~[forge-1.16.5-36.2.39_mapped_official_1.16.5-recomp.jar:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:balanced_enchantments.mixins.json:ClientWorldMixin,pl:mixin:A,pl:runtimedistcleaner:A}
 	at net.minecraft.client.Minecraft.tick(Minecraft.java:1528) ~[forge-1.16.5-36.2.39_mapped_official_1.16.5-recomp.jar:?] {re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A}
 	at net.minecraft.client.Minecraft.runTick(Minecraft.java:954) ~[forge-1.16.5-36.2.39_mapped_official_1.16.5-recomp.jar:?] {re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A}
 	at net.minecraft.client.Minecraft.run(Minecraft.java:607) ~[forge-1.16.5-36.2.39_mapped_official_1.16.5-recomp.jar:?] {re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A}
@@ -34,12 +34,12 @@ A detailed walkthrough of the error, its code path and all known details is as f
 -- Head --
 Thread: Render thread
 Stacktrace:
-	at net.minecraft.client.world.ClientWorld.localvar$zze000$onaddParticle(ClientWorld.java:1011) ~[forge:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:balancedenchantments.mixins.json:ClientWorldMixin,pl:mixin:A,pl:runtimedistcleaner:A}
-	at net.minecraft.client.world.ClientWorld.addParticle(ClientWorld.java) ~[forge:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:balancedenchantments.mixins.json:ClientWorldMixin,pl:mixin:A,pl:runtimedistcleaner:A}
+	at net.minecraft.client.world.ClientWorld.localvar$zze000$onaddParticle(ClientWorld.java:1011) ~[forge:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:balanced_enchantments.mixins.json:ClientWorldMixin,pl:mixin:A,pl:runtimedistcleaner:A}
+	at net.minecraft.client.world.ClientWorld.addParticle(ClientWorld.java) ~[forge:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:balanced_enchantments.mixins.json:ClientWorldMixin,pl:mixin:A,pl:runtimedistcleaner:A}
 	at net.minecraft.fluid.LavaFluid.animateTick(LavaFluid.java:48) ~[forge:?] {re:classloading}
 	at net.minecraft.fluid.FluidState.animateTick(FluidState.java:75) ~[forge:?] {re:classloading,re:mixin}
-	at net.minecraft.client.world.ClientWorld.doAnimateTick(ClientWorld.java:385) ~[forge:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:balancedenchantments.mixins.json:ClientWorldMixin,pl:mixin:A,pl:runtimedistcleaner:A}
-	at net.minecraft.client.world.ClientWorld.animateTick(ClientWorld.java:370) ~[forge:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:balancedenchantments.mixins.json:ClientWorldMixin,pl:mixin:A,pl:runtimedistcleaner:A}
+	at net.minecraft.client.world.ClientWorld.doAnimateTick(ClientWorld.java:385) ~[forge:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:balanced_enchantments.mixins.json:ClientWorldMixin,pl:mixin:A,pl:runtimedistcleaner:A}
+	at net.minecraft.client.world.ClientWorld.animateTick(ClientWorld.java:370) ~[forge:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:balanced_enchantments.mixins.json:ClientWorldMixin,pl:mixin:A,pl:runtimedistcleaner:A}
 -- Affected level --
 Details:
 	All players: 1 total; [ClientPlayerEntity['Dev'/9, l='ClientLevel', x=58.01, y=4.00, z=-199.24]]
@@ -50,7 +50,7 @@ Details:
 	Server brand: forge
 	Server type: Integrated singleplayer server
 Stacktrace:
-	at net.minecraft.client.world.ClientWorld.fillReportDetails(ClientWorld.java:458) ~[forge-1.16.5-36.2.39_mapped_official_1.16.5-recomp.jar:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:balancedenchantments.mixins.json:ClientWorldMixin,pl:mixin:A,pl:runtimedistcleaner:A}
+	at net.minecraft.client.world.ClientWorld.fillReportDetails(ClientWorld.java:458) ~[forge-1.16.5-36.2.39_mapped_official_1.16.5-recomp.jar:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:balanced_enchantments.mixins.json:ClientWorldMixin,pl:mixin:A,pl:runtimedistcleaner:A}
 	at net.minecraft.client.Minecraft.fillReport(Minecraft.java:2031) ~[forge-1.16.5-36.2.39_mapped_official_1.16.5-recomp.jar:?] {re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A}
 	at net.minecraft.client.Minecraft.run(Minecraft.java:628) ~[forge-1.16.5-36.2.39_mapped_official_1.16.5-recomp.jar:?] {re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A}
 	at net.minecraft.client.main.Main.main(Main.java:184) ~[forge-1.16.5-36.2.39_mapped_official_1.16.5-recomp.jar:?] {re:classloading,pl:runtimedistcleaner:A}
@@ -101,7 +101,7 @@ Details:
 		enchantmentdescriptions-250419-4757009_mapped_offi|EnchantmentDescriptions       |enchdesc                      |7.1.23              |DONE      |Manifest: NOSIGNATURE
 		createcustomcommands-962961-5214614_mapped_officia|Create Custom Commands
        |createcustomcommands          |3.0                 |DONE      |Manifest: NOSIGNATURE
-		main                                              |Balanced Enchantments         |balancedenchantments          |1.0-DEV-3           |DONE      |Manifest: NOSIGNATURE
+		main                                              |Balanced Enchantments         |balanced_enchantments          |1.0-DEV-3           |DONE      |Manifest: NOSIGNATURE
 		dmg_indicator-245733-3144151_mapped_official_1.16.|ToroHealth                    |torohealth                    |NONE                |DONE      |Manifest: NOSIGNATURE
 		forge-1.16.5-36.2.39_mapped_official_1.16.5-recomp|Forge                         |forge                         |36.2.39             |DONE      |Manifest: NOSIGNATURE
 		fixenchantmentcaps-1.1.jar                        |Fix Enchantment Caps          |fixenchantmentcaps            |1.1                 |DONE      |Manifest: NOSIGNATURE

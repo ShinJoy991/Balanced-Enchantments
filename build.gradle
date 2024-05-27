@@ -12,17 +12,17 @@ buildscript {
 plugins {
     id 'eclipse'
     id 'idea'
-    id "com.github.johnrengelman.shadow" version "8.1.0"
+//    id "com.github.johnrengelman.shadow" version "8.1.0"
     id 'net.minecraftforge.gradle' version '[6.0.16,)'
 }
-shadowJar {
-    configurations = [project.configurations.shadow]
-    relocate("com.llamalad7.mixinextras", "com.github.shinjoy991.balancedenchantments.mixinextras")
-    mergeServiceFiles()
-}
-configurations {
-    implementation.extendsFrom shadow
-}
+//shadowJar {
+//    configurations = [project.configurations.shadow]
+//    relocate("com.llamalad7.mixinextras", "com.github.shinjoy991.balanced_enchantments.mixinextras")
+//    mergeServiceFiles()
+//}
+//configurations {
+//    implementation.extendsFrom shadow
+//}
 apply plugin: 'org.spongepowered.mixin'
 
 group = mod_group_id
@@ -65,7 +65,7 @@ minecraft {
 }
 
 mixin {
-    add sourceSets.main, "balancedenchantments.refmap.json"
+    add sourceSets.main, "balanced_enchantments.refmap.json"
     config "${mod_id}.mixins.json"
 }
 
@@ -80,17 +80,17 @@ repositories {
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-    runtimeOnly fg.deobf("curse.maven:createcustomcommands-962961:5214614")
-    runtimeOnly fg.deobf("curse.maven:enchantmentdescriptions-250419:4757009")
-    runtimeOnly fg.deobf("curse.maven:enchantmentdescriptions_lib-228525:4351252")
-    runtimeOnly fg.deobf("curse.maven:dmg_indicator-245733:3144151")
+//    runtimeOnly fg.deobf("curse.maven:createcustomcommands-962961:5214614")
+//    runtimeOnly fg.deobf("curse.maven:enchantmentdescriptions-250419:4757009")
+//    runtimeOnly fg.deobf("curse.maven:enchantmentdescriptions_lib-228525:4351252")
+//    runtimeOnly fg.deobf("curse.maven:dmg_indicator-245733:3144151")
  //   runtimeOnly fg.deobf("curse.maven:in_control-257356:3909053")
     annotationProcessor 'org.spongepowered:mixin:0.8.4:processor'
 //    shadow(annotationProcessor("io.github.llamalad7:mixinextras-common:0.3.5"))
-    implementation(annotationProcessor("io.github.llamalad7:mixinextras-common:0.3.5"))
-    implementation(jarJar("io.github.llamalad7:mixinextras-forge:0.3.5")) {
-        jarJar.ranged(it, "[0.3.5,)")
-    }
+//    implementation(annotationProcessor("io.github.llamalad7:mixinextras-common:0.3.5"))
+//    implementation(jarJar("io.github.llamalad7:mixinextras-forge:0.3.5")) {
+//        jarJar.ranged(it, "[0.3.5,)")
+//    }
 }
 
 tasks.named('processResources', ProcessResources).configure {

@@ -5,13 +5,13 @@ Time: 4/6/24 1:25 AM
 Description: Ticking player
 
 java.lang.NullPointerException: Ticking player
-	at net.minecraft.entity.LivingEntity.handler$zza000$magmaWalk(LivingEntity.java:3280) ~[forge:?] {re:mixin,re:classloading,pl:mixin:APP:balancedenchantments.mixins.json:MagmaMixin,pl:mixin:A}
-	at net.minecraft.entity.LivingEntity.tryAddSoulSpeed(LivingEntity.java) ~[forge:?] {re:mixin,re:classloading,pl:mixin:APP:balancedenchantments.mixins.json:MagmaMixin,pl:mixin:A}
-	at net.minecraft.entity.LivingEntity.onChangedBlock(LivingEntity.java:459) ~[forge:?] {re:mixin,re:classloading,pl:mixin:APP:balancedenchantments.mixins.json:MagmaMixin,pl:mixin:A}
+	at net.minecraft.entity.LivingEntity.handler$zza000$magmaWalk(LivingEntity.java:3280) ~[forge:?] {re:mixin,re:classloading,pl:mixin:APP:balanced_enchantments.mixins.json:MagmaMixin,pl:mixin:A}
+	at net.minecraft.entity.LivingEntity.tryAddSoulSpeed(LivingEntity.java) ~[forge:?] {re:mixin,re:classloading,pl:mixin:APP:balanced_enchantments.mixins.json:MagmaMixin,pl:mixin:A}
+	at net.minecraft.entity.LivingEntity.onChangedBlock(LivingEntity.java:459) ~[forge:?] {re:mixin,re:classloading,pl:mixin:APP:balanced_enchantments.mixins.json:MagmaMixin,pl:mixin:A}
 	at net.minecraft.entity.player.ServerPlayerEntity.onChangedBlock(ServerPlayerEntity.java:860) ~[forge:?] {re:computing_frames,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B}
-	at net.minecraft.entity.LivingEntity.baseTick(LivingEntity.java:347) ~[forge:?] {re:mixin,re:classloading,pl:mixin:APP:balancedenchantments.mixins.json:MagmaMixin,pl:mixin:A}
+	at net.minecraft.entity.LivingEntity.baseTick(LivingEntity.java:347) ~[forge:?] {re:mixin,re:classloading,pl:mixin:APP:balanced_enchantments.mixins.json:MagmaMixin,pl:mixin:A}
 	at net.minecraft.entity.Entity.tick(Entity.java:386) ~[forge:?] {re:mixin,pl:accesstransformer:B,re:computing_frames,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B}
-	at net.minecraft.entity.LivingEntity.tick(LivingEntity.java:2115) ~[forge:?] {re:mixin,re:classloading,pl:mixin:APP:balancedenchantments.mixins.json:MagmaMixin,pl:mixin:A}
+	at net.minecraft.entity.LivingEntity.tick(LivingEntity.java:2115) ~[forge:?] {re:mixin,re:classloading,pl:mixin:APP:balanced_enchantments.mixins.json:MagmaMixin,pl:mixin:A}
 	at net.minecraft.entity.player.PlayerEntity.tick(PlayerEntity.java:223) ~[forge:?] {re:classloading,pl:accesstransformer:B,re:computing_frames,pl:accesstransformer:B}
 	at net.minecraft.entity.player.ServerPlayerEntity.doTick(ServerPlayerEntity.java:404) ~[forge:?] {re:computing_frames,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B}
 	at net.minecraft.network.play.ServerPlayNetHandler.tick(ServerPlayNetHandler.java:207) ~[forge:?] {re:classloading}
@@ -31,13 +31,13 @@ A detailed walkthrough of the error, its code path and all known details is as f
 -- Head --
 Thread: Server thread
 Stacktrace:
-	at net.minecraft.entity.LivingEntity.handler$zza000$magmaWalk(LivingEntity.java:3280) ~[forge:?] {re:mixin,re:classloading,pl:mixin:APP:balancedenchantments.mixins.json:MagmaMixin,pl:mixin:A}
-	at net.minecraft.entity.LivingEntity.tryAddSoulSpeed(LivingEntity.java) ~[forge:?] {re:mixin,re:classloading,pl:mixin:APP:balancedenchantments.mixins.json:MagmaMixin,pl:mixin:A}
-	at net.minecraft.entity.LivingEntity.onChangedBlock(LivingEntity.java:459) ~[forge:?] {re:mixin,re:classloading,pl:mixin:APP:balancedenchantments.mixins.json:MagmaMixin,pl:mixin:A}
+	at net.minecraft.entity.LivingEntity.handler$zza000$magmaWalk(LivingEntity.java:3280) ~[forge:?] {re:mixin,re:classloading,pl:mixin:APP:balanced_enchantments.mixins.json:MagmaMixin,pl:mixin:A}
+	at net.minecraft.entity.LivingEntity.tryAddSoulSpeed(LivingEntity.java) ~[forge:?] {re:mixin,re:classloading,pl:mixin:APP:balanced_enchantments.mixins.json:MagmaMixin,pl:mixin:A}
+	at net.minecraft.entity.LivingEntity.onChangedBlock(LivingEntity.java:459) ~[forge:?] {re:mixin,re:classloading,pl:mixin:APP:balanced_enchantments.mixins.json:MagmaMixin,pl:mixin:A}
 	at net.minecraft.entity.player.ServerPlayerEntity.onChangedBlock(ServerPlayerEntity.java:860) ~[forge:?] {re:computing_frames,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B}
-	at net.minecraft.entity.LivingEntity.baseTick(LivingEntity.java:347) ~[forge:?] {re:mixin,re:classloading,pl:mixin:APP:balancedenchantments.mixins.json:MagmaMixin,pl:mixin:A}
+	at net.minecraft.entity.LivingEntity.baseTick(LivingEntity.java:347) ~[forge:?] {re:mixin,re:classloading,pl:mixin:APP:balanced_enchantments.mixins.json:MagmaMixin,pl:mixin:A}
 	at net.minecraft.entity.Entity.tick(Entity.java:386) ~[forge:?] {re:mixin,pl:accesstransformer:B,re:computing_frames,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B}
-	at net.minecraft.entity.LivingEntity.tick(LivingEntity.java:2115) ~[forge:?] {re:mixin,re:classloading,pl:mixin:APP:balancedenchantments.mixins.json:MagmaMixin,pl:mixin:A}
+	at net.minecraft.entity.LivingEntity.tick(LivingEntity.java:2115) ~[forge:?] {re:mixin,re:classloading,pl:mixin:APP:balanced_enchantments.mixins.json:MagmaMixin,pl:mixin:A}
 	at net.minecraft.entity.player.PlayerEntity.tick(PlayerEntity.java:223) ~[forge:?] {re:classloading,pl:accesstransformer:B,re:computing_frames,pl:accesstransformer:B}
 -- Player being ticked --
 Details:
@@ -96,12 +96,12 @@ Details:
 		enchantmentdescriptions-250419-4757009_mapped_offi|EnchantmentDescriptions       |enchdesc                      |7.1.23              |DONE      |Manifest: NOSIGNATURE
 		createcustomcommands-962961-5214614_mapped_officia|Create Custom Commands
        |createcustomcommands          |3.0                 |DONE      |Manifest: NOSIGNATURE
-		main                                              |Balanced Enchantments         |balancedenchantments          |1.0                 |DONE      |Manifest: NOSIGNATURE
+		main                                              |Balanced Enchantments         |balanced_enchantments          |1.0                 |DONE      |Manifest: NOSIGNATURE
 		dmg_indicator-245733-3144151_mapped_official_1.16.|ToroHealth                    |torohealth                    |NONE                |DONE      |Manifest: NOSIGNATURE
 		forge-1.16.5-36.2.39_mapped_official_1.16.5-recomp|Forge                         |forge                         |36.2.39             |DONE      |Manifest: NOSIGNATURE
 		fixenchantmentcaps-1.1.jar                        |Fix Enchantment Caps          |fixenchantmentcaps            |1.1                 |DONE      |Manifest: NOSIGNATURE
 	Crash Report UUID: f8412846-59f9-4ae4-bb43-71f2f1bd5668
 	Player Count: 1 / 8; [ServerPlayerEntity['Dev'/1, l='ServerLevel[New World]', x=59.27, y=3.88, z=-226.57]]
-	Data Packs: vanilla, mod:bookshelf, mod:enchdesc, mod:createcustomcommands, mod:balancedenchantments, mod:torohealth, mod:forge, mod:fixenchantmentcaps
+	Data Packs: vanilla, mod:bookshelf, mod:enchdesc, mod:createcustomcommands, mod:balanced_enchantments, mod:torohealth, mod:forge, mod:fixenchantmentcaps
 	Type: Integrated Server (map_client.txt)
 	Is Modded: Definitely; Client brand changed to 'forge'

@@ -12,7 +12,7 @@ java.lang.BootstrapMethodError: java.lang.LinkageError: loader constraint violat
 	at net.minecraft.world.server.ServerWorld.addFreshEntity(ServerWorld.java:755) ~[forge:?] {re:classloading}
 	at net.minecraft.item.BowItem.releaseUsing(BowItem.java:70) ~[forge:?] {re:classloading}
 	at net.minecraft.item.ItemStack.releaseUsing(ItemStack.java:452) ~[forge:?] {re:classloading,xf:fml:forge:filled_map.4,xf:fml:forge:itemstack}
-	at net.minecraft.entity.LivingEntity.releaseUsingItem(LivingEntity.java:2873) ~[forge:?] {re:mixin,re:classloading,pl:mixin:APP:balancedenchantments.mixins.json:LivingEntityMixin,pl:mixin:A}
+	at net.minecraft.entity.LivingEntity.releaseUsingItem(LivingEntity.java:2873) ~[forge:?] {re:mixin,re:classloading,pl:mixin:APP:balanced_enchantments.mixins.json:LivingEntityMixin,pl:mixin:A}
 	at net.minecraft.network.play.ServerPlayNetHandler.handlePlayerAction(ServerPlayNetHandler.java:924) ~[forge:?] {re:classloading}
 	at net.minecraft.network.play.client.CPlayerDiggingPacket.handle(CPlayerDiggingPacket.java:40) ~[forge:?] {re:classloading}
 	at net.minecraft.network.play.client.CPlayerDiggingPacket.handle(CPlayerDiggingPacket.java:12) ~[forge:?] {re:classloading}
@@ -84,12 +84,12 @@ Details:
 		createcustomcommands-962961-5214614_mapped_officia|Create Custom Commands
        |createcustomcommands          |3.0                 |DONE      |Manifest: NOSIGNATURE
 		main                                              |Balanced Enchantments
-        |balancedenchantments          |1.0-5               |DONE      |Manifest: NOSIGNATURE
+        |balanced_enchantments          |1.0-5               |DONE      |Manifest: NOSIGNATURE
 		dmg_indicator-245733-3144151_mapped_official_1.16.|ToroHealth                    |torohealth                    |NONE                |DONE      |Manifest: NOSIGNATURE
 		forge-1.16.5-36.2.39_mapped_official_1.16.5-recomp|Forge                         |forge                         |36.2.39             |DONE      |Manifest: NOSIGNATURE
 		fixenchantmentcaps-1.1.jar                        |Fix Enchantment Caps          |fixenchantmentcaps            |1.1                 |DONE      |Manifest: NOSIGNATURE
 	Crash Report UUID: fef97bb9-ee5c-440f-b791-13bb5bf856e4
 	Player Count: 1 / 8; [ServerPlayerEntity['Dev'/19, l='ServerLevel[New World]', x=61.42, y=4.50, z=-222.62]]
-	Data Packs: vanilla, mod:bookshelf, mod:enchdesc, mod:createcustomcommands, mod:balancedenchantments, mod:torohealth, mod:forge, mod:fixenchantmentcaps
+	Data Packs: vanilla, mod:bookshelf, mod:enchdesc, mod:createcustomcommands, mod:balanced_enchantments, mod:torohealth, mod:forge, mod:fixenchantmentcaps
 	Type: Integrated Server (map_client.txt)
 	Is Modded: Definitely; Client brand changed to 'forge'

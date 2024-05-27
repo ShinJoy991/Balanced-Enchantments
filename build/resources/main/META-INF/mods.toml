@@ -1,14 +1,15 @@
 modLoader="javafml"
 loaderVersion="[36,)"
+recommendedForge="36.2.39"
 license="LGPL-3.0"
 
 [[mods]]
-modId="balancedenchantments"
+modId="balanced_enchantments"
 version="1.16.5v1.0"
 displayName="Balanced Enchantments
 "
 authors="ShinJoy991"
-logoFile="logo.png"
+logoFile="balanced_enchantments.png"
 description='''Awesome enchantments, fully customizable, that's what you can find in this mod.
 
 Any issues just pm me on curseforge or github
@@ -19,13 +20,13 @@ https://www.curseforge.com/minecraft/mc-mods/balanced-enchantments
 
 '''
 
-[[dependencies."balancedenchantments"]]
+[[dependencies."balanced_enchantments"]]
    modId="forge"
    mandatory=true
    versionRange="[36,)"
    ordering="NONE"
    side="BOTH"
-[[dependencies."balancedenchantments"]]
+[[dependencies."balanced_enchantments"]]
    modId="minecraft"
    mandatory=true
    versionRange="[1.16.5,1.17)"

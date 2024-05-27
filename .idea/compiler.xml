@@ -8,7 +8,13 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.4/65bfa0e731e4b81a50f8cea35e546f023a4cfe5d/mixin-0.8.4-processor.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.llamalad7/mixinextras-common/0.3.5/5de895137aa0478675b6ecf7602d9652b05dc37e/mixinextras-common-0.3.5.jar" />
         </processorPath>
-        <module name="BalancedEnchantments.main" />
+      </profile>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.4/65bfa0e731e4b81a50f8cea35e546f023a4cfe5d/mixin-0.8.4-processor.jar" />
+        </processorPath>
+        <module name="balanced_enchantments.main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8" />

@@ -35,18 +35,18 @@ A detailed walkthrough of the error, its code path and all known details is as f
 Thread: Render thread
 Stacktrace:
 	at net.minecraftforge.registries.DeferredRegister.register(DeferredRegister.java:111) ~[forge:?] {re:classloading}
--- MOD balancedenchantments --
+-- MOD balanced_enchantments --
 Details:
 	Mod File: main
-	Failure message: Balanced Enchantments (balancedenchantments) has failed to load correctly
+	Failure message: Balanced Enchantments (balanced_enchantments) has failed to load correctly
 		java.lang.IllegalArgumentException: Duplicate registration curse_of_durability
 	Mod Version: 1.0-DEV-3
 	Mod Issue URL: NOT PROVIDED
 	Exception message: java.lang.IllegalArgumentException: Duplicate registration curse_of_durability
 Stacktrace:
 	at net.minecraftforge.registries.DeferredRegister.register(DeferredRegister.java:111) ~[forge:?] {re:classloading}
-	at com.github.shinjoy991.balancedenchantments.config.ReadConfig.initEnchantments(ReadConfig.java:99) ~[?:?] {re:classloading}
-	at com.github.shinjoy991.balancedenchantments.BalancedEnchantments.<init>(BalancedEnchantments.java:48) ~[?:?] {re:classloading}
+	at com.github.shinjoy991.balanced_enchantments.config.ReadConfig.initEnchantments(ReadConfig.java:99) ~[?:?] {re:classloading}
+	at com.github.shinjoy991.balanced_enchantments.balanced_enchantments.<init>(balanced_enchantments.java:48) ~[?:?] {re:classloading}
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[?:1.8.0_402] {}
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[?:1.8.0_402] {}
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[?:1.8.0_402] {}
@@ -96,7 +96,7 @@ Details:
 		enchantmentdescriptions-250419-4757009_mapped_offi|EnchantmentDescriptions       |enchdesc                      |7.1.23              |CREATE_REG|Manifest: NOSIGNATURE
 		createcustomcommands-962961-5214614_mapped_officia|Create Custom Commands
        |createcustomcommands          |3.0                 |CREATE_REG|Manifest: NOSIGNATURE
-		main                                              |Balanced Enchantments         |balancedenchantments          |1.0-DEV-3           |ERROR     |Manifest: NOSIGNATURE
+		main                                              |Balanced Enchantments         |balanced_enchantments          |1.0-DEV-3           |ERROR     |Manifest: NOSIGNATURE
 		dmg_indicator-245733-3144151_mapped_official_1.16.|ToroHealth                    |torohealth                    |NONE                |CREATE_REG|Manifest: NOSIGNATURE
 		forge-1.16.5-36.2.39_mapped_official_1.16.5-recomp|Forge                         |forge                         |36.2.39             |CREATE_REG|Manifest: NOSIGNATURE
 		fixenchantmentcaps-1.1.jar                        |Fix Enchantment Caps          |fixenchantmentcaps            |1.1                 |CREATE_REG|Manifest: NOSIGNATURE

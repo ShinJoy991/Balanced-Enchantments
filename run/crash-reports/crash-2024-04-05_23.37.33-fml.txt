@@ -35,19 +35,19 @@ A detailed walkthrough of the error, its code path and all known details is as f
 Thread: Render thread
 Stacktrace:
 	at net.minecraft.state.StateHolder.setValue(StateHolder.java:103) ~[forge:?] {re:classloading}
--- MOD balancedenchantments --
+-- MOD balanced_enchantments --
 Details:
 	Mod File: main
-	Failure message: Balanced Enchantments (balancedenchantments) encountered an error during the load_registries event phase
+	Failure message: Balanced Enchantments (balanced_enchantments) encountered an error during the load_registries event phase
 		java.lang.IllegalArgumentException: Cannot set property IntegerProperty{name=age, clazz=class java.lang.Integer, values=[0, 1, 2, 3]} as it does not exist in Block{null}
 	Mod Version: 1.0
 	Mod Issue URL: NOT PROVIDED
 	Exception message: java.lang.IllegalArgumentException: Cannot set property IntegerProperty{name=age, clazz=class java.lang.Integer, values=[0, 1, 2, 3]} as it does not exist in Block{null}
 Stacktrace:
 	at net.minecraft.state.StateHolder.setValue(StateHolder.java:103) ~[forge-1.16.5-36.2.39_mapped_official_1.16.5-recomp.jar:?] {re:classloading}
-	at com.github.shinjoy991.balancedenchantments.blocks.CrustedMagma.<init>(CrustedMagma.java:41) ~[main/:?] {re:classloading}
-	at com.github.shinjoy991.balancedenchantments.register.RegisterBlock$1.<init>(RegisterBlock.java:24) ~[main/:?] {re:classloading}
-	at com.github.shinjoy991.balancedenchantments.register.RegisterBlock.lambda$static$0(RegisterBlock.java:24) ~[main/:?] {re:classloading}
+	at com.github.shinjoy991.balanced_enchantments.blocks.CrustedMagma.<init>(CrustedMagma.java:41) ~[main/:?] {re:classloading}
+	at com.github.shinjoy991.balanced_enchantments.register.RegisterBlock$1.<init>(RegisterBlock.java:24) ~[main/:?] {re:classloading}
+	at com.github.shinjoy991.balanced_enchantments.register.RegisterBlock.lambda$static$0(RegisterBlock.java:24) ~[main/:?] {re:classloading}
 	at net.minecraftforge.registries.DeferredRegister.lambda$register$0(DeferredRegister.java:110) ~[forge-1.16.5-36.2.39_mapped_official_1.16.5-recomp.jar:?] {re:classloading}
 	at net.minecraftforge.registries.DeferredRegister.addEntries(DeferredRegister.java:186) ~[forge-1.16.5-36.2.39_mapped_official_1.16.5-recomp.jar:?] {re:classloading}
 	at net.minecraftforge.registries.DeferredRegister.access$000(DeferredRegister.java:47) ~[forge-1.16.5-36.2.39_mapped_official_1.16.5-recomp.jar:?] {re:classloading}
@@ -116,7 +116,7 @@ Details:
 		enchantmentdescriptions-250419-4757009_mapped_offi|EnchantmentDescriptions       |enchdesc                      |7.1.23              |COMMON_SET|Manifest: NOSIGNATURE
 		createcustomcommands-962961-5214614_mapped_officia|Create Custom Commands
        |createcustomcommands          |3.0                 |COMMON_SET|Manifest: NOSIGNATURE
-		main                                              |Balanced Enchantments         |balancedenchantments          |1.0                 |VALIDATE  |Manifest: NOSIGNATURE
+		main                                              |Balanced Enchantments         |balanced_enchantments          |1.0                 |VALIDATE  |Manifest: NOSIGNATURE
 		dmg_indicator-245733-3144151_mapped_official_1.16.|ToroHealth                    |torohealth                    |NONE                |COMMON_SET|Manifest: NOSIGNATURE
 		forge-1.16.5-36.2.39_mapped_official_1.16.5-recomp|Forge                         |forge                         |36.2.39             |COMMON_SET|Manifest: NOSIGNATURE
 		fixenchantmentcaps-1.1.jar                        |Fix Enchantment Caps          |fixenchantmentcaps            |1.1                 |COMMON_SET|Manifest: NOSIGNATURE

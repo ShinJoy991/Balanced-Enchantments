@@ -34,11 +34,11 @@ A detailed walkthrough of the error, its code path and all known details is as f
 -- Head --
 Thread: Render thread
 Stacktrace:
-	at com.github.shinjoy991.balancedenchantments.register.RegisterItem.<clinit>(RegisterItem.java:30) ~[?:?] {re:classloading}
--- MOD balancedenchantments --
+	at com.github.shinjoy991.balanced_enchantments.register.RegisterItem.<clinit>(RegisterItem.java:30) ~[?:?] {re:classloading}
+-- MOD balanced_enchantments --
 Details:
 	Caused by 0: java.lang.ExceptionInInitializerError
-		at com.github.shinjoy991.balancedenchantments.BalancedEnchantments.<init>(BalancedEnchantments.java:51) ~[?:?] {re:classloading}
+		at com.github.shinjoy991.balanced_enchantments.balanced_enchantments.<init>(balanced_enchantments.java:51) ~[?:?] {re:classloading}
 		at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[?:1.8.0_402] {}
 		at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[?:1.8.0_402] {}
 		at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[?:1.8.0_402] {}
@@ -54,14 +54,14 @@ Details:
 		at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:175) ~[?:1.8.0_402] {}
 
 	Mod File: main
-	Failure message: Balanced Enchantments (balancedenchantments) has failed to load correctly
+	Failure message: Balanced Enchantments (balanced_enchantments) has failed to load correctly
 		java.lang.ExceptionInInitializerError: null
 	Mod Version: 1.0
 	Mod Issue URL: NOT PROVIDED
 	Exception message: java.lang.NullPointerException
 Stacktrace:
-	at com.github.shinjoy991.balancedenchantments.register.RegisterItem.<clinit>(RegisterItem.java:30) ~[?:?] {re:classloading}
-	at com.github.shinjoy991.balancedenchantments.BalancedEnchantments.<init>(BalancedEnchantments.java:51) ~[?:?] {re:classloading}
+	at com.github.shinjoy991.balanced_enchantments.register.RegisterItem.<clinit>(RegisterItem.java:30) ~[?:?] {re:classloading}
+	at com.github.shinjoy991.balanced_enchantments.balanced_enchantments.<init>(balanced_enchantments.java:51) ~[?:?] {re:classloading}
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[?:1.8.0_402] {}
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[?:1.8.0_402] {}
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[?:1.8.0_402] {}
@@ -111,7 +111,7 @@ Details:
 		enchantmentdescriptions-250419-4757009_mapped_offi|EnchantmentDescriptions       |enchdesc                      |7.1.23              |CREATE_REG|Manifest: NOSIGNATURE
 		createcustomcommands-962961-5214614_mapped_officia|Create Custom Commands
        |createcustomcommands          |3.0                 |CREATE_REG|Manifest: NOSIGNATURE
-		main                                              |Balanced Enchantments         |balancedenchantments          |1.0                 |ERROR     |Manifest: NOSIGNATURE
+		main                                              |Balanced Enchantments         |balanced_enchantments          |1.0                 |ERROR     |Manifest: NOSIGNATURE
 		dmg_indicator-245733-3144151_mapped_official_1.16.|ToroHealth                    |torohealth                    |NONE                |CREATE_REG|Manifest: NOSIGNATURE
 		forge-1.16.5-36.2.39_mapped_official_1.16.5-recomp|Forge                         |forge                         |36.2.39             |CREATE_REG|Manifest: NOSIGNATURE
 		fixenchantmentcaps-1.1.jar                        |Fix Enchantment Caps          |fixenchantmentcaps            |1.1                 |CREATE_REG|Manifest: NOSIGNATURE
