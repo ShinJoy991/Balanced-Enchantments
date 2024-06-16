@@ -3,7 +3,6 @@ package com.github.shinjoy991.balanced_enchantments.enchantments;
 import com.github.shinjoy991.balanced_enchantments.register.RegisterBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Vec3i;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -79,15 +78,19 @@ public class MagmaWalker extends Enchantment {
     }
 
     public int getMinCost(int enchantmentLevel) {
-        return enchantmentLevel * 15;
+        return 30;
     }
 
     public int getMaxCost(int enchantmentLevel) {
-        return this.getMinCost(enchantmentLevel) + 25;
+        return this.getMinCost(enchantmentLevel) + 50;
     }
 
     public boolean isTreasureOnly() {
         return true;
+    }
+
+    public boolean isAllowedOnBooks() {
+        return false;
     }
 
     public int getMaxLevel() {

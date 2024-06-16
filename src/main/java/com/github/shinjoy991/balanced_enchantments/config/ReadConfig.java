@@ -1,10 +1,9 @@
 package com.github.shinjoy991.balanced_enchantments.config;
 
-import com.github.shinjoy991.balanced_enchantments.enchantments.BlockMaskSoul;
-import com.github.shinjoy991.balanced_enchantments.enchantments.MagmaWalker;
-import com.github.shinjoy991.balanced_enchantments.enchantments.SuperCharged;
-import com.github.shinjoy991.balanced_enchantments.enchantments.Volley;
+import com.github.shinjoy991.balanced_enchantments.enchantments.*;
 import com.github.shinjoy991.balanced_enchantments.enchantments.curses.CurseOfDurability;
+import com.github.shinjoy991.balanced_enchantments.enchantments.curses.CurseOfUnstable;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -62,11 +61,23 @@ public class ReadConfig {
     }
 
     public static int reloadConfig() {
-        String jsonString;
         try {
-            jsonString = new String(Files.readAllBytes(CreateJson.configFile),
+            String jsonString = new String(Files.readAllBytes(CreateJson.configFile),
                     StandardCharsets.UTF_8);
             jsonObject = new JsonParser().parse(jsonString).getAsJsonObject();
+
+            if (getConfig("statusprotection", "enable", 0).toString().equalsIgnoreCase("true")) {
+                StatusProtection.STATUS_COOLDOWN_TICKS = Math.max((Integer) getConfig(
+                        "statusprotection", "initialcooldown", 1), 5);
+                StatusProtection.STATUS_COOLDOWN_REDUCE_PER_LEVEL = Math.max((Integer) getConfig(
+                        "statusprotection", "cooldownreduceperlvl", 1), 0);
+                StatusProtection.STATUS_CHANCE = Math.max((Integer) getConfig(
+                        "statusprotection", "initialchance", 1), 0);
+                StatusProtection.STATUS_CHANCE_INCREASE_PER_LEVEL = Math.max((Integer) getConfig(
+                        "statusprotection", "chanceincreaseperlvl", 1), 0);
+                StatusProtection.STATUS_ALL_THRESHOLD = Math.max((Integer) getConfig(
+                        "statusprotection", "allstatuslevel", 1), 0);
+            }
             return 0;
         } catch (IOException e) {
             LOGGER.error("[Balanced Enchantments] Config reload error " + e);
@@ -96,11 +107,52 @@ public class ReadConfig {
             SUPER_CHARGED = ENCHANTMENTS.register("super_charged", () -> new SuperCharged() {
             });
         }
+        if (getConfig("herolanding", "enable", 0)
+                .toString().equalsIgnoreCase("true")) {
+            HERO_LANDING = ENCHANTMENTS.register("hero_landing", () -> new HeroLanding() {
+            });
+        }
+        if (getConfig("cmoon", "enable", 0)
+                .toString().equalsIgnoreCase("true")) {
+            C_MOON = ENCHANTMENTS.register("c_moon", () -> new CMoon() {
+            });
+        }
+        if (getConfig("statusprotection", "enable", 0)
+                .toString().equalsIgnoreCase("true")) {
+            STATUS_PROTECTION = ENCHANTMENTS.register("status_protection", () -> new StatusProtection() {
+            });
+            StatusProtection.STATUS_COOLDOWN_TICKS = Math.max((Integer) getConfig(
+                    "statusprotection", "initialcooldown", 1), 5);
+            StatusProtection.STATUS_COOLDOWN_REDUCE_PER_LEVEL = Math.max((Integer) getConfig(
+                    "statusprotection", "cooldownreduceperlvl", 1), 0);
+            StatusProtection.STATUS_CHANCE = Math.max((Integer) getConfig(
+                    "statusprotection", "initialchance", 1), 0);
+            StatusProtection.STATUS_CHANCE_INCREASE_PER_LEVEL = Math.max((Integer) getConfig(
+                    "statusprotection", "chanceincreaseperlvl", 1), 0);
+            StatusProtection.STATUS_ALL_THRESHOLD = Math.max((Integer) getConfig(
+                    "statusprotection", "allstatuslevel", 1), 0);
+        }
+        if (getConfig("iceaspect", "enable", 0)
+                .toString().equalsIgnoreCase("true")) {
+            ICE_ASPECT = ENCHANTMENTS.register("ice_aspect", () -> new IceAspect() {
+            });
+        }
+        if (getConfig("huntinginstinct", "enable", 0)
+                .toString().equalsIgnoreCase("true")) {
+            HUNTING_INSTINCT = ENCHANTMENTS.register("hunting_instinct",
+                    () -> new HuntingInstinct() {
+            });
+        }
         if (getConfig("curseofdurability", "enable", 0)
                 .toString().equalsIgnoreCase("true")) {
             CURSE_OF_DURABILITY = ENCHANTMENTS.register(
                     "curse_of_durability", () -> new CurseOfDurability() {
                     });
+        }
+        if (getConfig("curseofunstable", "enable", 0)
+                .toString().equalsIgnoreCase("true")) {
+            CURSE_OF_UNSTABLE = ENCHANTMENTS.register("curse_of_unstable",
+                    () -> new CurseOfUnstable() {});
         }
     }
 }

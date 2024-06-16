@@ -15,5 +15,17 @@
   "enchantment.balanced_enchantments.super_charged": "超级充能",
   "enchantment.balanced_enchantments.super_charged.desc": "增加伤害但攻击后变得较弱  [工具，剑]",
   "enchantment.balanced_enchantments.curse_of_durability": "耐久性诅咒",
-  "enchantment.balanced_enchantments.curse_of_durability.desc": "以不可控制的方式破坏或修复物品"
+  "enchantment.balanced_enchantments.curse_of_durability.desc": "以不可控制的方式破坏或修复物品",
+  "enchantment.balanced_enchantments.hero_landing": "英雄登陆",
+  "enchantment.balanced_enchantments.hero_landing.desc": "消除掉落伤害  [靴子]",
+  "enchantment.balanced_enchantments.c_moon": "C-Moon",
+  "enchantment.balanced_enchantments.c_moon.desc": "目标反重力  【工具，剑】",
+  "enchantment.balanced_enchantments.status_protection": "状态保护",
+  "enchantment.balanced_enchantments.status_protection.desc": "有机会消除不良状态  [护甲]",
+  "enchantment.balanced_enchantments.ice_aspect": "冰属性",
+  "enchantment.balanced_enchantments.ice_aspect.desc": "有机会冻结敌人  [武器]",
+  "enchantment.balanced_enchantments.hunting_instinct": "狩猎本能",
+  "enchantment.balanced_enchantments.hunting_instinct.desc": "在战斗时增强能力，不战斗时减速  [武器]",
+  "enchantment.balanced_enchantments.curse_of_unstable": "不稳定诅咒",
+  "enchantment.balanced_enchantments.curse_of_unstable.desc": "被击中时可能会从手中跳出"
 }

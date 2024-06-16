@@ -42,5 +42,11 @@ public class RegisterEnch {
     public static RegistryObject<Enchantment> VOLLEY = null;
     public static RegistryObject<Enchantment> MAGMA_WALKER = null;
     public static RegistryObject<Enchantment> SUPER_CHARGED = null;
+    public static RegistryObject<Enchantment> HERO_LANDING = null;
+    public static RegistryObject<Enchantment> C_MOON = null;
+    public static RegistryObject<Enchantment> STATUS_PROTECTION = null;
+    public static RegistryObject<Enchantment> ICE_ASPECT = null;
+    public static RegistryObject<Enchantment> HUNTING_INSTINCT = null;
     public static RegistryObject<Enchantment> CURSE_OF_DURABILITY = null;
+    public static RegistryObject<Enchantment> CURSE_OF_UNSTABLE = null;
 }

@@ -15,5 +15,17 @@
   "enchantment.balanced_enchantments.super_charged": "SuperCharged",
   "enchantment.balanced_enchantments.super_charged.desc": "Increase damage but weaker after attack  [Tools, Sword]",
   "enchantment.balanced_enchantments.curse_of_durability": "Curse of Durability",
-  "enchantment.balanced_enchantments.curse_of_durability.desc": "Break or fix an item in an uncontrollable way"
+  "enchantment.balanced_enchantments.curse_of_durability.desc": "Break or fix an item in an uncontrollable way",
+  "enchantment.balanced_enchantments.hero_landing": "Hero Landing",
+  "enchantment.balanced_enchantments.hero_landing.desc": "Negates fall damage  [Boots]",
+  "enchantment.balanced_enchantments.c_moon": "C-Moon",
+  "enchantment.balanced_enchantments.c_moon.desc": "Inverse gravity of target  [Tools, Sword]",
+  "enchantment.balanced_enchantments.status_protection": "Status Protection",
+  "enchantment.balanced_enchantments.status_protection.desc": "Chance to remove bad status  [Armor]",
+  "enchantment.balanced_enchantments.ice_aspect": "Ice Aspect",
+  "enchantment.balanced_enchantments.ice_aspect.desc": "Chance to freeze enemy  [Weapon]",
+  "enchantment.balanced_enchantments.hunting_instinct": "Hunting Instinct",
+  "enchantment.balanced_enchantments.hunting_instinct.desc": "Boost ability when fighting, get slowness when not  [Weapon]",
+  "enchantment.balanced_enchantments.curse_of_unstable": "Curse of Unstable",
+  "enchantment.balanced_enchantments.curse_of_unstable.desc": "May jump out your hand when being hit"
 }

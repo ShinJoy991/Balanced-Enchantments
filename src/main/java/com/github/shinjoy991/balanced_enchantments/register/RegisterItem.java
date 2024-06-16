@@ -48,39 +48,6 @@ public class RegisterItem {
             .build()
     );
 
-
-//        @Override
-//        public void fillItemList(NonNullList<ItemStack> items) {
-//            items.add(new ItemStack(RegisterItem.CRUSTEDMAGMA.get()));
-//            for (RegistryObject<Enchantment> enchantment : RegisterEnch.ENCHANTMENTS.getEntries()) {
-//                Enchantment currentEnchantment = enchantment.get();
-//                for (int level = 1; level <= currentEnchantment.getMaxLevel(); level++) {
-//                    items.add(EnchantedBookItem.createForEnchantment(new EnchantmentInstance(currentEnchantment, level)));
-//                }
-//            }
-//        }
-    ;
-
-
-//    public static final CreativeModeTab ENCHANTMENT_TAB = CreativeModeTab.builder()
-//            .icon(() -> new ItemStack(RegisterItem.ICON.get()))
-//            .displayItems((features, output, hasPermissions) -> {
-//                output.accept(new ItemStack(RegisterItem.CRUSTEDMAGMA.get()));
-//                for (RegistryObject<Enchantment> enchantment : RegisterEnch.ENCHANTMENTS.getEntries()) {
-//                    Enchantment currentEnchantment = enchantment.get();
-//                    for (int level = 1; level <= currentEnchantment.getMaxLevel(); level++) {
-//                        output.accept(EnchantedBookItem.createForEnchantment(new EnchantmentInstance(currentEnchantment, level)));
-//                    }
-//                }
-//            })
-//            .title(Component.translatable("itemGroup.enchantment_tab"))
-//            .build();
-
-
-//    public static final RegistryObject<BlockItem> CRUSTEDMAGMA = ITEMS.register(
-//            "crusted_magma_block_0",
-//            () -> new BlockItem(RegisterBlock.CRUSTEDMAGMA.get(),
-//                    new Item.Properties().tab(ENCHANTMENT_TAB)));
     public static final RegistryObject<BlockItem> CRUSTEDMAGMA = ITEMS.register(
             "crusted_magma_block_0",
             () -> new BlockItem(RegisterBlock.CRUSTEDMAGMA.get(), new Item.Properties()));

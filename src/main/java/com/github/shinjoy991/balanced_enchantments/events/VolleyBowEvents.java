@@ -7,12 +7,12 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Arrow;
+import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -35,6 +35,8 @@ public class VolleyBowEvents {
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onVolleyShoot(ArrowLooseEvent event) {
         int VolleyLevel;
+        if (!event.getBow().is(Items.BOW))
+            return;
         try {
             VolleyLevel = EnchantmentHelper.getItemEnchantmentLevel(RegisterEnch.VOLLEY.get(),
                     event.getBow());
@@ -82,23 +84,10 @@ public class VolleyBowEvents {
             return;
         if (!(((Arrow) en).getOwner() instanceof LivingEntity shooter))
             return;
-        int VolleyLevel;
-        int k;
-        if (!shoot.getOrDefault(shooter.getUUID(), false)) {
-            try {
-               VolleyLevel =
-                       EnchantmentHelper.getItemEnchantmentLevel(RegisterEnch.VOLLEY.get(),
-                        shooter.getMainHandItem());
-                k = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH_ARROWS,
-                        shooter.getMainHandItem());
-                arrowSpeed = 1.6F;
-            } catch (Exception e) {
-                return;
-            }
-        } else {
-            VolleyLevel = level;
-            k = VolleyBowEvents.k;
-        }
+        if (!shoot.getOrDefault(shooter.getUUID(), false))
+            return;
+        int VolleyLevel = level;
+        int k = VolleyBowEvents.k;
         shoot.remove(shooter.getUUID());
         en.addTag("be.volley");
         CompoundTag oldnbt = en.serializeNBT();
@@ -131,7 +120,8 @@ public class VolleyBowEvents {
                 delayedTask(100, () -> {
                             try {
                                 newArrow.discard();
-                            } catch (Exception ignored) {}
+                            } catch (Exception ignored) {
+                            }
                         }
                 );
             }
