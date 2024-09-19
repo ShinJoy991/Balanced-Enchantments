@@ -1,5 +1,6 @@
 package com.github.shinjoy991.balanced_enchantments;
 
+import com.github.shinjoy991.balanced_enchantments.client.ModNetworking;
 import com.github.shinjoy991.balanced_enchantments.config.CreateJson;
 import com.github.shinjoy991.balanced_enchantments.register.RegisterBlock;
 import com.github.shinjoy991.balanced_enchantments.register.RegisterEnch;
@@ -17,7 +18,6 @@ import org.apache.logging.log4j.Logger;
 import static com.github.shinjoy991.balanced_enchantments.config.ReadConfig.initEnchantments;
 import static com.github.shinjoy991.balanced_enchantments.config.ReadConfig.readJsonValue;
 
-// The value here should match an entry in the META-INF/mods.toml file
 @Mod("balanced_enchantments")
 public class BalancedEnchantments {
     public static final String MOD_ID = "balanced_enchantments";
@@ -37,6 +37,7 @@ public class BalancedEnchantments {
     }
 
     private void setup(final FMLCommonSetupEvent event) {
+        ModNetworking.registerPackets();
         LOGGER.info("BalancedEnchantments PREINIT setting up...");
     }
 

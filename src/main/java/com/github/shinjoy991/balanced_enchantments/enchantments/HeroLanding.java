@@ -17,7 +17,7 @@ import static net.minecraft.world.item.enchantment.Enchantments.FALL_PROTECTION;
 public class HeroLanding extends Enchantment {
 
     public HeroLanding() {
-        super(Rarity.UNCOMMON, IS_BOOTS,
+        super(Rarity.COMMON, IS_BOOTS,
                 new EquipmentSlot[]{EquipmentSlot.FEET});
     }
 

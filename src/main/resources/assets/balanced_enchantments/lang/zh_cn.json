@@ -27,5 +27,21 @@
   "enchantment.balanced_enchantments.hunting_instinct": "狩猎本能",
   "enchantment.balanced_enchantments.hunting_instinct.desc": "在战斗时增强能力，不战斗时减速  [武器]",
   "enchantment.balanced_enchantments.curse_of_unstable": "不稳定诅咒",
-  "enchantment.balanced_enchantments.curse_of_unstable.desc": "被击中时可能会从手中跳出"
+  "enchantment.balanced_enchantments.curse_of_unstable.desc": "被击中时可能会从手中跳出",
+  "enchantment.balanced_enchantments.true_sharpness": "真实锋利度",
+  "enchantment.balanced_enchantments.true_sharpness.desc": "增加固定伤害量但消耗耐久度  [武器]",
+  "enchantment.balanced_enchantments.invisible_shield": "隐形盾牌",
+  "enchantment.balanced_enchantments.invisible_shield.desc": "授予一个可减少首次受到的伤害的护盾  [护甲]",
+  "enchantment.balanced_enchantments.weapon_art": "武器艺术",
+  "enchantment.balanced_enchantments.weapon_art.desc": "在与持有武器的敌对生物战斗时减少伤害  [武器]",
+  "enchantment.balanced_enchantments.mighty_force": "威武力",
+  "enchantment.balanced_enchantments.mighty_force.desc": "攻击怪物时增加伤害，最多5个阶段并消耗箭矢  [弓，弩]",
+  "enchantment.balanced_enchantments.mining_focus": "矿业焦点",
+  "enchantment.balanced_enchantments.mining_focus.desc": "连续破坏同一个方块可获得一段时间内的加速，有冷却时间   [工具]",
+  "enchantment.balanced_enchantments.auto_machine": "自动机器",
+  "enchantment.balanced_enchantments.auto_machine.desc": "潜行时创建隧道  [工具]",
+  "enchantment.balanced_enchantments.linking": "链接",
+  "enchantment.balanced_enchantments.linking.desc": "相邻的矿石将被此工具破坏  [镐]",
+  "enchantment.balanced_enchantments.curse_of_provocation": "挑衅诅咒",
+  "enchantment.balanced_enchantments.curse_of_provocation.desc": "附近的怪物认为你击中了他们，但你无法解释  [护甲]"
 }

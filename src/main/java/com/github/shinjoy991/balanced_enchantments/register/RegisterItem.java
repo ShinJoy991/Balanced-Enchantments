@@ -22,33 +22,35 @@ public class RegisterItem {
             "mod_icon",
             () -> new Item(new Item.Properties()) {
                 @Override
-                public void appendHoverText(ItemStack stack, Level world, List<Component> tooltip, TooltipFlag flag) {
+                public void appendHoverText(ItemStack stack, Level world, List<Component> tooltip
+                        , TooltipFlag flag) {
                     super.appendHoverText(stack, world, tooltip, flag);
-                    tooltip.add(Component.literal("This is just an icon, what are you planning for?"));
+                    tooltip.add(Component.literal("This is just an icon, what are you planning " +
+                            "for?"));
                 }
             }
     );
 
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TAB =
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MOD_ID);
-
-    public static final RegistryObject<CreativeModeTab>  ENCHANTMENT_TAB = CREATIVE_MODE_TAB.register("prehistorica_tab",
-            () -> CreativeModeTab.builder()
-            .icon(() -> new ItemStack(RegisterItem.ICON.get()))
-            .displayItems((parameters, output) -> {
-                output.accept(new ItemStack(RegisterItem.CRUSTEDMAGMA.get()));
-                for (RegistryObject<Enchantment> enchantment : RegisterEnch.ENCHANTMENTS.getEntries()) {
-                    Enchantment currentEnchantment = enchantment.get();
-                    for (int level = 1; level <= currentEnchantment.getMaxLevel(); level++) {
-                        output.accept(EnchantedBookItem.createForEnchantment(new EnchantmentInstance(currentEnchantment, level)));
-                    }
-                }
-            })
-            .title(Component.translatable("itemGroup.enchantment_tab"))
-            .build()
-    );
-
     public static final RegistryObject<BlockItem> CRUSTEDMAGMA = ITEMS.register(
             "crusted_magma_block_0",
             () -> new BlockItem(RegisterBlock.CRUSTEDMAGMA.get(), new Item.Properties()));
+    public static final RegistryObject<CreativeModeTab> ENCHANTMENT_TAB =
+            CREATIVE_MODE_TAB.register("enchantment_tab",
+            () -> CreativeModeTab.builder()
+                    .icon(() -> new ItemStack(RegisterItem.ICON.get()))
+                    .displayItems((parameters, output) -> {
+                        output.accept(new ItemStack(RegisterItem.CRUSTEDMAGMA.get()));
+                        for (RegistryObject<Enchantment> enchantment :
+                                RegisterEnch.ENCHANTMENTS.getEntries()) {
+                            Enchantment currentEnchantment = enchantment.get();
+                            for (int level = 1; level <= currentEnchantment.getMaxLevel(); level++) {
+                                output.accept(EnchantedBookItem.createForEnchantment(new EnchantmentInstance(currentEnchantment, level)));
+                            }
+                        }
+                    })
+                    .title(Component.translatable("itemGroup.enchantment_tab"))
+                    .build()
+    );
 }

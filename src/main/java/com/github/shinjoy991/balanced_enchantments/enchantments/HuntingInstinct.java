@@ -2,6 +2,8 @@ package com.github.shinjoy991.balanced_enchantments.enchantments;
 
 import com.github.shinjoy991.balanced_enchantments.register.RegisterEnch;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextColor;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
@@ -20,6 +22,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.*;
@@ -36,7 +39,10 @@ public class HuntingInstinct extends Enchantment {
         super(Rarity.VERY_RARE, EnchantmentCategory.WEAPON,
                 new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     }
-
+    @SubscribeEvent
+    public static void playerJoin(PlayerEvent.PlayerLoggedInEvent event) {
+        cooldowns.remove(event.getEntity().getUUID());
+    }
     @SubscribeEvent
     public static void onServerTick(TickEvent.ServerTickEvent event) {
         if (event.phase == TickEvent.Phase.END) {
@@ -105,6 +111,11 @@ public class HuntingInstinct extends Enchantment {
 
     public boolean isTradeable() {
         return false;
+    }
+
+    @Override
+    public Component getFullname(int level) {
+        return Component.translatable(this.getDescriptionId()).withStyle(style -> style.withColor(TextColor.fromRgb(0xFFA500)));
     }
 
     public boolean checkCompatibility(Enchantment ench) {

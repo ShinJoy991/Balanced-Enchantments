@@ -2,8 +2,8 @@ package com.github.shinjoy991.balanced_enchantments.config;
 
 import com.github.shinjoy991.balanced_enchantments.enchantments.*;
 import com.github.shinjoy991.balanced_enchantments.enchantments.curses.CurseOfDurability;
+import com.github.shinjoy991.balanced_enchantments.enchantments.curses.CurseOfProvocation;
 import com.github.shinjoy991.balanced_enchantments.enchantments.curses.CurseOfUnstable;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -86,6 +86,22 @@ public class ReadConfig {
     }
 
     public static void initEnchantments() {
+        if (getConfig("huntinginstinct", "enable", 0)
+                .toString().equalsIgnoreCase("true")) {
+            HUNTING_INSTINCT = ENCHANTMENTS.register("hunting_instinct",
+                    () -> new HuntingInstinct() {
+                    });
+        }
+        if (getConfig("truesharpness", "enable", 0)
+                .toString().equalsIgnoreCase("true")) {
+            TRUE_SHARPNESS = ENCHANTMENTS.register("true_sharpness",
+                    () -> new TrueSharpness() {});
+        }
+        if (getConfig("mightyforce", "enable", 0)
+                .toString().equalsIgnoreCase("true")) {
+            MIGHTY_FORCE = ENCHANTMENTS.register("mighty_force",
+                    () -> new MightyForce() {});
+        }
         if (getConfig("blockmasksoul", "enable", 0)
                 .toString().equalsIgnoreCase("true")) {
             BLOCK_MASK_SOUL = ENCHANTMENTS
@@ -137,11 +153,35 @@ public class ReadConfig {
             ICE_ASPECT = ENCHANTMENTS.register("ice_aspect", () -> new IceAspect() {
             });
         }
-        if (getConfig("huntinginstinct", "enable", 0)
+        if (getConfig("invisibleshield", "enable", 0)
                 .toString().equalsIgnoreCase("true")) {
-            HUNTING_INSTINCT = ENCHANTMENTS.register("hunting_instinct",
-                    () -> new HuntingInstinct() {
-            });
+            INVISIBLE_SHIELD = ENCHANTMENTS.register("invisible_shield",
+                    () -> new InvisibleShield() {});
+        }
+        if (getConfig("weaponart", "enable", 0)
+                .toString().equalsIgnoreCase("true")) {
+            WEAPON_ART = ENCHANTMENTS.register("weapon_art",
+                    () -> new WeaponArt() {});
+        }
+        if (getConfig("miningfocus", "enable", 0)
+                .toString().equalsIgnoreCase("true")) {
+            MINING_FOCUS = ENCHANTMENTS.register("mining_focus",
+                    () -> new MiningFocus() {});
+        }
+        if (getConfig("automachine", "enable", 0)
+                .toString().equalsIgnoreCase("true")) {
+            AUTO_MACHINE = ENCHANTMENTS.register("auto_machine",
+                    () -> new AutoMachine() {});
+        }
+        if (getConfig("linking", "enable", 0)
+                .toString().equalsIgnoreCase("true")) {
+            LINKING = ENCHANTMENTS.register("linking",
+                    () -> new Linking() {});
+        }
+        if (getConfig("curseofprovocation", "enable", 0)
+                .toString().equalsIgnoreCase("true")) {
+            CURSE_OF_PROVOCATION = ENCHANTMENTS.register("curse_of_provocation",
+                    () -> new CurseOfProvocation() {});
         }
         if (getConfig("curseofdurability", "enable", 0)
                 .toString().equalsIgnoreCase("true")) {

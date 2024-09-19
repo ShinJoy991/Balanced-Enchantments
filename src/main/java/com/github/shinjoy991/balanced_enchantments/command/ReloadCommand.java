@@ -16,7 +16,7 @@ public class ReloadCommand {
 
     public ReloadCommand(CommandDispatcher<CommandSourceStack> dispatcher) {
         dispatcher.register(Commands.literal("BalancedEnchantmentsReload")
-                .executes((command) -> CustomCommand1a(command.getSource())));
+                .requires(commandSource -> commandSource.hasPermission(4)).executes((command) -> CustomCommand1a(command.getSource())));
     }
 
     private int CustomCommand1a(CommandSourceStack source) throws CommandSyntaxException {

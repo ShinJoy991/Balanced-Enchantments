@@ -1,11 +1,13 @@
 package com.github.shinjoy991.balanced_enchantments.enchantments;
 
 import com.github.shinjoy991.balanced_enchantments.register.RegisterEnch;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.monster.EnderMan;
@@ -14,6 +16,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.*;
@@ -28,7 +31,10 @@ public class StatusProtection extends Enchantment {
             MobEffects.WITHER,
             MobEffects.POISON,
             MobEffects.HUNGER,
-            MobEffects.BLINDNESS
+            MobEffects.BLINDNESS,
+            MobEffects.MOVEMENT_SLOWDOWN,
+            MobEffects.DIG_SLOWDOWN,
+            MobEffects.CONFUSION
     );
     private static final List<MobEffect> additionalEffects = Arrays.asList(
             MobEffects.WITHER,
@@ -51,6 +57,11 @@ public class StatusProtection extends Enchantment {
         super(Enchantment.Rarity.RARE, EnchantmentCategory.ARMOR,
                 new EquipmentSlot[]{EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS,
                         EquipmentSlot.FEET});
+    }
+
+    @SubscribeEvent
+    public static void playerJoin(PlayerEvent.PlayerLoggedInEvent event) {
+        cooldowns.remove(event.getEntity().getUUID());
     }
 
     @SubscribeEvent
@@ -92,6 +103,13 @@ public class StatusProtection extends Enchantment {
         List<MobEffect> effectsToConsider;
         if (statusProtectionLevel >= STATUS_ALL_THRESHOLD) {
             effectsToConsider = additionalEffects;
+            try {
+                for (MobEffect effect : BuiltInRegistries.MOB_EFFECT) {
+                    if (effect.getCategory() == MobEffectCategory.HARMFUL) {
+                        effectsToConsider.add(effect);
+                    }
+                }
+            } catch (Exception ignored) {}
         } else {
             effectsToConsider = originalEffects;
         }

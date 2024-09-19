@@ -1,0 +1,1209 @@
+[33mcommit 89a42d65fa3c76d6469e67830041d268542e04de[m[33m ([m[1;36mHEAD -> [m[1;32m1.20.1[m[33m, [m[1;31morigin/1.20.1[m[33m)[m
+Author: ShinJoy991 <shinjoytestmail@gmail.com>
+Date:   Sun Jun 16 19:33:44 2024 +0700
+
+    1.20.1v1.1 update
+
+[1mdiff --git a/gradle.properties b/gradle.properties[m
+[1mindex 997bd1a..e2032f0 100644[m
+[1m--- a/gradle.properties[m
+[1m+++ b/gradle.properties[m
+[36m@@ -42,7 +42,7 @@[m [mmod_name=Balanced Enchantments[m
+ # The license of the mod. Review your options at https://choosealicense.com/. All Rights Reserved is the default.[m
+ mod_license=LGPL-3.0[m
+ # The mod version. See https://semver.org/[m
+[31m-mod_version=1.20.1v1.0[m
+[32m+[m[32mmod_version=1.20.1v1.1[m
+ # The group ID for the mod. It is only important when publishing as an artifact to a Maven repository.[m
+ # This should match the base package used for the mod sources.[m
+ # See https://maven.apache.org/guides/mini/guide-naming-conventions.html[m
+[1mdiff --git a/src/main/java/com/github/shinjoy991/balanced_enchantments/config/CreateJson.java b/src/main/java/com/github/shinjoy991/balanced_enchantments/config/CreateJson.java[m
+[1mindex 6944abf..e08d2c5 100644[m
+[1m--- a/src/main/java/com/github/shinjoy991/balanced_enchantments/config/CreateJson.java[m
+[1m+++ b/src/main/java/com/github/shinjoy991/balanced_enchantments/config/CreateJson.java[m
+[36m@@ -2,10 +2,12 @@[m [mpackage com.github.shinjoy991.balanced_enchantments.config;[m
+ [m
+ import com.google.gson.Gson;[m
+ import com.google.gson.GsonBuilder;[m
+[32m+[m[32mimport com.google.gson.JsonObject;[m
+ import net.minecraftforge.fml.loading.FMLPaths;[m
+ [m
+ import java.io.FileWriter;[m
+ import java.io.IOException;[m
+[32m+[m[32mimport java.nio.charset.StandardCharsets;[m
+ import java.nio.file.Files;[m
+ import java.nio.file.Path;[m
+ import java.util.ArrayList;[m
+[36m@@ -16,72 +18,184 @@[m [mimport java.util.Map;[m
+ import static com.github.shinjoy991.balanced_enchantments.BalancedEnchantments.LOGGER;[m
+ [m
+ public class CreateJson {[m
+[31m-    private static final Gson GSON =[m
+[31m-            new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();[m
+[32m+[m[32m    private static final Gson GSON = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();[m
+     public static Path configPath = FMLPaths.CONFIGDIR.get().resolve("balancedenchantments");[m
+     public static Path configFile = configPath.resolve("balanced_enchantments_config.json");[m
+ [m
+     public static void CreateJsonConfigFile() {[m
+[31m-[m
+         if (!Files.exists(configPath)) {[m
+             try {[m
+                 Files.createDirectories(configPath);[m
+             } catch (IOException e) {[m
+[31m-                LOGGER.error("[Balanced Enchantments] Failed to create directory: {}", configPath[m
+[31m-                        , e);[m
+[32m+[m[32m                LOGGER.error("[Balanced Enchantments] Failed to create directory: {}", configPath, e);[m
+                 return;[m
+             }[m
+         }[m
+[32m+[m
+         if (Files.exists(configFile)) {[m
+[31m-            LOGGER.info("[Balanced Enchantments] Config file already exists, skipping creation: " +[m
+[31m-                    "{}", configFile);[m
+[32m+[m[32m            LOGGER.info("[Balanced Enchantments] Config file already exists, checking for missing sections: {}", configFile);[m
+[32m+[m[32m            updateConfigFile(configFile);[m
+             return;[m
+         }[m
+[32m+[m
+         Map<String, Object> jsonData = new LinkedHashMap<>();[m
+         List<String> comments = new ArrayList<>();[m
+         comments.add("This is config section for Balanced Enchantments mod");[m
+[31m-        comments.add("Pretty easy, change it to match your desire");[m
+[31m-        comments.add("Use integer numbers and true/false to prevent errors");[m
+[32m+[m[32m        comments.add("Pretty easy, change it to match your desire, go to mod's page for more information");[m
+[32m+[m[32m        comments.add("Use integer numbers and true/false to prevent errors, time normally in tick");[m
+         jsonData.put("__comment", comments);[m
+[31m-        Map<String, Object> data1 = new LinkedHashMap<>();[m
+[31m-        data1.put("enable", "true");[m
+[31m-        data1.put("maxlevel", "2");[m
+[31m-        data1.put("onlyhoe", "true");[m
+[31m-        data1.put("tickduration", "20");[m
+[31m-        data1.put("chance", "20");[m
+[31m-        jsonData.put("blockmasksoul", data1);[m
+[31m-        Map<String, Object> data2 = new LinkedHashMap<>();[m
+[31m-        data2.put("enable", "true");[m
+[31m-        data2.put("maxlevel", "3");[m
+[31m-        data2.put("anglebetween", "10");[m
+[31m-        data2.put("removesubarrow", "false");[m
+[31m-        data2.put("matchinfinity", "false");[m
+[31m-        jsonData.put("volley", data2);[m
+[31m-        Map<String, Object> data3 = new LinkedHashMap<>();[m
+[31m-        data3.put("enable", "true");[m
+[31m-        data3.put("maxlevel", "3");[m
+[31m-        data3.put("radiusperlvl", "1");[m
+[31m-        data3.put("minduration", "20");[m
+[31m-        data3.put("maxduration", "100");[m
+[31m-        jsonData.put("magmawalker", data3);[m
+[31m-        Map<String, Object> data4 = new LinkedHashMap<>();[m
+[31m-        data4.put("enable", "true");[m
+[31m-        data4.put("maxlevel", "4");[m
+[31m-        data4.put("dmgaddperlvl", "4");[m
+[31m-        data4.put("weaknesslvl", "1");[m
+[31m-        data4.put("weaknessduration", "60");[m
+[31m-        data4.put("cooldown", "100");[m
+[31m-        jsonData.put("supercharged", data4);[m
+[31m-        Map<String, Object> data5 = new LinkedHashMap<>();[m
+[31m-        data5.put("enable", "true");[m
+[31m-        data5.put("minrandom", "-10");[m
+[31m-        data5.put("maxrandom", "10");[m
+[31m-        jsonData.put("curseofdurability", data5);[m
+[32m+[m
+[32m+[m[32m        jsonData.put("blockmasksoul", createData1());[m
+[32m+[m[32m        jsonData.put("volley", createData2());[m
+[32m+[m[32m        jsonData.put("magmawalker", createData3());[m
+[32m+[m[32m        jsonData.put("supercharged", createData4());[m
+[32m+[m[32m        jsonData.put("curseofdurability", createData5());[m
+[32m+[m[32m        jsonData.put("herolanding", createData6());[m
+[32m+[m[32m        jsonData.put("cmoon", createData7());[m
+[32m+[m[32m        jsonData.put("statusprotection", createData8());[m
+[32m+[m[32m        jsonData.put("iceaspect", createData9());[m
+[32m+[m[32m        jsonData.put("huntinginstinct", createData10());[m
+[32m+[m[32m        jsonData.put("curseofunstable", createData11());[m
+[32m+[m
+         try (FileWriter writer = new FileWriter(configFile.toFile())) {[m
+             GSON.toJson(jsonData, writer);[m
+         } catch (IOException exception) {[m
+[31m-            LOGGER.error("[Balanced Enchantments] Failed to write config file: {}", configFile,[m
+[31m-                    exception);[m
+[32m+[m[32m            LOGGER.error("[Balanced Enchantments] Failed to write config file: {}", configFile, exception);[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    private static void updateConfigFile(Path configFile) {[m
+[32m+[m[32m        try {[m
+[32m+[m[32m            String jsonString = new String(Files.readAllBytes(configFile), StandardCharsets.UTF_8);[m
+[32m+[m[32m            JsonObject jsonObject = GSON.fromJson(jsonString, JsonObject.class);[m
+[32m+[m
+[32m+[m[32m            addMissingSection(jsonObject, "blockmasksoul", createData1());[m
+[32m+[m[32m            addMissingSection(jsonObject, "volley", createData2());[m
+[32m+[m[32m            addMissingSection(jsonObject, "magmawalker", createData3());[m
+[32m+[m[32m            addMissingSection(jsonObject, "supercharged", createData4());[m
+[32m+[m[32m            addMissingSection(jsonObject, "curseofdurability", createData5());[m
+[32m+[m[32m            addMissingSection(jsonObject, "herolanding", createData6());[m
+[32m+[m[32m            addMissingSection(jsonObject, "cmoon", createData7());[m
+[32m+[m[32m            addMissingSection(jsonObject, "statusprotection", createData8());[m
+[32m+[m[32m            addMissingSection(jsonObject, "iceaspect", createData9());[m
+[32m+[m[32m            addMissingSection(jsonObject, "huntinginstinct", createData10());[m
+[32m+[m[32m            addMissingSection(jsonObject, "curseofunstable", createData11());[m
+[32m+[m
+[32m+[m[32m            try (FileWriter writer = new FileWriter(configFile.toFile())) {[m
+[32m+[m[32m                GSON.toJson(jsonObject, writer);[m
+[32m+[m[32m            }[m
+[32m+[m[32m        } catch (IOException e) {[m
+[32m+[m[32m            LOGGER.error("[Balanced Enchantments] Error updating Json config file: {}", configFile, e);[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    private static void addMissingSection(JsonObject jsonObject, String key, JsonObject data) {[m
+[32m+[m[32m        if (!jsonObject.has(key)) {[m
+[32m+[m[32m            jsonObject.add(key, data);[m
+         }[m
+     }[m
+[32m+[m
+[32m+[m[32m    private static JsonObject createData1() {[m
+[32m+[m[32m        JsonObject data1 = new JsonObject();[m
+[32m+[m[32m        data1.addProperty("enable", "true");[m
+[32m+[m[32m        data1.addProperty("maxlevel", "2");[m
+[32m+[m[32m        data1.addProperty("onlyhoe", "true");[m
+[32m+[m[32m        data1.addProperty("tickduration", "20");[m
+[32m+[m[32m        data1.addProperty("chance", "20");[m
+[32m+[m[32m        return data1;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    private static JsonObject createData2() {[m
+[32m+[m[32m        JsonObject data2 = new JsonObject();[m
+[32m+[m[32m        data2.addProperty("enable", "true");[m
+[32m+[m[32m        data2.addProperty("maxlevel", "3");[m
+[32m+[m[32m        data2.addProperty("anglebetween", "10");[m
+[32m+[m[32m        data2.addProperty("removesubarrow", "false");[m
+[32m+[m[32m        data2.addProperty("matchinfinity", "false");[m
+[32m+[m[32m        return data2;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    private static JsonObject createData3() {[m
+[32m+[m[32m        JsonObject data3 = new JsonObject();[m
+[32m+[m[32m        data3.addProperty("enable", "true");[m
+[32m+[m[32m        data3.addProperty("maxlevel", "3");[m
+[32m+[m[32m        data3.addProperty("radiusperlvl", "1");[m
+[32m+[m[32m        data3.addProperty("minduration", "20");[m
+[32m+[m[32m        data3.addProperty("maxduration", "100");[m
+[32m+[m[32m        return data3;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    private static JsonObject createData4() {[m
+[32m+[m[32m        JsonObject data4 = new JsonObject();[m
+[32m+[m[32m        data4.addProperty("enable", "true");[m
+[32m+[m[32m        data4.addProperty("maxlevel", "4");[m
+[32m+[m[32m        data4.addProperty("dmgaddperlvl", "4");[m
+[32m+[m[32m        data4.addProperty("weaknesslvl", "1");[m
+[32m+[m[32m        data4.addProperty("weaknessduration", "60");[m
+[32m+[m[32m        data4.addProperty("cooldown", "100");[m
+[32m+[m[32m        return data4;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    private static JsonObject createData5() {[m
+[32m+[m[32m        JsonObject data5 = new JsonObject();[m
+[32m+[m[32m        data5.addProperty("enable", "true");[m
+[32m+[m[32m        data5.addProperty("minrandom", "-10");[m
+[32m+[m[32m        data5.addProperty("maxrandom", "10");[m
+[32m+[m[32m        return data5;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    private static JsonObject createData6() {[m
+[32m+[m[32m        JsonObject data6 = new JsonObject();[m
+[32m+[m[32m        data6.addProperty("enable", "true");[m
+[32m+[m[32m        data6.addProperty("maxlevel", "3");[m
+[32m+[m[32m        data6.addProperty("heightaddperlvl", "2");[m
+[32m+[m[32m        return data6;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    private static JsonObject createData7() {[m
+[32m+[m[32m        JsonObject data7 = new JsonObject();[m
+[32m+[m[32m        data7.addProperty("enable", "true");[m
+[32m+[m[32m        data7.addProperty("maxlevel", "2");[m
+[32m+[m[32m        data7.addProperty("power", "2");[m
+[32m+[m[32m        data7.addProperty("affecthealthbelow", "40");[m
+[32m+[m[32m        return data7;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    private static JsonObject createData8() {[m
+[32m+[m[32m        JsonObject data8 = new JsonObject();[m
+[32m+[m[32m        data8.addProperty("enable", "true");[m
+[32m+[m[32m        data8.addProperty("maxlevel", "4");[m
+[32m+[m[32m        data8.addProperty("initialcooldown", "2400");[m
+[32m+[m[32m        data8.addProperty("cooldownreduceperlvl", "140");[m
+[32m+[m[32m        data8.addProperty("initialchance", "45");[m
+[32m+[m[32m        data8.addProperty("chanceincreaseperlvl", "3");[m
+[32m+[m[32m        data8.addProperty("allstatuslevel", "10");[m
+[32m+[m[32m        return data8;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    private static JsonObject createData9() {[m
+[32m+[m[32m        JsonObject data9 = new JsonObject();[m
+[32m+[m[32m        data9.addProperty("enable", "true");[m
+[32m+[m[32m        data9.addProperty("maxlevel", "2");[m
+[32m+[m[32m        data9.addProperty("chance", "75");[m
+[32m+[m[32m        data9.addProperty("freezedurationperlvl", "80");[m
+[32m+[m[32m        return data9;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    private static JsonObject createData10() {[m
+[32m+[m[32m        JsonObject data10 = new JsonObject();[m
+[32m+[m[32m        data10.addProperty("enable", "true");[m
+[32m+[m[32m        data10.addProperty("chance", "75");[m
+[32m+[m[32m        data10.addProperty("slownesslvl", "0");[m
+[32m+[m[32m        data10.addProperty("strengthlvl", "0");[m
+[32m+[m[32m        data10.addProperty("speedlvl", "1");[m
+[32m+[m[32m        return data10;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    private static JsonObject createData11() {[m
+[32m+[m[32m        JsonObject data11 = new JsonObject();[m
+[32m+[m[32m        data11.addProperty("enable", "true");[m
+[32m+[m[32m        data11.addProperty("chance", "5");[m
+[32m+[m[32m        return data11;[m
+[32m+[m[32m    }[m
+ }[m
+\ No newline at end of file[m
+[1mdiff --git a/src/main/java/com/github/shinjoy991/balanced_enchantments/config/ReadConfig.java b/src/main/java/com/github/shinjoy991/balanced_enchantments/config/ReadConfig.java[m
+[1mindex 38083e6..5fc9010 100644[m
+[1m--- a/src/main/java/com/github/shinjoy991/balanced_enchantments/config/ReadConfig.java[m
+[1m+++ b/src/main/java/com/github/shinjoy991/balanced_enchantments/config/ReadConfig.java[m
+[36m@@ -1,10 +1,9 @@[m
+ package com.github.shinjoy991.balanced_enchantments.config;[m
+ [m
+[31m-import com.github.shinjoy991.balanced_enchantments.enchantments.BlockMaskSoul;[m
+[31m-import com.github.shinjoy991.balanced_enchantments.enchantments.MagmaWalker;[m
+[31m-import com.github.shinjoy991.balanced_enchantments.enchantments.SuperCharged;[m
+[31m-import com.github.shinjoy991.balanced_enchantments.enchantments.Volley;[m
+[32m+[m[32mimport com.github.shinjoy991.balanced_enchantments.enchantments.*;[m
+ import com.github.shinjoy991.balanced_enchantments.enchantments.curses.CurseOfDurability;[m
+[32m+[m[32mimport com.github.shinjoy991.balanced_enchantments.enchantments.curses.CurseOfUnstable;[m
+[32m+[m[32mimport com.google.gson.JsonArray;[m
+ import com.google.gson.JsonElement;[m
+ import com.google.gson.JsonObject;[m
+ import com.google.gson.JsonParser;[m
+[36m@@ -62,11 +61,23 @@[m [mpublic class ReadConfig {[m
+     }[m
+ [m
+     public static int reloadConfig() {[m
+[31m-        String jsonString;[m
+         try {[m
+[31m-            jsonString = new String(Files.readAllBytes(CreateJson.configFile),[m
+[32m+[m[32m            String jsonString = new String(Files.readAllBytes(CreateJson.configFile),[m
+                     StandardCharsets.UTF_8);[m
+             jsonObject = new JsonParser().parse(jsonString).getAsJsonObject();[m
+[32m+[m
+[32m+[m[32m            if (getConfig("statusprotection", "enable", 0).toString().equalsIgnoreCase("true")) {[m
+[32m+[m[32m                StatusProtection.STATUS_COOLDOWN_TICKS = Math.max((Integer) getConfig([m
+[32m+[m[32m                        "statusprotection", "initialcooldown", 1), 5);[m
+[32m+[m[32m                StatusProtection.STATUS_COOLDOWN_REDUCE_PER_LEVEL = Math.max((Integer) getConfig([m
+[32m+[m[32m                        "statusprotection", "cooldownreduceperlvl", 1), 0);[m
+[32m+[m[32m                StatusProtection.STATUS_CHANCE = Math.max((Integer) getConfig([m
+[32m+[m[32m                        "statusprotection", "initialchance", 1), 0);[m
+[32m+[m[32m                StatusProtection.STATUS_CHANCE_INCREASE_PER_LEVEL = Math.max((Integer) getConfig([m
+[32m+[m[32m                        "statusprotection", "chanceincreaseperlvl", 1), 0);[m
+[32m+[m[32m                StatusProtection.STATUS_ALL_THRESHOLD = Math.max((Integer) getConfig([m
+[32m+[m[32m                        "statusprotection", "allstatuslevel", 1), 0);[m
+[32m+[m[32m            }[m
+             return 0;[m
+         } catch (IOException e) {[m
+             LOGGER.error("[Balanced Enchantments] Config reload error " + e);[m
+[36m@@ -96,11 +107,52 @@[m [mpublic class ReadConfig {[m
+             SUPER_CHARGED = ENCHANTMENTS.register("super_charged", () -> new SuperCharged() {[m
+             });[m
+         }[m
+[32m+[m[32m        if (getConfig("herolanding", "enable", 0)[m
+[32m+[m[32m                .toString().equalsIgnoreCase("true")) {[m
+[32m+[m[32m            HERO_LANDING = ENCHANTMENTS.register("hero_landing", () -> new HeroLanding() {[m
+[32m+[m[32m            });[m
+[32m+[m[32m        }[m
+[32m+[m[32m        if (getConfig("cmoon", "enable", 0)[m
+[32m+[m[32m                .toString().equalsIgnoreCase("true")) {[m
+[32m+[m[32m            C_MOON = ENCHANTMENTS.register("c_moon", () -> new CMoon() {[m
+[32m+[m[32m            });[m
+[32m+[m[32m        }[m
+[32m+[m[32m        if (getConfig("statusprotection", "enable", 0)[m
+[32m+[m[32m                .toString().equalsIgnoreCase("true")) {[m
+[32m+[m[32m            STATUS_PROTECTION = ENCHANTMENTS.register("status_protection", () -> new StatusProtection() {[m
+[32m+[m[32m            });[m
+[32m+[m[32m            StatusProtection.STATUS_COOLDOWN_TICKS = Math.max((Integer) getConfig([m
+[32m+[m[32m                    "statusprotection", "initialcooldown", 1), 5);[m
+[32m+[m[32m            StatusProtection.STATUS_COOLDOWN_REDUCE_PER_LEVEL = Math.max((Integer) getConfig([m
+[32m+[m[32m                    "statusprotection", "cooldownreduceperlvl", 1), 0);[m
+[32m+[m[32m            StatusProtection.STATUS_CHANCE = Math.max((Integer) getConfig([m
+[32m+[m[32m                    "statusprotection", "initialchance", 1), 0);[m
+[32m+[m[32m            StatusProtection.STATUS_CHANCE_INCREASE_PER_LEVEL = Math.max((Integer) getConfig([m
+[32m+[m[32m                    "statusprotection", "chanceincreaseperlvl", 1), 0);[m
+[32m+[m[32m            StatusProtection.STATUS_ALL_THRESHOLD = Math.max((Integer) getConfig([m
+[32m+[m[32m                    "statusprotection", "allstatuslevel", 1), 0);[m
+[32m+[m[32m        }[m
+[32m+[m[32m        if (getConfig("iceaspect", "enable", 0)[m
+[32m+[m[32m                .toString().equalsIgnoreCase("true")) {[m
+[32m+[m[32m            ICE_ASPECT = ENCHANTMENTS.register("ice_aspect", () -> new IceAspect() {[m
+[32m+[m[32m            });[m
+[32m+[m[32m        }[m
+[32m+[m[32m        if (getConfig("huntinginstinct", "enable", 0)[m
+[32m+[m[32m                .toString().equalsIgnoreCase("true")) {[m
+[32m+[m[32m            HUNTING_INSTINCT = ENCHANTMENTS.register("hunting_instinct",[m
+[32m+[m[32m                    () -> new HuntingInstinct() {[m
+[32m+[m[32m            });[m
+[32m+[m[32m        }[m
+         if (getConfig("curseofdurability", "enable", 0)[m
+                 .toString().equalsIgnoreCase("true")) {[m
+             CURSE_OF_DURABILITY = ENCHANTMENTS.register([m
+                     "curse_of_durability", () -> new CurseOfDurability() {[m
+                     });[m
+         }[m
+[32m+[m[32m        if (getConfig("curseofunstable", "enable", 0)[m
+[32m+[m[32m                .toString().equalsIgnoreCase("true")) {[m
+[32m+[m[32m            CURSE_OF_UNSTABLE = ENCHANTMENTS.register("curse_of_unstable",[m
+[32m+[m[32m                    () -> new CurseOfUnstable() {});[m
+[32m+[m[32m        }[m
+     }[m
+ }[m
+\ No newline at end of file[m
+[1mdiff --git a/src/main/java/com/github/shinjoy991/balanced_enchantments/enchantments/CMoon.java b/src/main/java/com/github/shinjoy991/balanced_enchantments/enchantments/CMoon.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..f257310[m
+[1m--- /dev/null[m
+[1m+++ b/src/main/java/com/github/shinjoy991/balanced_enchantments/enchantments/CMoon.java[m
+[36m@@ -0,0 +1,51 @@[m
+[32m+[m[32mpackage com.github.shinjoy991.balanced_enchantments.enchantments;[m
+[32m+[m
+[32m+[m[32mimport net.minecraft.world.entity.Entity;[m
+[32m+[m[32mimport net.minecraft.world.entity.EquipmentSlot;[m
+[32m+[m[32mimport net.minecraft.world.entity.LivingEntity;[m
+[32m+[m[32mimport net.minecraft.world.entity.ai.attributes.Attributes;[m
+[32m+[m[32mimport net.minecraft.world.item.enchantment.Enchantment;[m
+[32m+[m[32mimport net.minecraft.world.item.enchantment.KnockbackEnchantment;[m
+[32m+[m
+[32m+[m[32mimport static com.github.shinjoy991.balanced_enchantments.config.ReadConfig.getConfig;[m
+[32m+[m[32mimport static com.github.shinjoy991.balanced_enchantments.register.RegisterEnch.IS_TOOL_AND_WEAPON;[m
+[32m+[m
+[32m+[m[32mpublic class CMoon extends Enchantment {[m
+[32m+[m
+[32m+[m[32m    public CMoon() {[m
+[32m+[m[32m        super(Enchantment.Rarity.UNCOMMON, IS_TOOL_AND_WEAPON,[m
+[32m+[m[32m                new EquipmentSlot[]{EquipmentSlot.MAINHAND});[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    public void doPostAttack(LivingEntity attacker, Entity victim, int level) {[m
+[32m+[m[32m        if (level > 0 && victim instanceof LivingEntity target) {[m
+[32m+[m[32m            int effecthealth = Math.max((Integer) getConfig("cmoon", "affecthealthbelow", 1), 0);[m
+[32m+[m[32m            if (effecthealth >= target.getMaxHealth()) {[m
+[32m+[m[32m                target.setOnGround(false);[m
+[32m+[m[32m                double power = Math.max((Integer) getConfig("cmoon", "power", 1),[m
+[32m+[m[32m                        0) * 0.1D * level * (1.0D - target.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE));[m
+[32m+[m[32m                if (power != 0) {[m
+[32m+[m[32m                    target.push(0, power, 0);[m
+[32m+[m[32m                }[m
+[32m+[m[32m            }[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public int getMinCost(int p_45083_) {[m
+[32m+[m[32m        return 5 + 20 * (p_45083_ - 1);[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public int getMaxCost(int p_45085_) {[m
+[32m+[m[32m        return super.getMinCost(p_45085_) + 50;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public int getMaxLevel() {[m
+[32m+[m[32m        return Math.max((Integer) getConfig("cmoon", "maxlevel", 1), 1);[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    public boolean checkCompatibility(Enchantment ench) {[m
+[32m+[m[32m        return super.checkCompatibility(ench) && !(ench instanceof KnockbackEnchantment);[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+\ No newline at end of file[m
+[1mdiff --git a/src/main/java/com/github/shinjoy991/balanced_enchantments/enchantments/HeroLanding.java b/src/main/java/com/github/shinjoy991/balanced_enchantments/enchantments/HeroLanding.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e54fef2[m
+[1m--- /dev/null[m
+[1m+++ b/src/main/java/com/github/shinjoy991/balanced_enchantments/enchantments/HeroLanding.java[m
+[36m@@ -0,0 +1,61 @@[m
+[32m+[m[32mpackage com.github.shinjoy991.balanced_enchantments.enchantments;[m
+[32m+[m
+[32m+[m[32mimport com.github.shinjoy991.balanced_enchantments.register.RegisterEnch;[m
+[32m+[m[32mimport net.minecraft.tags.DamageTypeTags;[m
+[32m+[m[32mimport net.minecraft.world.damagesource.DamageSource;[m
+[32m+[m[32mimport net.minecraft.world.entity.EquipmentSlot;[m
+[32m+[m[32mimport net.minecraft.world.entity.LivingEntity;[m
+[32m+[m[32mimport net.minecraft.world.item.enchantment.Enchantment;[m
+[32m+[m[32mimport net.minecraft.world.item.enchantment.EnchantmentHelper;[m
+[32m+[m[32mimport net.minecraftforge.event.entity.living.LivingHurtEvent;[m
+[32m+[m[32mimport net.minecraftforge.eventbus.api.SubscribeEvent;[m
+[32m+[m
+[32m+[m[32mimport static com.github.shinjoy991.balanced_enchantments.config.ReadConfig.getConfig;[m
+[32m+[m[32mimport static com.github.shinjoy991.balanced_enchantments.register.RegisterEnch.IS_BOOTS;[m
+[32m+[m[32mimport static net.minecraft.world.item.enchantment.Enchantments.FALL_PROTECTION;[m
+[32m+[m
+[32m+[m[32mpublic class HeroLanding extends Enchantment {[m
+[32m+[m
+[32m+[m[32m    public HeroLanding() {[m
+[32m+[m[32m        super(Rarity.UNCOMMON, IS_BOOTS,[m
+[32m+[m[32m                new EquipmentSlot[]{EquipmentSlot.FEET});[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    @SubscribeEvent[m
+[32m+[m[32m    public static void onHit(LivingHurtEvent event) {[m
+[32m+[m[32m        int EnchantLevel;[m
+[32m+[m[32m        DamageSource damageSource = event.getSource();[m
+[32m+[m[32m        if (!damageSource.is(DamageTypeTags.IS_FALL)) {[m
+[32m+[m[32m            return;[m
+[32m+[m[32m        }[m
+[32m+[m[32m        LivingEntity self = event.getEntity();[m
+[32m+[m[32m        try {[m
+[32m+[m[32m            EnchantLevel = EnchantmentHelper.getEnchantmentLevel(RegisterEnch.HERO_LANDING.get(),[m
+[32m+[m[32m                    self);[m
+[32m+[m[32m        } catch (Exception e) {[m
+[32m+[m[32m            return;[m
+[32m+[m[32m        }[m
+[32m+[m[32m        int height =[m
+[32m+[m[32m                EnchantLevel * Math.max((Integer) getConfig("herolanding", "heightaddperlvl", 1),[m
+[32m+[m[32m                        0) + 2;[m
+[32m+[m[32m        if (EnchantLevel >= 1 && self.fallDistance <= height) {[m
+[32m+[m[32m            event.setAmount(0);[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public int getMinCost(int enchantmentLevel) {[m
+[32m+[m[32m        return 8;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public int getMaxCost(int enchantmentLevel) {[m
+[32m+[m[32m        return super.getMinCost(enchantmentLevel) + 50;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public int getMaxLevel() {[m
+[32m+[m[32m        return Math.max((Integer) getConfig("herolanding", "maxlevel", 1), 1);[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public boolean checkCompatibility(Enchantment ench) {[m
+[32m+[m[32m        return super.checkCompatibility(ench) && ench != FALL_PROTECTION;[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+\ No newline at end of file[m
+[1mdiff --git a/src/main/java/com/github/shinjoy991/balanced_enchantments/enchantments/HuntingInstinct.java b/src/main/java/com/github/shinjoy991/balanced_enchantments/enchantments/HuntingInstinct.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..12ed4a1[m
+[1m--- /dev/null[m
+[1m+++ b/src/main/java/com/github/shinjoy991/balanced_enchantments/enchantments/HuntingInstinct.java[m
+[36m@@ -0,0 +1,113 @@[m
+[32m+[m[32mpackage com.github.shinjoy991.balanced_enchantments.enchantments;[m
+[32m+[m
+[32m+[m[32mimport com.github.shinjoy991.balanced_enchantments.register.RegisterEnch;[m
+[32m+[m[32mimport net.minecraft.core.BlockPos;[m
+[32m+[m[32mimport net.minecraft.server.level.ServerLevel;[m
+[32m+[m[32mimport net.minecraft.server.level.ServerPlayer;[m
+[32m+[m[32mimport net.minecraft.world.damagesource.DamageSource;[m
+[32m+[m[32mimport net.minecraft.world.effect.MobEffectInstance;[m
+[32m+[m[32mimport net.minecraft.world.effect.MobEffects;[m
+[32m+[m[32mimport net.minecraft.world.entity.Entity;[m
+[32m+[m[32mimport net.minecraft.world.entity.EquipmentSlot;[m
+[32m+[m[32mimport net.minecraft.world.entity.LivingEntity;[m
+[32m+[m[32mimport net.minecraft.world.item.enchantment.Enchantment;[m
+[32m+[m[32mimport net.minecraft.world.item.enchantment.EnchantmentCategory;[m
+[32m+[m[32mimport net.minecraft.world.item.enchantment.EnchantmentHelper;[m
+[32m+[m[32mimport net.minecraft.world.item.enchantment.Enchantments;[m
+[32m+[m[32mimport net.minecraft.world.level.Level;[m
+[32m+[m[32mimport net.minecraft.world.level.block.Blocks;[m
+[32m+[m[32mimport net.minecraft.world.level.block.state.BlockState;[m
+[32m+[m[32mimport net.minecraft.world.level.chunk.LevelChunk;[m
+[32m+[m[32mimport net.minecraftforge.event.TickEvent;[m
+[32m+[m[32mimport net.minecraftforge.event.entity.living.LivingHurtEvent;[m
+[32m+[m[32mimport net.minecraftforge.eventbus.api.SubscribeEvent;[m
+[32m+[m
+[32m+[m[32mimport java.util.*;[m
+[32m+[m[32mimport java.util.stream.Collectors;[m
+[32m+[m
+[32m+[m[32mimport static com.github.shinjoy991.balanced_enchantments.config.ReadConfig.getConfig;[m
+[32m+[m[32mimport static com.github.shinjoy991.balanced_enchantments.helpers.DelayFunc.delayedTask;[m
+[32m+[m
+[32m+[m[32mpublic class HuntingInstinct extends Enchantment {[m
+[32m+[m
+[32m+[m[32m    private static final Set<UUID> cooldowns = new HashSet<>();[m
+[32m+[m
+[32m+[m[32m    public HuntingInstinct() {[m
+[32m+[m[32m        super(Rarity.VERY_RARE, EnchantmentCategory.WEAPON,[m
+[32m+[m[32m                new EquipmentSlot[]{EquipmentSlot.MAINHAND});[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    @SubscribeEvent[m
+[32m+[m[32m    public static void onServerTick(TickEvent.ServerTickEvent event) {[m
+[32m+[m[32m        if (event.phase == TickEvent.Phase.END) {[m
+[32m+[m[32m            for (ServerLevel world : event.getServer().getAllLevels()) {[m
+[32m+[m[32m                for (Entity entity : world.getAllEntities()) {[m
+[32m+[m[32m                    if (entity instanceof LivingEntity) {[m
+[32m+[m[32m                        UUID entityId = entity.getUUID();[m
+[32m+[m[32m                        if (!cooldowns.contains(entityId) && hasHuntingInstinct((LivingEntity) entity)) {[m
+[32m+[m[32m                            int slownesslvl = Math.max((Integer) getConfig("huntinginstinct",[m
+[32m+[m[32m                                    "slownesslvl", 1), 0);[m
+[32m+[m[32m                            ((LivingEntity) entity).addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 200,[m
+[32m+[m[32m                                slownesslvl, true, false));[m
+[32m+[m[32m                            cooldowns.add(entityId);[m
+[32m+[m[32m                            delayedTask(198, () -> cooldowns.remove(entityId));[m
+[32m+[m[32m                        }[m
+[32m+[m[32m                    }[m
+[32m+[m[32m                }[m
+[32m+[m[32m            }[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    private static boolean hasHuntingInstinct(LivingEntity player) {[m
+[32m+[m[32m        return EnchantmentHelper.getEnchantmentLevel(RegisterEnch.HUNTING_INSTINCT.get(),[m
+[32m+[m[32m                player) > 0;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public void doPostAttack(LivingEntity user, Entity target, int level) {[m
+[32m+[m
+[32m+[m[32m        if (Math.max((Integer) getConfig("huntinginstinct", "chance", 1), 0) <= new Random().nextInt(100) + 1)[m
+[32m+[m[32m            return;[m
+[32m+[m[32m        try {[m
+[32m+[m[32m            if (!(EnchantmentHelper.getItemEnchantmentLevel(RegisterEnch.HUNTING_INSTINCT.get(),[m
+[32m+[m[32m                    user.getMainHandItem()) > 0))[m
+[32m+[m[32m                return;[m
+[32m+[m[32m        } catch (Exception e) {[m
+[32m+[m[32m            return;[m
+[32m+[m[32m        }[m
+[32m+[m[32m        if (!(target instanceof LivingEntity))[m
+[32m+[m[32m            return;[m
+[32m+[m[32m        Level targetworld = target.level();[m
+[32m+[m[32m        if (targetworld.getServer() == null)[m
+[32m+[m[32m            return;[m
+[32m+[m[32m        int strengthlvl = Math.max((Integer) getConfig("huntinginstinct",[m
+[32m+[m[32m                "strengthlvl", 1), 0);[m
+[32m+[m[32m        int speedlvl = Math.max((Integer) getConfig("huntinginstinct",[m
+[32m+[m[32m                "speedlvl", 1), 0);[m
+[32m+[m[32m        user.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 200, strengthlvl, true, false));[m
+[32m+[m[32m        user.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 200, speedlvl, true, false));[m
+[32m+[m[32m        user.removeEffect(MobEffects.MOVEMENT_SLOWDOWN);[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public int getMinCost(int p_45000_) {[m
+[32m+[m[32m        return 30;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public int getMaxCost(int p_45002_) {[m
+[32m+[m[32m        return super.getMinCost(p_45002_) + 50;[m
+[32m+[m[32m    }[m
+[32m+[m[32m    public boolean isAllowedOnBooks() {[m
+[32m+[m[32m        return false;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public boolean isTreasureOnly() {[m
+[32m+[m[32m        return true;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public boolean isTradeable() {[m
+[32m+[m[32m        return false;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public boolean checkCompatibility(Enchantment ench) {[m
+[32m+[m[32m        return super.checkCompatibility(ench) && ench != RegisterEnch.SUPER_CHARGED.get();[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+\ No newline at end of file[m
+[1mdiff --git a/src/main/java/com/github/shinjoy991/balanced_enchantments/enchantments/IceAspect.java b/src/main/java/com/github/shinjoy991/balanced_enchantments/enchantments/IceAspect.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..cab4478[m
+[1m--- /dev/null[m
+[1m+++ b/src/main/java/com/github/shinjoy991/balanced_enchantments/enchantments/IceAspect.java[m
+[36m@@ -0,0 +1,91 @@[m
+[32m+[m[32mpackage com.github.shinjoy991.balanced_enchantments.enchantments;[m
+[32m+[m
+[32m+[m[32mimport com.github.shinjoy991.balanced_enchantments.register.RegisterEnch;[m
+[32m+[m[32mimport net.minecraft.core.BlockPos;[m
+[32m+[m[32mimport net.minecraft.world.entity.Entity;[m
+[32m+[m[32mimport net.minecraft.world.entity.EquipmentSlot;[m
+[32m+[m[32mimport net.minecraft.world.entity.LivingEntity;[m
+[32m+[m[32mimport net.minecraft.world.item.enchantment.Enchantment;[m
+[32m+[m[32mimport net.minecraft.world.item.enchantment.EnchantmentCategory;[m
+[32m+[m[32mimport net.minecraft.world.item.enchantment.EnchantmentHelper;[m
+[32m+[m[32mimport net.minecraft.world.item.enchantment.Enchantments;[m
+[32m+[m[32mimport net.minecraft.world.level.Level;[m
+[32m+[m[32mimport net.minecraft.world.level.block.Blocks;[m
+[32m+[m[32mimport net.minecraft.world.level.block.state.BlockState;[m
+[32m+[m
+[32m+[m[32mimport java.util.*;[m
+[32m+[m
+[32m+[m[32mimport static com.github.shinjoy991.balanced_enchantments.config.ReadConfig.getConfig;[m
+[32m+[m[32mimport static com.github.shinjoy991.balanced_enchantments.helpers.DelayFunc.delayedTask;[m
+[32m+[m
+[32m+[m[32mpublic class IceAspect extends Enchantment {[m
+[32m+[m
+[32m+[m[32m    public IceAspect() {[m
+[32m+[m[32m        super(Rarity.RARE, EnchantmentCategory.WEAPON,[m
+[32m+[m[32m                new EquipmentSlot[]{EquipmentSlot.MAINHAND});[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public void doPostAttack(LivingEntity user, Entity target, int level) {[m
+[32m+[m
+[32m+[m[32m        if (Math.max((Integer) getConfig("iceaspect", "chance", 1), 0) <= new Random().nextInt(100) + 1)[m
+[32m+[m[32m            return;[m
+[32m+[m[32m        int EnchantLevel = 0;[m
+[32m+[m[32m        try {[m
+[32m+[m[32m            EnchantLevel =[m
+[32m+[m[32m                    EnchantmentHelper.getItemEnchantmentLevel(RegisterEnch.ICE_ASPECT.get(),[m
+[32m+[m[32m                            user.getMainHandItem());[m
+[32m+[m[32m        } catch (Exception e) {[m
+[32m+[m[32m            return;[m
+[32m+[m[32m        }[m
+[32m+[m[32m        if (EnchantLevel <= 0)[m
+[32m+[m[32m            return;[m
+[32m+[m[32m        if (!(target instanceof LivingEntity))[m
+[32m+[m[32m            return;[m
+[32m+[m[32m        Level targetworld = target.level();[m
+[32m+[m[32m        if (targetworld.getServer() == null)[m
+[32m+[m[32m            return;[m
+[32m+[m[32m        int freezeduration = Math.max((Integer) getConfig("iceaspect",[m
+[32m+[m[32m                "freezedurationperlvl", 1), 0);[m
+[32m+[m[32m        if (freezeduration > 0)[m
+[32m+[m[32m            target.setTicksFrozen(140 + EnchantLevel * freezeduration);[m
+[32m+[m[32m        BlockPos blockBelow = target.blockPosition().below();[m
+[32m+[m[32m        if (target.position().y % 1 != 0) {[m
+[32m+[m[32m            blockBelow = target.blockPosition();[m
+[32m+[m[32m        }[m
+[32m+[m[32m        blockBelow = blockBelow.above();[m
+[32m+[m[32m        List<BlockPos> plusPatternPositions = new ArrayList<>();[m
+[32m+[m[32m        plusPatternPositions.add(blockBelow);[m
+[32m+[m[32m        plusPatternPositions.add(blockBelow.above());[m
+[32m+[m[32m        plusPatternPositions.add(blockBelow.offset(1, 0, 0));[m
+[32m+[m[32m        plusPatternPositions.add(blockBelow.offset(-1, 0, 0));[m
+[32m+[m[32m        plusPatternPositions.add(blockBelow.offset(0, 0, 1));[m
+[32m+[m[32m        plusPatternPositions.add(blockBelow.offset(0, 0, -1));[m
+[32m+[m
+[32m+[m[32m        for (BlockPos pos : plusPatternPositions) {[m
+[32m+[m[32m            BlockState originalState = targetworld.getBlockState(pos);[m
+[32m+[m
+[32m+[m[32m            if (originalState.getBlock().equals(Blocks.AIR)) {[m
+[32m+[m[32m                targetworld.setBlock(pos, Blocks.ICE.defaultBlockState(), 3);[m
+[32m+[m[32m                delayedTask(40, () -> {[m
+[32m+[m[32m                    targetworld.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);[m
+[32m+[m[32m                });[m
+[32m+[m[32m            }[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public int getMinCost(int p_45000_) {[m
+[32m+[m[32m        return 10 + 20 * (p_45000_ - 1);[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public int getMaxCost(int p_45002_) {[m
+[32m+[m[32m        return super.getMinCost(p_45002_) + 50;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public int getMaxLevel() {[m
+[32m+[m[32m        return Math.max((Integer) getConfig("iceaspect", "maxlevel", 1), 1);[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public boolean checkCompatibility(Enchantment ench) {[m
+[32m+[m[32m        return super.checkCompatibility(ench) && ench != Enchantments.FIRE_ASPECT;[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+\ No newline at end of file[m
+[1mdiff --git a/src/main/java/com/github/shinjoy991/balanced_enchantments/enchantments/MagmaWalker.java b/src/main/java/com/github/shinjoy991/balanced_enchantments/enchantments/MagmaWalker.java[m
+[1mindex 46e23f3..77c29f8 100644[m
+[1m--- a/src/main/java/com/github/shinjoy991/balanced_enchantments/enchantments/MagmaWalker.java[m
+[1m+++ b/src/main/java/com/github/shinjoy991/balanced_enchantments/enchantments/MagmaWalker.java[m
+[36m@@ -3,7 +3,6 @@[m [mpackage com.github.shinjoy991.balanced_enchantments.enchantments;[m
+ import com.github.shinjoy991.balanced_enchantments.register.RegisterBlock;[m
+ import net.minecraft.core.BlockPos;[m
+ import net.minecraft.core.Direction;[m
+[31m-import net.minecraft.core.Vec3i;[m
+ import net.minecraft.server.level.ServerLevel;[m
+ import net.minecraft.util.Mth;[m
+ import net.minecraft.world.entity.EquipmentSlot;[m
+[36m@@ -79,17 +78,21 @@[m [mpublic class MagmaWalker extends Enchantment {[m
+     }[m
+ [m
+     public int getMinCost(int enchantmentLevel) {[m
+[31m-        return enchantmentLevel * 15;[m
+[32m+[m[32m        return 30;[m
+     }[m
+ [m
+     public int getMaxCost(int enchantmentLevel) {[m
+[31m-        return this.getMinCost(enchantmentLevel) + 25;[m
+[32m+[m[32m        return this.getMinCost(enchantmentLevel) + 50;[m
+     }[m
+ [m
+     public boolean isTreasureOnly() {[m
+         return true;[m
+     }[m
+ [m
+[32m+[m[32m    public boolean isAllowedOnBooks() {[m
+[32m+[m[32m        return false;[m
+[32m+[m[32m    }[m
+[32m+[m
+     public int getMaxLevel() {[m
+         return Math.max((Integer) getConfig("magmawalker", "maxlevel", 1), 1);[m
+     }[m
+[1mdiff --git a/src/main/java/com/github/shinjoy991/balanced_enchantments/enchantments/StatusProtection.java b/src/main/java/com/github/shinjoy991/balanced_enchantments/enchantments/StatusProtection.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..0f0da10[m
+[1m--- /dev/null[m
+[1m+++ b/src/main/java/com/github/shinjoy991/balanced_enchantments/enchantments/StatusProtection.java[m
+[36m@@ -0,0 +1,123 @@[m
+[32m+[m[32mpackage com.github.shinjoy991.balanced_enchantments.enchantments;[m
+[32m+[m
+[32m+[m[32mimport com.github.shinjoy991.balanced_enchantments.register.RegisterEnch;[m
+[32m+[m[32mimport net.minecraft.server.level.ServerPlayer;[m
+[32m+[m[32mimport net.minecraft.sounds.SoundEvent;[m
+[32m+[m[32mimport net.minecraft.sounds.SoundEvents;[m
+[32m+[m[32mimport net.minecraft.sounds.SoundSource;[m
+[32m+[m[32mimport net.minecraft.world.effect.MobEffect;[m
+[32m+[m[32mimport net.minecraft.world.effect.MobEffects;[m
+[32m+[m[32mimport net.minecraft.world.entity.EquipmentSlot;[m
+[32m+[m[32mimport net.minecraft.world.entity.monster.EnderMan;[m
+[32m+[m[32mimport net.minecraft.world.item.ItemStack;[m
+[32m+[m[32mimport net.minecraft.world.item.enchantment.Enchantment;[m
+[32m+[m[32mimport net.minecraft.world.item.enchantment.EnchantmentCategory;[m
+[32m+[m[32mimport net.minecraft.world.item.enchantment.EnchantmentHelper;[m
+[32m+[m[32mimport net.minecraftforge.event.TickEvent;[m
+[32m+[m[32mimport net.minecraftforge.eventbus.api.SubscribeEvent;[m
+[32m+[m
+[32m+[m[32mimport java.util.*;[m
+[32m+[m
+[32m+[m[32mimport static com.github.shinjoy991.balanced_enchantments.config.ReadConfig.getConfig;[m
+[32m+[m[32mimport static com.github.shinjoy991.balanced_enchantments.helpers.DelayFunc.delayedTask;[m
+[32m+[m
+[32m+[m[32mpublic class StatusProtection extends Enchantment {[m
+[32m+[m
+[32m+[m[32m    private static final Set<UUID> cooldowns = new HashSet<>();[m
+[32m+[m[32m    private static final List<MobEffect> originalEffects = Arrays.asList([m
+[32m+[m[32m            MobEffects.WITHER,[m
+[32m+[m[32m            MobEffects.POISON,[m
+[32m+[m[32m            MobEffects.HUNGER,[m
+[32m+[m[32m            MobEffects.BLINDNESS[m
+[32m+[m[32m    );[m
+[32m+[m[32m    private static final List<MobEffect> additionalEffects = Arrays.asList([m
+[32m+[m[32m            MobEffects.WITHER,[m
+[32m+[m[32m            MobEffects.POISON,[m
+[32m+[m[32m            MobEffects.HUNGER,[m
+[32m+[m[32m            MobEffects.BLINDNESS,[m
+[32m+[m[32m            MobEffects.MOVEMENT_SLOWDOWN,[m
+[32m+[m[32m            MobEffects.DIG_SLOWDOWN,[m
+[32m+[m[32m            MobEffects.WEAKNESS,[m
+[32m+[m[32m            MobEffects.DARKNESS,[m
+[32m+[m[32m            MobEffects.CONFUSION[m
+[32m+[m[32m    );[m
+[32m+[m[32m    public static int STATUS_COOLDOWN_TICKS = 5;[m
+[32m+[m[32m    public static int STATUS_COOLDOWN_REDUCE_PER_LEVEL = 0;[m
+[32m+[m[32m    public static int STATUS_CHANCE = 0;[m
+[32m+[m[32m    public static int STATUS_CHANCE_INCREASE_PER_LEVEL = 0;[m
+[32m+[m[32m    public static int STATUS_ALL_THRESHOLD = 0;[m
+[32m+[m
+[32m+[m[32m    public StatusProtection() {[m
+[32m+[m[32m        super(Enchantment.Rarity.RARE, EnchantmentCategory.ARMOR,[m
+[32m+[m[32m                new EquipmentSlot[]{EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS,[m
+[32m+[m[32m                        EquipmentSlot.FEET});[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    @SubscribeEvent[m
+[32m+[m[32m    public static void onServerTick(TickEvent.ServerTickEvent event) {[m
+[32m+[m[32m        if (event.phase == TickEvent.Phase.END) {[m
+[32m+[m[32m            for (ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {[m
+[32m+[m[32m                UUID playerId = player.getUUID();[m
+[32m+[m
+[32m+[m[32m                if (!cooldowns.contains(playerId) && hasStatusProtection(player)) {[m
+[32m+[m[32m                    removeNegativeEffect(player, getStatusProtection(player));[m
+[32m+[m[32m                    cooldowns.add(playerId);[m
+[32m+[m[32m                    int lastcd =[m
+[32m+[m[32m                            STATUS_COOLDOWN_TICKS - (getStatusProtection(player) - 1) * STATUS_COOLDOWN_REDUCE_PER_LEVEL;[m
+[32m+[m[32m                    if (lastcd <= 0)[m
+[32m+[m[32m                        lastcd = 5;[m
+[32m+[m[32m                    delayedTask(lastcd, () -> cooldowns.remove(playerId));[m
+[32m+[m[32m                }[m
+[32m+[m[32m            }[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    private static boolean hasStatusProtection(ServerPlayer player) {[m
+[32m+[m[32m        return EnchantmentHelper.getEnchantmentLevel(RegisterEnch.STATUS_PROTECTION.get(),[m
+[32m+[m[32m                player) > 0;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    private static int getStatusProtection(ServerPlayer player) {[m
+[32m+[m[32m        int totalProtectionLevel = 0;[m
+[32m+[m[32m        for (EquipmentSlot slot : EquipmentSlot.values()) {[m
+[32m+[m[32m            if (slot.getType() == EquipmentSlot.Type.ARMOR) {[m
+[32m+[m[32m                ItemStack itemStack = player.getItemBySlot(slot);[m
+[32m+[m[32m                totalProtectionLevel += EnchantmentHelper.getItemEnchantmentLevel(RegisterEnch.STATUS_PROTECTION.get(), itemStack);[m
+[32m+[m[32m            }[m
+[32m+[m[32m        }[m
+[32m+[m[32m        return totalProtectionLevel;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    private static void removeNegativeEffect(ServerPlayer player, int statusProtectionLevel) {[m
+[32m+[m[32m        List<MobEffect> effectsToConsider;[m
+[32m+[m[32m        if (statusProtectionLevel >= STATUS_ALL_THRESHOLD) {[m
+[32m+[m[32m            effectsToConsider = additionalEffects;[m
+[32m+[m[32m        } else {[m
+[32m+[m[32m            effectsToConsider = originalEffects;[m
+[32m+[m[32m        }[m
+[32m+[m[32m        Collections.shuffle(effectsToConsider);[m
+[32m+[m[32m        for (MobEffect effect : effectsToConsider) {[m
+[32m+[m[32m            if (player.hasEffect(effect)) {[m
+[32m+[m[32m                int chance =[m
+[32m+[m[32m                        STATUS_CHANCE + (statusProtectionLevel - 1) * STATUS_CHANCE_INCREASE_PER_LEVEL;[m
+[32m+[m[32m                if (Math.random() * 100 < chance) {[m
+[32m+[m[32m                    player.removeEffect(effect);[m
+[32m+[m[32m                    player.playNotifySound(SoundEvents.ENCHANTMENT_TABLE_USE, player.getSoundSource(),1,1);[m
+[32m+[m[32m                    break;[m
+[32m+[m[32m                }[m
+[32m+[m[32m            }[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public int getMinCost(int p_45083_) {[m
+[32m+[m[32m        return 10 + (p_45083_ - 1) * 8;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public int getMaxCost(int p_45085_) {[m
+[32m+[m[32m        return super.getMinCost(p_45085_) + 50;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public int getMaxLevel() {[m
+[32m+[m[32m        return Math.max((Integer) getConfig("statusprotection", "maxlevel", 1), 1);[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+\ No newline at end of file[m
+[1mdiff --git a/src/main/java/com/github/shinjoy991/balanced_enchantments/enchantments/Volley.java b/src/main/java/com/github/shinjoy991/balanced_enchantments/enchantments/Volley.java[m
+[1mindex a28f73b..2ca7cd0 100644[m
+[1m--- a/src/main/java/com/github/shinjoy991/balanced_enchantments/enchantments/Volley.java[m
+[1m+++ b/src/main/java/com/github/shinjoy991/balanced_enchantments/enchantments/Volley.java[m
+[36m@@ -20,7 +20,7 @@[m [mpublic class Volley extends Enchantment {[m
+     }[m
+ [m
+     public int getMaxCost(int enchantmentLevel) {[m
+[31m-        return super.getMinCost(enchantmentLevel) + 30;[m
+[32m+[m[32m        return super.getMinCost(enchantmentLevel) + 50;[m
+     }[m
+ [m
+     public int getMaxLevel() {[m
+[36m@@ -29,7 +29,7 @@[m [mpublic class Volley extends Enchantment {[m
+ [m
+     @Override[m
+     public boolean checkCompatibility(Enchantment ench) {[m
+[31m-        return ench != Enchantments.INFINITY_ARROWS ||[m
+[32m+[m[32m        return super.checkCompatibility(ench) && ench != Enchantments.INFINITY_ARROWS ||[m
+                 !getConfig("volley", "matchinfinity", 0).toString().equalsIgnoreCase("false");[m
+     }[m
+ }[m
+\ No newline at end of file[m
+[1mdiff --git a/src/main/java/com/github/shinjoy991/balanced_enchantments/enchantments/curses/CurseOfDurability.java b/src/main/java/com/github/shinjoy991/balanced_enchantments/enchantments/curses/CurseOfDurability.java[m
+[1mindex 3109964..d2d5a3a 100644[m
+[1m--- a/src/main/java/com/github/shinjoy991/balanced_enchantments/enchantments/curses/CurseOfDurability.java[m
+[1m+++ b/src/main/java/com/github/shinjoy991/balanced_enchantments/enchantments/curses/CurseOfDurability.java[m
+[36m@@ -23,15 +23,18 @@[m [mpublic class CurseOfDurability extends Enchantment {[m
+     }[m
+ [m
+     public int getMinCost(int enchantmentLevel) {[m
+[31m-        return 10;[m
+[32m+[m[32m        return 30;[m
+     }[m
+ [m
+     public int getMaxCost(int enchantmentLevel) {[m
+[31m-        return 30;[m
+[32m+[m[32m        return 50;[m
+     }[m
+ [m
+     public boolean isTreasureOnly() {[m
+         return true;[m
+     }[m
+ [m
+[32m+[m[32m    public boolean isTradeable() {[m
+[32m+[m[32m        return false;[m
+[32m+[m[32m    }[m
+ }[m
+\ No newline at end of file[m
+[1mdiff --git a/src/main/java/com/github/shinjoy991/balanced_enchantments/enchantments/curses/CurseOfUnstable.java b/src/main/java/com/github/shinjoy991/balanced_enchantments/enchantments/curses/CurseOfUnstable.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..780a1ee[m
+[1m--- /dev/null[m
+[1m+++ b/src/main/java/com/github/shinjoy991/balanced_enchantments/enchantments/curses/CurseOfUnstable.java[m
+[36m@@ -0,0 +1,64 @@[m
+[32m+[m[32mpackage com.github.shinjoy991.balanced_enchantments.enchantments.curses;[m
+[32m+[m
+[32m+[m[32mimport com.github.shinjoy991.balanced_enchantments.register.RegisterEnch;[m
+[32m+[m[32mimport net.minecraft.world.entity.Entity;[m
+[32m+[m[32mimport net.minecraft.world.entity.EquipmentSlot;[m
+[32m+[m[32mimport net.minecraft.world.entity.LivingEntity;[m
+[32m+[m[32mimport net.minecraft.world.item.ItemStack;[m
+[32m+[m[32mimport net.minecraft.world.item.enchantment.Enchantment;[m
+[32m+[m[32mimport net.minecraft.world.item.enchantment.EnchantmentHelper;[m
+[32m+[m
+[32m+[m[32mimport java.util.Random;[m
+[32m+[m
+[32m+[m[32mimport static com.github.shinjoy991.balanced_enchantments.config.ReadConfig.getConfig;[m
+[32m+[m[32mimport static com.github.shinjoy991.balanced_enchantments.register.RegisterEnch.IS_TOOL_AND_WEAPON;[m
+[32m+[m
+[32m+[m[32mpublic class CurseOfUnstable extends Enchantment {[m
+[32m+[m
+[32m+[m[32m    public CurseOfUnstable() {[m
+[32m+[m[32m        super(Rarity.VERY_RARE, IS_TOOL_AND_WEAPON,[m
+[32m+[m[32m                new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public void doPostHurt(LivingEntity victim, Entity attacker, int p_44694_) {[m
+[32m+[m[32m        if (attacker instanceof LivingEntity) {[m
+[32m+[m[32m            dropItemWithChance(victim, EquipmentSlot.MAINHAND);[m
+[32m+[m[32m            dropItemWithChance(victim, EquipmentSlot.OFFHAND);[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    private void dropItemWithChance(LivingEntity victim, EquipmentSlot slot) {[m
+[32m+[m[32m        if (Math.max((Integer) getConfig("curseofunstable", "chance", 1), 0) <= new Random().nextInt(100) + 1)[m
+[32m+[m[32m            return;[m
+[32m+[m[32m        ItemStack itemStack = victim.getItemBySlot(slot);[m
+[32m+[m[32m        if (itemStack.isEmpty() || !itemStack.isEnchanted()) {[m
+[32m+[m[32m            return;[m
+[32m+[m[32m        }[m
+[32m+[m[32m        if (EnchantmentHelper.getItemEnchantmentLevel(RegisterEnch.CURSE_OF_UNSTABLE.get(),[m
+[32m+[m[32m                itemStack) > 0) {[m
+[32m+[m[32m            ItemStack singleItemStack = itemStack.copy();[m
+[32m+[m[32m            singleItemStack.setCount(1);[m
+[32m+[m[32m            victim.spawnAtLocation(singleItemStack);[m
+[32m+[m[32m            itemStack.shrink(1);[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m[32m    public boolean isCurse() {[m
+[32m+[m[32m        return true;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public int getMinCost(int enchantmentLevel) {[m
+[32m+[m[32m        return 30;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public int getMaxCost(int enchantmentLevel) {[m
+[32m+[m[32m        return 50;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public boolean isTreasureOnly() {[m
+[32m+[m[32m        return true;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public boolean isTradeable() {[m
+[32m+[m[32m        return false;[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+\ No newline at end of file[m
+[1mdiff --git a/src/main/java/com/github/shinjoy991/balanced_enchantments/events/VolleyBowEvents.java b/src/main/java/com/github/shinjoy991/balanced_enchantments/events/VolleyBowEvents.java[m
+[1mindex 06c732b..5b09424 100644[m
+[1m--- a/src/main/java/com/github/shinjoy991/balanced_enchantments/events/VolleyBowEvents.java[m
+[1m+++ b/src/main/java/com/github/shinjoy991/balanced_enchantments/events/VolleyBowEvents.java[m
+[36m@@ -7,12 +7,12 @@[m [mimport net.minecraft.world.entity.Entity;[m
+ import net.minecraft.world.entity.LivingEntity;[m
+ import net.minecraft.world.entity.player.Player;[m
+ import net.minecraft.world.entity.projectile.Arrow;[m
+[32m+[m[32mimport net.minecraft.world.item.BowItem;[m
+ import net.minecraft.world.item.ItemStack;[m
+ import net.minecraft.world.item.Items;[m
+ import net.minecraft.world.item.enchantment.EnchantmentHelper;[m
+ import net.minecraft.world.item.enchantment.Enchantments;[m
+ import net.minecraft.world.phys.Vec3;[m
+[31m-import net.minecraftforge.event.entity.EntityEvent;[m
+ import net.minecraftforge.event.entity.EntityJoinLevelEvent;[m
+ import net.minecraftforge.event.entity.player.ArrowLooseEvent;[m
+ import net.minecraftforge.eventbus.api.EventPriority;[m
+[36m@@ -35,6 +35,8 @@[m [mpublic class VolleyBowEvents {[m
+     @SubscribeEvent(priority = EventPriority.HIGHEST)[m
+     public static void onVolleyShoot(ArrowLooseEvent event) {[m
+         int VolleyLevel;[m
+[32m+[m[32m        if (!event.getBow().is(Items.BOW))[m
+[32m+[m[32m            return;[m
+         try {[m
+             VolleyLevel = EnchantmentHelper.getItemEnchantmentLevel(RegisterEnch.VOLLEY.get(),[m
+                     event.getBow());[m
+[36m@@ -82,23 +84,10 @@[m [mpublic class VolleyBowEvents {[m
+             return;[m
+         if (!(((Arrow) en).getOwner() instanceof LivingEntity shooter))[m
+             return;[m
+[31m-        int VolleyLevel;[m
+[31m-        int k;[m
+[31m-        if (!shoot.getOrDefault(shooter.getUUID(), false)) {[m
+[31m-            try {[m
+[31m-               VolleyLevel =[m
+[31m-                       EnchantmentHelper.getItemEnchantmentLevel(RegisterEnch.VOLLEY.get(),[m
+[31m-                        shooter.getMainHandItem());[m
+[31m-                k = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH_ARROWS,[m
+[31m-                        shooter.getMainHandItem());[m
+[31m-                arrowSpeed = 1.6F;[m
+[31m-            } catch (Exception e) {[m
+[31m-                return;[m
+[31m-            }[m
+[31m-        } else {[m
+[31m-            VolleyLevel = level;[m
+[31m-            k = VolleyBowEvents.k;[m
+[31m-        }[m
+[32m+[m[32m        if (!shoot.getOrDefault(shooter.getUUID(), false))[m
+[32m+[m[32m            return;[m
+[32m+[m[32m        int VolleyLevel = level;[m
+[32m+[m[32m        int k = VolleyBowEvents.k;[m
+         shoot.remove(shooter.getUUID());[m
+         en.addTag("be.volley");[m
+         CompoundTag oldnbt = en.serializeNBT();[m
+[36m@@ -131,7 +120,8 @@[m [mpublic class VolleyBowEvents {[m
+                 delayedTask(100, () -> {[m
+                             try {[m
+                                 newArrow.discard();[m
+[31m-                            } catch (Exception ignored) {}[m
+[32m+[m[32m                            } catch (Exception ignored) {[m
+[32m+[m[32m                            }[m
+                         }[m
+                 );[m
+             }[m
+[1mdiff --git a/src/main/java/com/github/shinjoy991/balanced_enchantments/register/RegisterEnch.java b/src/main/java/com/github/shinjoy991/balanced_enchantments/register/RegisterEnch.java[m
+[1mindex b72fcc3..dd17c78 100644[m
+[1m--- a/src/main/java/com/github/shinjoy991/balanced_enchantments/register/RegisterEnch.java[m
+[1m+++ b/src/main/java/com/github/shinjoy991/balanced_enchantments/register/RegisterEnch.java[m
+[36m@@ -42,5 +42,11 @@[m [mpublic class RegisterEnch {[m
+     public static RegistryObject<Enchantment> VOLLEY = null;[m
+     public static RegistryObject<Enchantment> MAGMA_WALKER = null;[m
+     public static RegistryObject<Enchantment> SUPER_CHARGED = null;[m
+[32m+[m[32m    public static RegistryObject<Enchantment> HERO_LANDING = null;[m
+[32m+[m[32m    public static RegistryObject<Enchantment> C_MOON = null;[m
+[32m+[m[32m    public static RegistryObject<Enchantment> STATUS_PROTECTION = null;[m
+[32m+[m[32m    public static RegistryObject<Enchantment> ICE_ASPECT = null;[m
+[32m+[m[32m    public static RegistryObject<Enchantment> HUNTING_INSTINCT = null;[m
+     public static RegistryObject<Enchantment> CURSE_OF_DURABILITY = null;[m
+[32m+[m[32m    public static RegistryObject<Enchantment> CURSE_OF_UNSTABLE = null;[m
+ }[m
+[1mdiff --git a/src/main/java/com/github/shinjoy991/balanced_enchantments/register/RegisterEvent.java b/src/main/java/com/github/shinjoy991/balanced_enchantments/register/RegisterEvent.java[m
+[1mindex 8f7a34e..ef0ff93 100644[m
+[1m--- a/src/main/java/com/github/shinjoy991/balanced_enchantments/register/RegisterEvent.java[m
+[1m+++ b/src/main/java/com/github/shinjoy991/balanced_enchantments/register/RegisterEvent.java[m
+[36m@@ -1,5 +1,8 @@[m
+ package com.github.shinjoy991.balanced_enchantments.register;[m
+ [m
+[32m+[m[32mimport com.github.shinjoy991.balanced_enchantments.enchantments.HeroLanding;[m
+[32m+[m[32mimport com.github.shinjoy991.balanced_enchantments.enchantments.HuntingInstinct;[m
+[32m+[m[32mimport com.github.shinjoy991.balanced_enchantments.enchantments.StatusProtection;[m
+ import com.github.shinjoy991.balanced_enchantments.enchantments.SuperCharged;[m
+ import com.github.shinjoy991.balanced_enchantments.events.VolleyBowEvents;[m
+ import net.minecraftforge.common.MinecraftForge;[m
+[36m@@ -11,9 +14,25 @@[m [mpublic class RegisterEvent {[m
+         boolean allowVolley = getConfig("volley", "enable", 0).toString().equalsIgnoreCase("true");[m
+         boolean allowSuperCharged =[m
+                 getConfig("supercharged", "enable", 0).toString().equalsIgnoreCase("true");[m
+[32m+[m[32m        boolean allowHeroLanding =[m
+[32m+[m[32m                getConfig("herolanding", "enable", 0).toString().equalsIgnoreCase([m
+[32m+[m[32m                "true");[m
+[32m+[m[32m        boolean allowStatusProtection =[m
+[32m+[m[32m                getConfig("statusprotection", "enable", 0).toString().equalsIgnoreCase([m
+[32m+[m[32m                        "true");[m
+[32m+[m[32m        boolean allowHuntingInstinct =[m
+[32m+[m[32m                getConfig("huntinginstinct", "enable", 0).toString().equalsIgnoreCase([m
+[32m+[m[32m                        "true");[m
+[32m+[m
+         if (allowVolley)[m
+             MinecraftForge.EVENT_BUS.register(VolleyBowEvents.class);[m
+         if (allowSuperCharged)[m
+             MinecraftForge.EVENT_BUS.register(SuperCharged.class);[m
+[32m+[m[32m        if (allowHeroLanding)[m
+[32m+[m[32m            MinecraftForge.EVENT_BUS.register(HeroLanding.class);[m
+[32m+[m[32m        if (allowStatusProtection)[m
+[32m+[m[32m            MinecraftForge.EVENT_BUS.register(StatusProtection.class);[m
+[32m+[m[32m        if (allowHuntingInstinct)[m
+[32m+[m[32m            MinecraftForge.EVENT_BUS.register(HuntingInstinct.class);[m
+     }[m
+[31m-}[m
+[32m+[m[32m}[m
+\ No newline at end of file[m
+[1mdiff --git a/src/main/java/com/github/shinjoy991/balanced_enchantments/register/RegisterItem.java b/src/main/java/com/github/shinjoy991/balanced_enchantments/register/RegisterItem.java[m
+[1mindex c7c552a..d49c9a8 100644[m
+[1m--- a/src/main/java/com/github/shinjoy991/balanced_enchantments/register/RegisterItem.java[m
+[1m+++ b/src/main/java/com/github/shinjoy991/balanced_enchantments/register/RegisterItem.java[m
+[36m@@ -48,39 +48,6 @@[m [mpublic class RegisterItem {[m
+             .build()[m
+     );[m
+ [m
+[31m-[m
+[31m-//        @Override[m
+[31m-//        public void fillItemList(NonNullList<ItemStack> items) {[m
+[31m-//            items.add(new ItemStack(RegisterItem.CRUSTEDMAGMA.get()));[m
+[31m-//            for (RegistryObject<Enchantment> enchantment : RegisterEnch.ENCHANTMENTS.getEntries()) {[m
+[31m-//                Enchantment currentEnchantment = enchantment.get();[m
+[31m-//                for (int level = 1; level <= currentEnchantment.getMaxLevel(); level++) {[m
+[31m-//                    items.add(EnchantedBookItem.createForEnchantment(new EnchantmentInstance(currentEnchantment, level)));[m
+[31m-//                }[m
+[31m-//            }[m
+[31m-//        }[m
+[31m-    ;[m
+[31m-[m
+[31m-[m
+[31m-//    public static final CreativeModeTab ENCHANTMENT_TAB = CreativeModeTab.builder()[m
+[31m-//            .icon(() -> new ItemStack(RegisterItem.ICON.get()))[m
+[31m-//            .displayItems((features, output, hasPermissions) -> {[m
+[31m-//                output.accept(new ItemStack(RegisterItem.CRUSTEDMAGMA.get()));[m
+[31m-//                for (RegistryObject<Enchantment> enchantment : RegisterEnch.ENCHANTMENTS.getEntries()) {[m
+[31m-//                    Enchantment currentEnchantment = enchantment.get();[m
+[31m-//                    for (int level = 1; level <= currentEnchantment.getMaxLevel(); level++) {[m
+[31m-//                        output.accept(EnchantedBookItem.createForEnchantment(new EnchantmentInstance(currentEnchantment, level)));[m
+[31m-//                    }[m
+[31m-//                }[m
+[31m-//            })[m
+[31m-//            .title(Component.translatable("itemGroup.enchantment_tab"))[m
+[31m-//            .build();[m
+[31m-[m
+[31m-[m
+[31m-//    public static final RegistryObject<BlockItem> CRUSTEDMAGMA = ITEMS.register([m
+[31m-//            "crusted_magma_block_0",[m
+[31m-//            () -> new BlockItem(RegisterBlock.CRUSTEDMAGMA.get(),[m
+[31m-//                    new Item.Properties().tab(ENCHANTMENT_TAB)));[m
+     public static final RegistryObject<BlockItem> CRUSTEDMAGMA = ITEMS.register([m
+             "crusted_magma_block_0",[m
+             () -> new BlockItem(RegisterBlock.CRUSTEDMAGMA.get(), new Item.Properties()));[m
+[1mdiff --git a/src/main/resources/assets/balanced_enchantments/lang/en_us.json b/src/main/resources/assets/balanced_enchantments/lang/en_us.json[m
+[1mindex ff43331..9621188 100644[m
+[1m--- a/src/main/resources/assets/balanced_enchantments/lang/en_us.json[m
+[1m+++ b/src/main/resources/assets/balanced_enchantments/lang/en_us.json[m
+[36m@@ -15,5 +15,17 @@[m
+   "enchantment.balanced_enchantments.super_charged": "SuperCharged",[m
+   "enchantment.balanced_enchantments.super_charged.desc": "Increase damage but weaker after attack  [Tools, Sword]",[m
+   "enchantment.balanced_enchantments.curse_of_durability": "Curse of Durability",[m
+[31m-  "enchantment.balanced_enchantments.curse_of_durability.desc": "Break or fix an item in an uncontrollable way"[m
+[32m+[m[32m  "enchantment.balanced_enchantments.curse_of_durability.desc": "Break or fix an item in an uncontrollable way",[m
+[32m+[m[32m  "enchantment.balanced_enchantments.hero_landing": "Hero Landing",[m
+[32m+[m[32m  "enchantment.balanced_enchantments.hero_landing.desc": "Negates fall damage  [Boots]",[m
+[32m+[m[32m  "enchantment.balanced_enchantments.c_moon": "C-Moon",[m
+[32m+[m[32m  "enchantment.balanced_enchantments.c_moon.desc": "Inverse gravity of target  [Tools, Sword]",[m
+[32m+[m[32m  "enchantment.balanced_enchantments.status_protection": "Status Protection",[m
+[32m+[m[32m  "enchantment.balanced_enchantments.status_protection.desc": "Chance to remove bad status  [Armor]",[m
+[32m+[m[32m  "enchantment.balanced_enchantments.ice_aspect": "Ice Aspect",[m
+[32m+[m[32m  "enchantment.balanced_enchantments.ice_aspect.desc": "Chance to freeze enemy  [Weapon]",[m
+[32m+[m[32m  "enchantment.balanced_enchantments.hunting_instinct": "Hunting Instinct",[m
+[32m+[m[32m  "enchantment.balanced_enchantments.hunting_instinct.desc": "Boost ability when fighting, get slowness when not  [Weapon]",[m
+[32m+[m[32m  "enchantment.balanced_enchantments.curse_of_unstable": "Curse of Unstable",[m
+[32m+[m[32m  "enchantment.balanced_enchantments.curse_of_unstable.desc": "May jump out your hand when being hit"[m
+ }[m
+\ No newline at end of file[m
+[1mdiff --git a/src/main/resources/assets/balanced_enchantments/lang/zh_cn.json b/src/main/resources/assets/balanced_enchantments/lang/zh_cn.json[m
+[1mindex 598fccc..0f8f58c 100644[m
+[1m--- a/src/main/resources/assets/balanced_enchantments/lang/zh_cn.json[m
+[1m+++ b/src/main/resources/assets/balanced_enchantments/lang/zh_cn.json[m
+[36m@@ -15,5 +15,17 @@[m
+   "enchantment.balanced_enchantments.super_charged": "超级充能",[m
+   "enchantment.balanced_enchantments.super_charged.desc": "增加伤害但攻击后变得较弱  [工具，剑]",[m
+   "enchantment.balanced_enchantments.curse_of_durability": "耐久性诅咒",[m
+[31m-  "enchantment.balanced_enchantments.curse_of_durability.desc": "以不可控制的方式破坏或修复物品"[m
+[32m+[m[32m  "enchantment.balanced_enchantments.curse_of_durability.desc": "以不可控制的方式破坏或修复物品",[m
+[32m+[m[32m  "enchantment.balanced_enchantments.hero_landing": "英雄登陆",[m
+[32m+[m[32m  "enchantment.balanced_enchantments.hero_landing.desc": "消除掉落伤害  [靴子]",[m
+[32m+[m[32m  "enchantment.balanced_enchantments.c_moon": "C-Moon",[m
+[32m+[m[32m  "enchantment.balanced_enchantments.c_moon.desc": "目标反重力  【工具，剑】",[m
+[32m+[m[32m  "enchantment.balanced_enchantments.status_protection": "状态保护",[m
+[32m+[m[32m  "enchantment.balanced_enchantments.status_protection.desc": "有机会消除不良状态  [护甲]",[m
+[32m+[m[32m  "enchantment.balanced_enchantments.ice_aspect": "冰属性",[m
+[32m+[m[32m  "enchantment.balanced_enchantments.ice_aspect.desc": "有机会冻结敌人  [武器]",[m
+[32m+[m[32m  "enchantment.balanced_enchantments.hunting_instinct": "狩猎本能",[m
+[32m+[m[32m  "enchantment.balanced_enchantments.hunting_instinct.desc": "在战斗时增强能力，不战斗时减速  [武器]",[m
+[32m+[m[32m  "enchantment.balanced_enchantments.curse_of_unstable": "不稳定诅咒",[m
+[32m+[m[32m  "enchantment.balanced_enchantments.curse_of_unstable.desc": "被击中时可能会从手中跳出"[m
+ }[m
+\ No newline at end of file[m

@@ -56,6 +56,14 @@ public class CreateJson {
         jsonData.put("iceaspect", createData9());
         jsonData.put("huntinginstinct", createData10());
         jsonData.put("curseofunstable", createData11());
+        jsonData.put("truesharpness", createData12());
+        jsonData.put("invisibleshield", createData13());
+        jsonData.put("weaponart", createData14());
+        jsonData.put("mightyforce", createData15());
+        jsonData.put("miningfocus", createData16());
+        jsonData.put("automachine", createData17());
+        jsonData.put("linking", createData18());
+        jsonData.put("curseofprovocation", createData19());
 
         try (FileWriter writer = new FileWriter(configFile.toFile())) {
             GSON.toJson(jsonData, writer);
@@ -80,6 +88,14 @@ public class CreateJson {
             addMissingSection(jsonObject, "iceaspect", createData9());
             addMissingSection(jsonObject, "huntinginstinct", createData10());
             addMissingSection(jsonObject, "curseofunstable", createData11());
+            addMissingSection(jsonObject, "truesharpness", createData12());
+            addMissingSection(jsonObject, "invisibleshield", createData13());
+            addMissingSection(jsonObject, "weaponart", createData14());
+            addMissingSection(jsonObject, "mightyforce", createData15());
+            addMissingSection(jsonObject, "miningfocus", createData16());
+            addMissingSection(jsonObject, "automachine", createData17());
+            addMissingSection(jsonObject, "linking", createData18());
+            addMissingSection(jsonObject, "curseofprovocation", createData19());
 
             try (FileWriter writer = new FileWriter(configFile.toFile())) {
                 GSON.toJson(jsonObject, writer);
@@ -99,9 +115,9 @@ public class CreateJson {
         JsonObject data1 = new JsonObject();
         data1.addProperty("enable", "true");
         data1.addProperty("maxlevel", "2");
-        data1.addProperty("onlyhoe", "true");
-        data1.addProperty("tickduration", "20");
-        data1.addProperty("chance", "20");
+        data1.addProperty("onlyhoe", "false");
+        data1.addProperty("tickduration", "40");
+        data1.addProperty("chance", "25");
         return data1;
     }
 
@@ -110,8 +126,8 @@ public class CreateJson {
         data2.addProperty("enable", "true");
         data2.addProperty("maxlevel", "3");
         data2.addProperty("anglebetween", "10");
-        data2.addProperty("removesubarrow", "false");
-        data2.addProperty("matchinfinity", "false");
+        data2.addProperty("removesubarrow", "true");
+        data2.addProperty("matchinfinity", "true");
         return data2;
     }
 
@@ -132,7 +148,7 @@ public class CreateJson {
         data4.addProperty("dmgaddperlvl", "4");
         data4.addProperty("weaknesslvl", "1");
         data4.addProperty("weaknessduration", "60");
-        data4.addProperty("cooldown", "100");
+        data4.addProperty("cooldown", "60");
         return data4;
     }
 
@@ -148,7 +164,7 @@ public class CreateJson {
         JsonObject data6 = new JsonObject();
         data6.addProperty("enable", "true");
         data6.addProperty("maxlevel", "3");
-        data6.addProperty("heightaddperlvl", "2");
+        data6.addProperty("heightaddperlvl", "3");
         return data6;
     }
 
@@ -197,5 +213,72 @@ public class CreateJson {
         data11.addProperty("enable", "true");
         data11.addProperty("chance", "5");
         return data11;
+    }
+
+    private static JsonObject createData12() {
+        JsonObject data12 = new JsonObject();
+        data12.addProperty("enable", "true");
+        data12.addProperty("adddmg", "5");
+        data12.addProperty("durabilityreduce", "10");
+        return data12;
+    }
+
+    private static JsonObject createData13() {
+        JsonObject data13 = new JsonObject();
+        data13.addProperty("enable", "true");
+        data13.addProperty("maxlevel", "4");
+        data13.addProperty("recovertick", "200");
+        data13.addProperty("percentreductionperlvl", "20");
+        return data13;
+    }
+
+    private static JsonObject createData14() {
+        JsonObject data14 = new JsonObject();
+        data14.addProperty("enable", "true");
+        data14.addProperty("maxlevel", "4");
+        data14.addProperty("percentreductionperlvl", "7");
+        return data14;
+    }
+
+    private static JsonObject createData15() {
+        JsonObject data15 = new JsonObject();
+        data15.addProperty("enable", "true");
+        data15.addProperty("stackdeletetick", "80");
+        data15.addProperty("percentdmgincrease", "20");
+        return data15;
+    }
+
+    private static JsonObject createData16() {
+        JsonObject data16 = new JsonObject();
+        data16.addProperty("enable", "true");
+        data16.addProperty("maxlevel", "3");
+        data16.addProperty("addtickperlvl", "160");
+        data16.addProperty("hastelvl", "1");
+        data16.addProperty("cooldown", "800");
+        return data16;
+    }
+
+    private static JsonObject createData17() {
+        JsonObject data17 = new JsonObject();
+        data17.addProperty("enable", "true");
+        data17.addProperty("maxlevel", "4");
+        data17.addProperty("addlengthperlvl", "2");
+        data17.addProperty("initiallength", "3");
+        return data17;
+    }
+
+    private static JsonObject createData18() {
+        JsonObject data18 = new JsonObject();
+        data18.addProperty("enable", "true");
+        data18.addProperty("maxlevel", "4");
+        data18.addProperty("addblockperlvl", "2");
+        return data18;
+    }
+
+    private static JsonObject createData19() {
+        JsonObject data19 = new JsonObject();
+        data19.addProperty("enable", "true");
+        data19.addProperty("radius", "2");
+        return data19;
     }
 }

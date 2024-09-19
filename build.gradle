@@ -16,7 +16,7 @@ plugins {
     id 'net.minecraftforge.gradle' version '[6.0.16,6.2)'
     id 'org.spongepowered.mixin' version '0.7.+'
 }
-
+apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.spongepowered.mixin'
 //configurations {
 //    implementation.extendsFrom shadow
@@ -143,14 +143,16 @@ repositories {
     // flatDir {
     //     dir 'libs'
     // }
-    maven {
-        url "https://cursemaven.com/"
-    }
+//    maven {
+//        url "https://cursemaven.com/"
+//    }
 //    maven {
 //        name = 'Sponge / Mixin'
 //        url = 'https://repo.spongepowered.org/repository/maven-public/'
 //    }
-
+    flatDir {
+        dirs 'C:/Users/TRAN HOANG MINH NHUT/AppData/Roaming/.minecraft/mods'
+    }
 }
 
 dependencies {
@@ -166,10 +168,11 @@ dependencies {
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}")
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}-forge-api:${jei_version}")
     // runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}")
-
-    //runtimeOnly fg.deobf("curse.maven:dmg_indicator-245733:3895068")
-    //runtimeOnly fg.deobf("curse.maven:enchantment_infu-551151:4041213")
-    //runtimeOnly fg.deobf("curse.maven:en_infu_lib-495476:4600775")
+//    runtimeOnly fg.deobf("curse.maven:dmg_indicator-830420:5271600")
+    //runtimeOnly fg.deobf("curse.maven:dmg_indicator-976223:5467102")
+//    implementation fg.deobf('tld.packagedomain.mod:torohealth-1.20-forge-4:1.20-forge-4')
+//    runtimeOnly fg.deobf("curse.maven:enchantment_infu-551151:4041213")
+//    runtimeOnly fg.deobf("curse.maven:en_infu_lib-495476:4600775")
 
     // Example mod dependency using a mod jar from ./libs with a flat dir repository
     // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar

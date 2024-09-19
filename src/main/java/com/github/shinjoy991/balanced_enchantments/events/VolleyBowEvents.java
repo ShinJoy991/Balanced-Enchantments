@@ -2,19 +2,21 @@ package com.github.shinjoy991.balanced_enchantments.events;
 
 import com.github.shinjoy991.balanced_enchantments.helpers.NbtFunc;
 import com.github.shinjoy991.balanced_enchantments.register.RegisterEnch;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Arrow;
-import net.minecraft.world.item.BowItem;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -32,7 +34,12 @@ public class VolleyBowEvents {
     private static int level = 0;
     private static int k = 0;
 
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    @SubscribeEvent
+    public static void playerJoin(PlayerEvent.PlayerLoggedInEvent event) {
+        shoot.remove(event.getEntity().getUUID());
+    }
+
+    @SubscribeEvent
     public static void onVolleyShoot(ArrowLooseEvent event) {
         int VolleyLevel;
         if (!event.getBow().is(Items.BOW))
@@ -46,17 +53,16 @@ public class VolleyBowEvents {
         if (VolleyLevel <= 0 || !event.hasAmmo())
             return;
         Player player = event.getEntity();
-        ItemStack item = new ItemStack(Items.ARROW);
         int arrowCount = 0;
         for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
             ItemStack stack = player.getInventory().getItem(i);
-            if (!stack.isEmpty() && stack.getItem() == Items.ARROW) {
+            if (!stack.isEmpty() && stack.getItem() instanceof ArrowItem) {
                 arrowCount += stack.getCount();
             }
         }
         if (!player.getAbilities().instabuild) {
             if (arrowCount >= VolleyLevel * 2 + 1 && EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY_ARROWS, event.getBow()) <= 0) {
-                player.getInventory().clearOrCountMatchingItems(p -> item.getItem() == p.getItem(),
+                player.getInventory().clearOrCountMatchingItems(p -> isArrow(p.getItem()),
                         VolleyLevel * 2,
                         player.inventoryMenu.getCraftSlots());
             } else
@@ -74,16 +80,26 @@ public class VolleyBowEvents {
             shoot.remove(player.getUUID());
         });
     }
-
+    private static boolean isArrow(Item item) {
+        return item instanceof ArrowItem;
+    }
     @SubscribeEvent
     public static void onArrowVolleyShoot(EntityJoinLevelEvent event) {
+        if (event.getLevel().isClientSide)
+            return;
         Entity en = event.getEntity();
-        if (!(en instanceof Arrow))
+        if (!(en instanceof AbstractArrow))
             return;
         if (en.getTags().contains("be.volley"))
             return;
-        if (!(((Arrow) en).getOwner() instanceof LivingEntity shooter))
+        LivingEntity shooter;
+        try {
+            shooter = (LivingEntity) ((Arrow) en).getOwner();
+            if (!(((Arrow) en).getOwner() instanceof LivingEntity))
+                return;
+        } catch (Exception e) {
             return;
+        }
         if (!shoot.getOrDefault(shooter.getUUID(), false))
             return;
         int VolleyLevel = level;
