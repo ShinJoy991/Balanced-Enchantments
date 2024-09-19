@@ -1,0 +1,121 @@
+{
+  "__comment": [
+    "This is config section for Balanced Enchantments mod",
+    "Pretty easy, change it to match your desire, go to mod's page for more information",
+    "Use integer numbers and true/false to prevent errors, time normally in tick"
+  ],
+  "blockmasksoul": {
+    "enable": "true",
+    "maxlevel": "2",
+    "onlyhoe": "false",
+    "tickduration": "40",
+    "chance": "25"
+  },
+  "volley": {
+    "enable": "true",
+    "maxlevel": "3",
+    "anglebetween": "10",
+    "removesubarrow": "true",
+    "matchinfinity": "true"
+  },
+  "magmawalker": {
+    "enable": "true",
+    "maxlevel": "3",
+    "radiusperlvl": "1",
+    "minduration": "20",
+    "maxduration": "100"
+  },
+  "supercharged": {
+    "enable": "true",
+    "maxlevel": "4",
+    "dmgaddperlvl": "4",
+    "weaknesslvl": "1",
+    "weaknessduration": "60",
+    "cooldown": "60"
+  },
+  "curseofdurability": {
+    "enable": "true",
+    "minrandom": "-10",
+    "maxrandom": "10"
+  },
+  "herolanding": {
+    "enable": "true",
+    "maxlevel": "3",
+    "heightaddperlvl": "3"
+  },
+  "cmoon": {
+    "enable": "true",
+    "maxlevel": "2",
+    "power": "2",
+    "affecthealthbelow": "40"
+  },
+  "statusprotection": {
+    "enable": "true",
+    "maxlevel": "4",
+    "initialcooldown": "2400",
+    "cooldownreduceperlvl": "140",
+    "initialchance": "45",
+    "chanceincreaseperlvl": "3",
+    "allstatuslevel": "10"
+  },
+  "iceaspect": {
+    "enable": "true",
+    "maxlevel": "2",
+    "chance": "75",
+    "freezedurationperlvl": "80"
+  },
+  "huntinginstinct": {
+    "enable": "true",
+    "chance": "75",
+    "slownesslvl": "0",
+    "strengthlvl": "0",
+    "speedlvl": "1"
+  },
+  "curseofunstable": {
+    "enable": "true",
+    "chance": "5"
+  },
+  "truesharpness": {
+    "enable": "true",
+    "adddmg": "5",
+    "durabilityreduce": "10"
+  },
+  "invisibleshield": {
+    "enable": "true",
+    "maxlevel": "4",
+    "recovertick": "200",
+    "percentreductionperlvl": "20"
+  },
+  "weaponart": {
+    "enable": "true",
+    "maxlevel": "4",
+    "percentreductionperlvl": "7"
+  },
+  "mightyforce": {
+    "enable": "true",
+    "stackdeletetick": "80",
+    "percentdmgincrease": "20"
+  },
+  "miningfocus": {
+    "enable": "true",
+    "maxlevel": "3",
+    "addtickperlvl": "160",
+    "hastelvl": "1",
+    "cooldown": "800"
+  },
+  "automachine": {
+    "enable": "true",
+    "maxlevel": "4",
+    "addlengthperlvl": "2",
+    "initiallength": "3"
+  },
+  "linking": {
+    "enable": "true",
+    "maxlevel": "4",
+    "addblockperlvl": "2"
+  },
+  "curseofprovocation": {
+    "enable": "true",
+    "radius": "2"
+  }
+}

@@ -127,7 +127,7 @@ public class BlockMaskSoul extends Enchantment {
         );
     }
 
-    private boolean isnot_excludeBlocks(BlockState state) {
+    public static boolean isnot_excludeBlocks(BlockState state) {
         Block[] blocks = new Block[]{
                 Blocks.OBSIDIAN,
                 Blocks.BEDROCK,

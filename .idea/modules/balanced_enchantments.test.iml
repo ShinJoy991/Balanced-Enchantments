@@ -5,14 +5,18 @@
       <configuration>
         <autoDetectTypes>
           <platformType>FORGE</platformType>
-          <platformType>MCP</platformType>
           <platformType>MIXIN</platformType>
+          <platformType>MCP</platformType>
         </autoDetectTypes>
         <projectReimportVersion>1</projectReimportVersion>
       </configuration>
     </facet>
   </component>
   <component name="McpModuleSettings">
-    <option name="srgType" value="SRG" />
+    <option name="mappingFile" value="C:\Users\TRAN HOANG MINH NHUT\IdeaProjects\BalancedEnchantments_folder\BalancedEnchantments 1.16.5v1.0\build\createMcpToSrg\output.tsrg" />
+    <option name="mcpVersion" value="official_1.16.5" />
+    <option name="minecraftVersion" value="1.16.5" />
+    <option name="platformVersion" value="36.2.39" />
+    <option name="srgType" value="TSRG" />
   </component>
 </module>

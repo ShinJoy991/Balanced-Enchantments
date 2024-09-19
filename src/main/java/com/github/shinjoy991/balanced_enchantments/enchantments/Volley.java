@@ -20,7 +20,7 @@ public class Volley extends Enchantment {
     }
 
     public int getMaxCost(int enchantmentLevel) {
-        return super.getMinCost(enchantmentLevel) + 30;
+        return super.getMinCost(enchantmentLevel) + 50;
     }
 
     public int getMaxLevel() {
@@ -29,7 +29,7 @@ public class Volley extends Enchantment {
 
     @Override
     public boolean checkCompatibility(Enchantment ench) {
-        return ench != Enchantments.INFINITY_ARROWS ||
+        return super.checkCompatibility(ench) && ench != Enchantments.INFINITY_ARROWS ||
                 !getConfig("volley", "matchinfinity", 0).toString().equalsIgnoreCase("false");
     }
 }

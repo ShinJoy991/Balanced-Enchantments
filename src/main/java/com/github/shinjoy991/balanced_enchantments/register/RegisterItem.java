@@ -2,6 +2,7 @@ package com.github.shinjoy991.balanced_enchantments.register;
 
 import com.github.shinjoy991.balanced_enchantments.BalancedEnchantments;
 
+import net.minecraft.block.Blocks;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentData;

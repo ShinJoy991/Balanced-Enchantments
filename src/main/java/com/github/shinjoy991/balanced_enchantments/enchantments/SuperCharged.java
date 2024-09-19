@@ -4,13 +4,16 @@ import com.github.shinjoy991.balanced_enchantments.register.RegisterEnch;
 import net.minecraft.enchantment.DamageEnchantment;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.CreatureAttribute;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.HashMap;
@@ -30,13 +33,22 @@ public class SuperCharged extends Enchantment {
         super(Rarity.UNCOMMON, IS_TOOL_AND_WEAPON,
                 new EquipmentSlotType[]{EquipmentSlotType.MAINHAND});
     }
+    @SubscribeEvent
+    public static void playerJoin(PlayerEvent.PlayerLoggedInEvent event) {
+        cooldowns.remove(event.getEntity().getUUID());
+    }
 
     @SubscribeEvent
     public static void onHit(LivingHurtEvent event) {
         int EnchantLevel;
         DamageSource damageSource = event.getSource();
         LivingEntity target = event.getEntityLiving();
-        LivingEntity attacker = (LivingEntity) damageSource.getEntity();
+        LivingEntity attacker;
+        try {
+            attacker = (LivingEntity) damageSource.getEntity();
+        } catch (Exception e) {
+            return;
+        }
         if (attacker == null || target == null)
             return;
         try {
@@ -46,15 +58,19 @@ public class SuperCharged extends Enchantment {
         } catch (Exception e) {
             return;
         }
-        if (!(EnchantLevel >= 1))
+        if (EnchantLevel <= 0)
             return;
-        if (cooldowns.getOrDefault(attacker.getUUID(), false))
-            return;
-        adddmg =
-                EnchantLevel * Math.max((Integer) getConfig("supercharged", "dmgaddperlvl", 1), 0);
-        event.setAmount(event.getAmount() + adddmg);
+        if (cooldowns.getOrDefault(attacker.getUUID(), false)) {
+            adddmg =
+                    EnchantLevel * Math.max((Integer) getConfig("supercharged", "dmgaddperlvl", 1), 0);
+            event.setAmount(event.getAmount() - adddmg);
+        }
     }
-
+    @Override
+    public float getDamageBonus(int level, CreatureAttribute creatureType) {
+        adddmg = level * Math.max((Integer) getConfig("supercharged", "dmgaddperlvl", 1), 0);
+        return adddmg;
+    }
     public int getMinCost(int enchantmentLevel) {
         return 10 + 15 * (enchantmentLevel - 1);
     }

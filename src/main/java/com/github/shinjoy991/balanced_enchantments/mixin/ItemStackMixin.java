@@ -28,8 +28,13 @@ public abstract class ItemStackMixin {
                 int maxrandom = (Integer) getConfig("curseofdurability", "maxrandom", 1);
                 p_41623_ = new Random().nextInt(maxrandom - minrandom + 1) + minrandom;
             }
-        } catch (Exception ignored) {
-        }
+        } catch (Exception ignored) {}
+        try {
+            if (EnchantmentHelper.getItemEnchantmentLevel(RegisterEnch.TRUE_SHARPNESS.get(),
+                    item) > 0) {
+                p_41623_ = (Integer) getConfig("truesharpness", "durabilityreduce", 1);
+            }
+        } catch (Exception ignored) {}
         return p_41623_;
     }
 }

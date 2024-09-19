@@ -7,13 +7,17 @@ import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
+import net.minecraft.item.ArrowItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -31,9 +35,16 @@ public class VolleyBowEvents {
     private static int level = 0;
     private static int k = 0;
 
+    @SubscribeEvent
+    public static void playerJoin(PlayerEvent.PlayerLoggedInEvent event) {
+        shoot.remove(event.getEntity().getUUID());
+    }
+
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onVolleyShoot(ArrowLooseEvent event) {
         int VolleyLevel;
+        if (!event.getBow().sameItem(Items.BOW.getDefaultInstance()))
+            return;
         try {
             VolleyLevel = EnchantmentHelper.getItemEnchantmentLevel(RegisterEnch.VOLLEY.get(),
                     event.getBow());
@@ -47,13 +58,13 @@ public class VolleyBowEvents {
         int arrowCount = 0;
         for (int i = 0; i < player.inventory.getContainerSize(); i++) {
             ItemStack stack = player.inventory.getItem(i);
-            if (!stack.isEmpty() && stack.getItem() == Items.ARROW) {
+            if (!stack.isEmpty() && stack.getItem() instanceof ArrowItem) {
                 arrowCount += stack.getCount();
             }
         }
         if (!player.abilities.instabuild) {
             if (arrowCount >= VolleyLevel * 2 + 1 && EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY_ARROWS, event.getBow()) <= 0) {
-                player.inventory.clearOrCountMatchingItems(p -> item.getItem() == p.getItem(),
+                player.inventory.clearOrCountMatchingItems(p -> isArrow(p.getItem()),
                         VolleyLevel * 2,
                         player.inventoryMenu.getCraftSlots());
             } else
@@ -71,34 +82,32 @@ public class VolleyBowEvents {
             shoot.remove(player.getUUID());
         });
     }
-
+    private static boolean isArrow(Item item) {
+        return item instanceof ArrowItem;
+    }
     @SubscribeEvent
     public static void onArrowVolleyShoot(EntityJoinWorldEvent event) {
+        if (event.getWorld().isClientSide)
+            return;
         Entity en = event.getEntity();
-        if (!(en instanceof ArrowEntity))
+        if (!(en instanceof AbstractArrowEntity))
             return;
         if (en.getTags().contains("be.volley"))
             return;
         if (!(((ArrowEntity) en).getOwner() instanceof LivingEntity))
             return;
-        LivingEntity shooter = (LivingEntity) ((ArrowEntity) en).getOwner();
-        int VolleyLevel;
-        int k;
-        if (!shoot.getOrDefault(shooter.getUUID(), false)) {
-            try {
-               VolleyLevel =
-                       EnchantmentHelper.getItemEnchantmentLevel(RegisterEnch.VOLLEY.get(),
-                        shooter.getMainHandItem());
-                k = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH_ARROWS,
-                        shooter.getMainHandItem());
-                arrowSpeed = 1.6F;
-            } catch (Exception e) {
+        LivingEntity shooter;
+        try {
+            shooter = (LivingEntity) ((ArrowEntity) en).getOwner();
+            if (!(((ArrowEntity) en).getOwner() instanceof LivingEntity))
                 return;
-            }
-        } else {
-            VolleyLevel = level;
-            k = VolleyBowEvents.k;
+        } catch (Exception e) {
+            return;
         }
+        if (!shoot.getOrDefault(shooter.getUUID(), false))
+            return;
+        int VolleyLevel = level;
+        int k = VolleyBowEvents.k;
         shoot.remove(shooter.getUUID());
         en.addTag("be.volley");
         CompoundNBT oldnbt = en.serializeNBT();
