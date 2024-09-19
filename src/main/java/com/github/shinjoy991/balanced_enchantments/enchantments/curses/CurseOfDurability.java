@@ -27,11 +27,14 @@ public class CurseOfDurability extends Enchantment {
     }
 
     public int getMaxCost(int enchantmentLevel) {
-        return 30;
+        return 50;
     }
 
     public boolean isTreasureOnly() {
         return true;
     }
 
+    public boolean isTradeable() {
+        return false;
+    }
 }
