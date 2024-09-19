@@ -7,10 +7,13 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MobType;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.DamageEnchantment;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.HashMap;
@@ -30,13 +33,22 @@ public class SuperCharged extends Enchantment {
         super(Rarity.UNCOMMON, IS_TOOL_AND_WEAPON,
                 new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     }
+    @SubscribeEvent
+    public static void playerJoin(PlayerEvent.PlayerLoggedInEvent event) {
+        cooldowns.remove(event.getEntity().getUUID());
+    }
 
     @SubscribeEvent
     public static void onHit(LivingHurtEvent event) {
         int EnchantLevel;
         DamageSource damageSource = event.getSource();
         LivingEntity target = event.getEntity();
-        LivingEntity attacker = (LivingEntity) damageSource.getEntity();
+        LivingEntity attacker;
+        try {
+            attacker = (LivingEntity) damageSource.getEntity();
+        } catch (Exception e) {
+            return;
+        }
         if (attacker == null || target == null)
             return;
         try {
@@ -48,11 +60,17 @@ public class SuperCharged extends Enchantment {
         }
         if (EnchantLevel <= 0)
             return;
-        if (cooldowns.getOrDefault(attacker.getUUID(), false))
-            return;
-        adddmg =
-                EnchantLevel * Math.max((Integer) getConfig("supercharged", "dmgaddperlvl", 1), 0);
-        event.setAmount(event.getAmount() + adddmg);
+        if (cooldowns.getOrDefault(attacker.getUUID(), false)) {
+            adddmg =
+                    EnchantLevel * Math.max((Integer) getConfig("supercharged", "dmgaddperlvl", 1), 0);
+            event.setAmount(event.getAmount() - adddmg);
+        }
+
+    }
+    @Override
+    public float getDamageBonus(int level, MobType creatureType, ItemStack stack) {
+        adddmg = level * Math.max((Integer) getConfig("supercharged", "dmgaddperlvl", 1), 0);
+        return adddmg;
     }
 
     public int getMinCost(int enchantmentLevel) {

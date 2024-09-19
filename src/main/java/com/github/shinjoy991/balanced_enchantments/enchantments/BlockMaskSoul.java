@@ -14,6 +14,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,6 +33,10 @@ public class BlockMaskSoul extends Enchantment {
     public BlockMaskSoul() {
         super(Rarity.RARE, IS_HOE,
                 new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+    }
+    @SubscribeEvent
+    public static void playerJoin(PlayerEvent.PlayerLoggedInEvent event) {
+        cooldowns.remove(event.getEntity().getUUID());
     }
 
     public int getMinCost(int enchantmentLevel) {
@@ -126,7 +132,7 @@ public class BlockMaskSoul extends Enchantment {
         );
     }
 
-    private boolean isnot_excludeBlocks(BlockState state) {
+    public static boolean isnot_excludeBlocks(BlockState state) {
         Block[] blocks = new Block[]{
                 Blocks.OBSIDIAN,
                 Blocks.BEDROCK,

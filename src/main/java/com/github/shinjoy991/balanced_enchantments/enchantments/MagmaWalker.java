@@ -79,15 +79,19 @@ public class MagmaWalker extends Enchantment {
     }
 
     public int getMinCost(int enchantmentLevel) {
-        return enchantmentLevel * 15;
+        return 30;
     }
 
     public int getMaxCost(int enchantmentLevel) {
-        return this.getMinCost(enchantmentLevel) + 25;
+        return this.getMinCost(enchantmentLevel) + 50;
     }
 
     public boolean isTreasureOnly() {
         return true;
+    }
+
+    public boolean isAllowedOnBooks() {
+        return false;
     }
 
     public int getMaxLevel() {
